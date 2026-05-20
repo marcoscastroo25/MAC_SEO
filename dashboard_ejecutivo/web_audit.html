@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Web Audit | Growth Optimizer</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#131b2e",
+                      "on-secondary-container": "#a8afff",
+                      "on-primary-container": "#00574d",
+                      "surface-container-high": "#222a3d",
+                      "secondary-container": "#2f3aa3",
+                      "background": "#0b1326",
+                      "surface-variant": "#2d3449",
+                      "on-error": "#690005",
+                      "on-primary-fixed-variant": "#005047",
+                      "surface-bright": "#31394d",
+                      "primary-fixed-dim": "#3cddc7",
+                      "on-tertiary-fixed-variant": "#5c4300",
+                      "on-secondary": "#131e8c",
+                      "on-primary-fixed": "#00201c",
+                      "tertiary-fixed": "#ffdf9f",
+                      "on-error-container": "#ffdad6",
+                      "on-surface": "#dae2fd",
+                      "on-secondary-fixed-variant": "#2f3aa3",
+                      "surface": "#0b1326",
+                      "inverse-on-surface": "#283044",
+                      "inverse-primary": "#006b5f",
+                      "tertiary-fixed-dim": "#f9bd22",
+                      "surface-container-highest": "#2d3449",
+                      "error": "#ffb4ab",
+                      "surface-tint": "#3cddc7",
+                      "surface-container": "#171f33",
+                      "primary-container": "#2dd4bf",
+                      "on-tertiary-container": "#634900",
+                      "secondary-fixed-dim": "#bdc2ff",
+                      "primary-fixed": "#62fae3",
+                      "outline": "#859490",
+                      "on-tertiary": "#402d00",
+                      "secondary": "#bdc2ff",
+                      "error-container": "#93000a",
+                      "tertiary": "#ffd47b",
+                      "surface-dim": "#0b1326",
+                      "on-tertiary-fixed": "#261a00",
+                      "on-primary": "#003731",
+                      "secondary-fixed": "#e0e0ff",
+                      "on-background": "#dae2fd",
+                      "on-secondary-fixed": "#000767",
+                      "inverse-surface": "#dae2fd",
+                      "primary": "#57f1db",
+                      "tertiary-container": "#efb515",
+                      "surface-container-lowest": "#060e20",
+                      "on-surface-variant": "#bacac5",
+                      "outline-variant": "#3c4a46"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "16px",
+                      "stack-sm": "12px",
+                      "stack-lg": "48px",
+                      "stack-md": "24px",
+                      "container-padding": "24px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "label-sm": ["JetBrains Mono"],
+                      "headline-lg-mobile": ["Inter"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "label-md": ["JetBrains Mono"],
+                      "headline-xl": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background-color: rgba(19, 27, 46, 0.6); /* surface-container-low with opacity */
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .active-glow {
+            box-shadow: inset 0 0 20px rgba(87, 241, 219, 0.05);
+        }
+        .tech-bg-gradient {
+            background: radial-gradient(circle at top right, rgba(87, 241, 219, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(47, 58, 163, 0.08) 0%, transparent 40%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased tech-bg-gradient min-h-screen flex selection:bg-primary/30 selection:text-primary">
+<!-- SideNavBar -->
+<nav class="bg-surface-container-lowest dark:bg-surface-container-lowest h-screen w-64 fixed left-0 top-0 bg-surface-container-lowest/80 backdrop-blur-xl border-r border-outline-variant/10 z-50 flex flex-col h-full py-6 hidden md:flex">
+<!-- Header -->
+<div class="px-6 mb-stack-lg">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant/20 overflow-hidden flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl">robot_2</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary text-sm">Growth Agent</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-xs">Antigravity platform</p>
+</div>
+</div>
+</div>
+  <!-- SideNavBar Component -->
+  <div id="sidebar-overlay" class="fixed inset-0 bg-background/60 backdrop-blur-sm z-40 hidden md:hidden"></div>
+  <nav id="sidebar-nav" class="fixed inset-y-0 left-0 w-64 bg-surface-container-lowest bg-surface-container-lowest/80 backdrop-blur-xl border-r border-outline-variant/30 z-50 py-6 flex flex-col h-screen transition-transform duration-300 transform -translate-x-full md:translate-x-0">
+    <div class="px-6 mb-8 flex items-center gap-3">
+      <div class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+        <span class="material-symbols-outlined text-primary">rocket_launch</span>
+      </div>
+      <div>
+        <div class="font-headline-md font-bold text-primary text-[20px] leading-tight">Growth Agent</div>
+        <div class="font-label-sm text-on-surface-variant text-[10px]">Antigravity platform</div>
+      </div>
+    </div>
+    <div class="flex-1 overflow-y-auto px-4 space-y-1">
+      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-colors duration-200 rounded-lg" href="code.html">
+        <span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+        <span class="font-label-md text-label-md">Dashboard</span>
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-primary bg-primary/10 border-r-2 border-primary hover:bg-surface-variant/20 transition-colors duration-200 rounded-lg scale-[0.98] transition-transform duration-150 active-glow" href="web_audit.html">
+        <span class="material-symbols-outlined text-[20px]" data-icon="search_check">search_check</span>
+        <span class="font-label-md text-label-md">Web Audit</span>
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-colors duration-200 rounded-lg" href="social_media.html">
+        <span class="material-symbols-outlined text-[20px]" data-icon="share">share</span>
+        <span class="font-label-md text-label-md">Social Media</span>
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-colors duration-200 rounded-lg" href="recommendations.html">
+        <span class="material-symbols-outlined text-[20px]" data-icon="lightbulb">lightbulb</span>
+        <span class="font-label-md text-label-md">Recommendations</span>
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-colors duration-200 rounded-lg" href="webmaster_briefs.html">
+        <span class="material-symbols-outlined text-[20px]" data-icon="article">article</span>
+        <span class="font-label-md text-label-md">Webmaster Briefs</span>
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-colors duration-200 rounded-lg" href="settings.html">
+        <span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+        <span class="font-label-md text-label-md">Configuración</span>
+      </a>
+    </div>
+    <div class="px-6 mt-auto">
+      <button onclick="window.location.href='code.html'" class="w-full bg-primary text-on-primary font-label-md text-label-md py-3 rounded-lg hover:bg-primary-fixed transition-colors shadow-[0_0_15px_rgba(87,241,219,0.3)]">
+        Optimizar Ahora
+      </button>
+    </div>
+  </nav>
+  <!-- Main Content Wrapper -->
+  <div class="flex-1 md:ml-64 flex flex-col min-h-screen">
+    <!-- TopAppBar -->
+    <header class="bg-surface-container-low/50 dark:bg-surface-container-low/50 fixed top-0 right-0 left-0 md:left-64 h-16 backdrop-blur-md border-b border-outline-variant/10 z-40 flex justify-between items-center px-gutter">
+      <div class="flex items-center gap-4">
+        <button id="menu-toggle-btn" class="md:hidden text-on-surface-variant hover:text-on-surface p-2 rounded-full hover:bg-surface-variant/30 transition-all duration-200 flex items-center justify-center">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+        <span class="font-headline-md text-headline-md font-black text-primary text-xl">Growth Optimizer</span>
+      </div>
+<div class="flex items-center gap-4">
+<button id="theme-toggle" class="p-2 text-on-surface-variant hover:bg-surface-container-high/50 transition-all rounded-full flex items-center justify-center">
+  <span class="material-symbols-outlined">brightness_4</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-variant/30 transition-all duration-200 rounded-full">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-outline-variant/30">
+  <img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8iRj-lyU3oLr8uQXL197Y-u-mtrV5sIETD3otUpUQkgzGwBB9zBfw83uVCjneMJx_9BXk2kqRh7QrrVUoh8LWuVCRtnuVwWG6d6TOpnlp9_8YWxzv3fY2Ze47GfIAFAXrp4G9wMB5nrOIDgQsRD6_8W6JQfcr5TATq71QpLC_Dw_SI6ijzx_ERhmhnjSO8vVY8Y8KJWZZUqhyQDFoEzbsz8kbW8-b6CElbyUwKeItl6Fh0Rr5aiKMfkOvhEJ5DxCux9Xf1k0kHCLO"/>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 mt-16 p-container-padding pt-stack-md flex flex-col gap-stack-lg max-w-7xl mx-auto w-full">
+<!-- Page Context Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-1 rounded text-[10px] uppercase font-label-sm text-label-sm tracking-wider bg-primary/10 text-primary border border-primary/20">Auditoría en Vivo</span>
+<span id="target-url-text" class="font-label-sm text-label-sm text-on-surface-variant">URL de Destino: --</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface">Auditoría SEO Técnica</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Análisis impulsado por IA de las métricas web vitales y puntos de fricción estructural.</p>
+</div>
+<div class="flex items-center gap-4 glass-panel px-4 py-3 rounded-xl">
+<div class="relative w-12 h-12 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-container-high" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path id="health-ring-progress" class="text-primary drop-shadow-[0_0_4px_rgba(87,241,219,0.5)]" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="0, 100" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<span id="overall-health-score" class="absolute font-label-md text-label-md text-on-surface">--</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Salud General</span>
+<span id="overall-health-status" class="font-body-sm text-body-sm text-tertiary">--</span>
+</div>
+</div>
+</div>
+
+<!-- Web Audit Control Center (Prominent Form) -->
+<div class="glass-panel rounded-xl p-6 relative overflow-hidden">
+  <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl"></div>
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+    <div class="flex-1">
+      <h2 class="font-headline-md text-body-lg text-on-surface font-bold flex items-center gap-2 text-[20px] mb-1">
+        <span class="material-symbols-outlined text-primary text-2xl">rocket_launch</span>
+        Centro de Control de Auditoría
+      </h2>
+      <p class="font-body-sm text-body-sm text-on-surface-variant">Introduce una URL para realizar una auditoría completa de SEO, rendimiento e insights de IA.</p>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+      <input type="url" id="dashboard-audit-url" placeholder="https://tu-sitio.com" class="px-4 py-2.5 rounded bg-surface border border-outline-variant/30 text-body-sm font-body-sm focus:outline-none focus:border-primary transition-colors text-on-surface w-full md:w-80" required>
+      <button id="dashboard-run-audit-btn" class="bg-primary text-on-primary font-label-md text-label-md px-6 py-2.5 rounded font-semibold hover:opacity-90 transition-opacity flex items-center justify-center gap-2 disabled:opacity-50 whitespace-nowrap">
+        <span class="material-symbols-outlined text-[18px]">bolt</span>
+        Iniciar Auditoría de IA
+      </button>
+    </div>
+  </div>
+  
+  <!-- Agent Console Logging (Visible during audit) -->
+  <div id="agent-console" class="hidden mt-6 p-4 rounded-lg bg-[#070b14] border border-outline-variant/20 font-mono text-[12px] text-on-surface-variant space-y-2 h-48 overflow-y-auto">
+    <div class="flex items-center justify-between border-b border-outline-variant/20 pb-2 mb-2">
+      <span class="text-primary font-bold flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+        CONSOLA DEL AGENTE DE IA
+      </span>
+      <span id="console-status" class="text-[10px] text-on-surface-variant uppercase">Ejecutando...</span>
+    </div>
+    <div id="console-log-lines" class="space-y-1">
+      <!-- Dynamically written -->
+    </div>
+  </div>
+</div>
+<!-- Bento Grid Section -->
+<div class="grid grid-cols-12 gap-stack-md">
+<!-- Technical Performance (PageSpeed) -->
+<div class="col-span-12 xl:col-span-8 glass-panel rounded-xl p-stack-md flex flex-col gap-stack-sm active-glow">
+<div class="flex items-center justify-between mb-2">
+<h3 class="font-headline-md text-headline-md text-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">speed</span>
+                             Métricas Web Principales (Core Web Vitals)
+                        </h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Emulación Móvil</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 h-full">
+<!-- LCP -->
+<div class="bg-surface-container-high/50 rounded-lg p-4 border border-outline-variant/10 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">LCP (Carga)</span>
+<span id="lcp-dot" class="w-2 h-2 rounded-full bg-error drop-shadow-[0_0_5px_rgba(255,180,171,0.5)]"></span>
+</div>
+<div class="mt-4">
+<div id="lcp-value" class="font-headline-md text-headline-md text-error">--</div>
+<div id="lcp-label" class="font-label-sm text-label-sm text-error/70 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span> Cargando...
+                                </div>
+</div>
+</div>
+<!-- FCP -->
+<div class="bg-surface-container-high/50 rounded-lg p-4 border border-outline-variant/10 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">FCP (Pintura)</span>
+<span id="fcp-dot" class="w-2 h-2 rounded-full bg-primary drop-shadow-[0_0_5px_rgba(87,241,219,0.5)]"></span>
+</div>
+<div class="mt-4">
+<div id="fcp-value" class="font-headline-md text-headline-md text-primary">--</div>
+<div id="fcp-label" class="font-label-sm text-label-sm text-primary/70 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Cargando...
+                                </div>
+</div>
+</div>
+<!-- TTFB -->
+<div class="bg-surface-container-high/50 rounded-lg p-4 border border-outline-variant/10 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">TTFB (Respuesta)</span>
+<span id="ttfb-dot" class="w-2 h-2 rounded-full bg-tertiary drop-shadow-[0_0_5px_rgba(255,212,123,0.5)]"></span>
+</div>
+<div class="mt-4">
+<div id="ttfb-value" class="font-headline-md text-headline-md text-tertiary">--</div>
+<div id="ttfb-label" class="font-label-sm text-label-sm text-tertiary/70 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">info</span> Cargando...
+                                </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Conversion Funnel -->
+<div class="col-span-12 xl:col-span-4 glass-panel rounded-xl p-stack-md flex flex-col">
+<h3 class="font-headline-md text-headline-md text-sm text-on-surface flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary text-[18px]">filter_alt</span>
+                        Embudo de Conversión
+                    </h3>
+<div class="flex-1 flex flex-col justify-between gap-2 relative before:absolute before:left-4 before:top-4 before:bottom-4 before:w-px before:bg-outline-variant/30">
+<!-- Step 1 -->
+<div class="flex items-center gap-4 relative z-10">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-outline-variant/50 flex items-center justify-center font-label-sm text-label-sm">1</div>
+<div class="flex-1 bg-surface-container-high/40 rounded p-3 border border-outline-variant/10">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-sm text-label-sm text-on-surface">Carga de Página</span>
+<span class="font-label-md text-label-md text-primary">100%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded overflow-hidden">
+<div class="h-full bg-primary w-full"></div>
+</div>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex items-center gap-4 relative z-10">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-outline-variant/50 flex items-center justify-center font-label-sm text-label-sm">2</div>
+<div class="flex-1 bg-surface-container-high/40 rounded p-3 border border-outline-variant/10 relative">
+<div class="absolute -top-3 right-2 text-[10px] text-error font-label-sm bg-error/10 px-1 rounded">-32% Abandono</div>
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-sm text-label-sm text-on-surface">Scroll &gt; 50%</span>
+<span class="font-label-md text-label-md text-on-surface">68%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded overflow-hidden">
+<div class="h-full bg-primary w-[68%] opacity-80"></div>
+</div>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex items-center gap-4 relative z-10">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-primary flex items-center justify-center font-label-sm text-label-sm shadow-[0_0_10px_rgba(87,241,219,0.2)]">3</div>
+<div class="flex-1 bg-primary/5 rounded p-3 border border-primary/20 relative">
+<div class="absolute -top-3 right-2 text-[10px] text-error font-label-sm bg-error/10 px-1 rounded">-53% Abandono</div>
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-sm text-label-sm text-primary">Clic en CTA</span>
+<span class="font-label-md text-label-md text-primary">15%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded overflow-hidden">
+<div class="h-full bg-primary w-[15%] shadow-[0_0_8px_rgba(87,241,219,0.8)]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- UX/Architecture Heatmap Mockup -->
+<div class="col-span-12 glass-panel rounded-xl p-stack-md border border-outline-variant/20 overflow-hidden relative min-h-[400px] flex flex-col">
+<div class="flex items-center justify-between mb-6 z-10 relative">
+<h3 class="font-headline-md text-headline-md text-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">visibility</span>
+                            Mapa de Calor de Fricción y Arquitectura UX
+                        </h3>
+<div class="flex gap-2">
+<span class="px-3 py-1 rounded-full text-[10px] font-label-sm bg-error/10 text-error border border-error/20 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-pulse"></span> Fricción Alta
+                            </span>
+</div>
+</div>
+<!-- Abstract Mockup Area -->
+<div class="flex-1 bg-surface-container-lowest/50 rounded-lg border border-outline-variant/10 relative overflow-hidden flex items-center justify-center">
+<!-- Wireframe representation of a site -->
+<div class="w-3/4 h-3/4 border-2 border-outline-variant/20 rounded-md relative flex flex-col bg-surface-container-low/30 backdrop-blur-sm">
+<!-- Header wireframe -->
+<div class="h-12 border-b border-outline-variant/20 flex items-center px-4 justify-between">
+<div class="w-24 h-4 bg-outline-variant/30 rounded"></div>
+<div class="flex gap-4"><div class="w-12 h-2 bg-outline-variant/30 rounded"></div><div class="w-12 h-2 bg-outline-variant/30 rounded"></div></div>
+</div>
+<!-- Hero wireframe -->
+<div class="h-48 border-b border-outline-variant/20 flex items-center justify-center flex-col gap-4 relative">
+<div class="w-1/2 h-6 bg-outline-variant/30 rounded"></div>
+<div class="w-1/3 h-3 bg-outline-variant/20 rounded"></div>
+<div class="w-32 h-10 bg-primary/20 border border-primary/40 rounded mt-2"></div>
+<!-- Heatmap Blob (Good) -->
+<div class="absolute right-1/4 top-1/2 w-24 h-24 bg-primary/20 blur-xl rounded-full mix-blend-screen pointer-events-none"></div>
+</div>
+<!-- Content wireframe -->
+<div class="flex-1 flex gap-4 p-4 relative">
+<div class="flex-1 space-y-3">
+<div class="w-full h-3 bg-outline-variant/20 rounded"></div>
+<div class="w-5/6 h-3 bg-outline-variant/20 rounded"></div>
+<div class="w-4/6 h-3 bg-outline-variant/20 rounded"></div>
+</div>
+<div class="w-1/3 h-full bg-outline-variant/10 rounded relative">
+<!-- Friction Point Callout Bubble -->
+<div class="absolute -top-4 -left-8 bg-surface-container-high border border-error/50 p-3 rounded-lg shadow-xl z-20 w-48">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-error text-[14px]">warning</span>
+<span class="font-label-sm text-label-sm text-error">Trampa de Navegación</span>
+</div>
+<p class="text-[10px] text-on-surface-variant font-body-sm leading-tight">Los usuarios ignoran la estructura de navegación secundaria debido al bajo contraste.</p>
+<!-- pointer arrow -->
+<div class="absolute bottom-[-6px] right-8 w-3 h-3 bg-surface-container-high border-b border-r border-error/50 transform rotate-45"></div>
+</div>
+<!-- Heatmap Blob (Bad) -->
+<div class="absolute left-0 top-0 w-32 h-32 bg-error/20 blur-2xl rounded-full mix-blend-screen pointer-events-none animate-pulse"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Detailed Audit Issues List -->
+<div class="col-span-12 glass-panel rounded-xl p-stack-md flex flex-col gap-4">
+<h3 class="font-headline-md text-headline-md text-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-[20px]">gavel</span>
+                            Problemas Técnicos Detectados por el Agente
+                        </h3>
+<div id="audit-issues-list" class="space-y-2 max-h-64 overflow-y-auto pr-2">
+<p class="text-on-surface-variant text-body-sm italic p-4 text-center">No se han detectado problemas en la última auditoría.</p>
+</div>
+</div>
+
+<!-- SEO Health Table -->
+<div class="col-span-12 glass-panel rounded-xl p-stack-md overflow-x-auto">
+<div class="flex items-center justify-between mb-6 min-w-[600px]">
+<h3 class="font-headline-md text-headline-md text-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">find_in_page</span>
+                            Salud SEO On-Page (Historial)
+                        </h3>
+<button class="font-label-sm text-label-sm text-primary hover:text-primary-fixed transition-colors flex items-center gap-1">
+                            Exportar Datos <span class="material-symbols-outlined text-[14px]">download</span>
+</button>
+</div>
+<table class="w-full text-left border-collapse min-w-[600px]">
+<thead>
+<tr class="border-b border-outline-variant/20">
+<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-normal">URL Auditada</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-normal">Meta Título</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-normal">Meta Descripción</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-normal">Encabezados (H1/H2)</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-normal text-right">Imágenes Sin Alt</th>
+</tr>
+</thead>
+<tbody id="seo-health-table-body" class="font-body-sm text-body-sm">
+<tr class="border-b border-outline-variant/10 hover:bg-surface-variant/10 transition-colors">
+<td colspan="5" class="py-8 text-center text-on-surface-variant italic">Cargando datos de auditoría...</td>
+</tr>
+</tbody>
+</table>
+</div>
+</main>
+</div>
+<script>
+  // Theme Toggle Logic
+  const toggle = document.getElementById('theme-toggle');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+  const saved = localStorage.getItem('theme');
+  const current = saved || (prefersDark.matches ? 'dark' : 'light');
+  document.documentElement.classList.toggle('dark', current === 'dark');
+  document.documentElement.classList.toggle('light', current === 'light');
+  
+  const updateIcon = () => {
+    toggle.innerHTML = `<span class="material-symbols-outlined">${document.documentElement.classList.contains('dark') ? 'brightness_4' : 'brightness_7'}</span>`;
+  };
+  toggle.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    document.documentElement.classList.toggle('light', !isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    updateIcon();
+  });
+  updateIcon();
+
+  // Load live data from backend APIs
+  async function loadAuditData() {
+    try {
+      const res = await fetch('/api/dashboard');
+      if (!res.ok) return;
+      const data = await res.json();
+      
+      const historyRes = await fetch('/api/history/web');
+      let targetUrl = 'Ninguna auditada aún';
+      if (historyRes.ok) {
+        const historyData = await historyRes.json();
+        
+        // 1. Populate Target URL
+        if (historyData.seo && historyData.seo.length > 0) {
+          targetUrl = (historyData.seo[0].findings && historyData.seo[0].findings.url) || historyData.seo[0].url || 'Ninguna auditada aún';
+        }
+        document.getElementById('target-url-text').textContent = `URL de Destino: ${targetUrl}`;
+        if (document.getElementById('dashboard-audit-url') && !document.getElementById('dashboard-audit-url').value) {
+          document.getElementById('dashboard-audit-url').value = targetUrl === 'Ninguna auditada aún' ? '' : targetUrl;
+        }
+
+        // 2. Populate Core Web Vitals dynamically
+        if (historyData.performance && historyData.performance.length > 0) {
+          const perf = historyData.performance[0].metrics;
+          
+          // LCP
+          const lcpVal = document.getElementById('lcp-value');
+          if (lcpVal) {
+            const lcpSec = (perf.largestContentfulPaintMs / 1000).toFixed(2);
+            lcpVal.textContent = `${lcpSec}s`;
+            // LCP status color/label
+            const lcpDot = document.getElementById('lcp-dot');
+            const lcpLabel = document.getElementById('lcp-label');
+            if (perf.largestContentfulPaintMs < 2500) {
+              lcpVal.className = 'font-headline-md text-headline-md text-primary';
+              if (lcpDot) lcpDot.className = 'w-2 h-2 rounded-full bg-primary drop-shadow-[0_0_5px_rgba(87,241,219,0.5)]';
+              if (lcpLabel) {
+                lcpLabel.className = 'font-label-sm text-label-sm text-primary/70 mt-1 flex items-center gap-1';
+                lcpLabel.innerHTML = '<span class="material-symbols-outlined text-[14px]">check_circle</span> Bueno';
+              }
+            } else if (perf.largestContentfulPaintMs < 4000) {
+              lcpVal.className = 'font-headline-md text-headline-md text-tertiary';
+              if (lcpDot) lcpDot.className = 'w-2 h-2 rounded-full bg-tertiary drop-shadow-[0_0_5px_rgba(255,212,123,0.5)]';
+              if (lcpLabel) {
+                lcpLabel.className = 'font-label-sm text-label-sm text-tertiary/70 mt-1 flex items-center gap-1';
+                lcpLabel.innerHTML = '<span class="material-symbols-outlined text-[14px]">info</span> Necesita Mejora';
+              }
+            } else {
+              lcpVal.className = 'font-headline-md text-headline-md text-error';
+              if (lcpDot) lcpDot.className = 'w-2 h-2 rounded-full bg-error drop-shadow-[0_0_5px_rgba(255,180,171,0.5)]';
+              if (lcpLabel) {
+                lcpLabel.className = 'font-label-sm text-label-sm text-error/70 mt-1 flex items-center gap-1';
+                lcpLabel.innerHTML = '<span class="material-symbols-outlined text-[14px]">warning</span> Deficiente';
+              }
+            }
+          }
+          
+          // FCP
+          const fcpVal = document.getElementById('fcp-value');
+          if (fcpVal) {
+            fcpVal.textContent = `${Math.round(perf.firstContentfulPaintMs)}ms`;
+            const fcpDot = document.getElementById('fcp-dot');
+            const fcpLabel = document.getElementById('fcp-label');
+            if (perf.firstContentfulPaintMs < 1800) {
+              fcpVal.className = 'font-headline-md text-headline-md text-primary';
+              if (fcpDot) fcpDot.className = 'w-2 h-2 rounded-full bg-primary drop-shadow-[0_0_5px_rgba(87,241,219,0.5)]';
+              if (fcpLabel) {
+                fcpLabel.className = 'font-label-sm text-label-sm text-primary/70 mt-1 flex items-center gap-1';
+                fcpLabel.innerHTML = '<span class="material-symbols-outlined text-[14px]">check_circle</span> Bueno';
+              }
+            } else if (perf.firstContentfulPaintMs < 3000) {
+              fcpVal.className = 'font-headline-md text-headline-md text-tertiary';
+              if (fcpDot) fcpDot.className = 'w-2 h-2 rounded-full bg-tertiary drop-shadow-[0_0_5px_rgba(255,212,123,0.5)]';
+              if (fcpLabel) {
+                fcpLabel.className = 'font-label-sm text-label-sm text-tertiary/70 mt-1 flex items-center gap-1';
+                fcpLabel.innerHTML = '<span class="material-symbols-outlined text-[14px]">info</span> Necesita Mejora';
+              }
+            } else {
+              fcpVal.className = 'font-headline-md text-headline-md text-error';
+              if (fcpDot) fcpDot.className = 'w-2 h-2 rounded-full bg-error drop-shadow-[0_0_5px_rgba(255,180,171,0.5)]';
+              if (fcpLabel) {
+                fcpLabel.className = 'font-label-sm text-label-sm text-error/70 mt-1 flex items-center gap-1';
+                fcpLabel.innerHTML = '<span class="material-symbols-outlined text-[14px]">warning</span> Deficiente';
+              }
+            }
+          }
+
+          // TTFB
+          const ttfbVal = document.getElementById('ttfb-value');
+          if (ttfbVal) {
+            ttfbVal.textContent = `${Math.round(perf.timeToFirstByteMs)}ms`;
+            const ttfbDot = document.getElementById('ttfb-dot');
+            const ttfbLabel = document.getElementById('ttfb-label');
+            if (perf.timeToFirstByteMs < 600) {
+              ttfbVal.className = 'font-headline-md text-headline-md text-primary';
+              if (ttfbDot) ttfbDot.className = 'w-2 h-2 rounded-full bg-primary drop-shadow-[0_0_5px_rgba(87,241,219,0.5)]';
+              if (ttfbLabel) {
+                ttfbLabel.className = 'font-label-sm text-label-sm text-primary/70 mt-1 flex items-center gap-1';
+                ttfbLabel.innerHTML = '<span class="material-symbols-outlined text-[14px]">check_circle</span> Bueno';
+              }
+            } else if (perf.timeToFirstByteMs < 1000) {
+              ttfbVal.className = 'font-headline-md text-headline-md text-tertiary';
+              if (ttfbDot) ttfbDot.className = 'w-2 h-2 rounded-full bg-tertiary drop-shadow-[0_0_5px_rgba(255,212,123,0.5)]';
+              if (ttfbLabel) {
+                ttfbLabel.className = 'font-label-sm text-label-sm text-tertiary/70 mt-1 flex items-center gap-1';
+                ttfbLabel.innerHTML = '<span class="material-symbols-outlined text-[14px]">info</span> Necesita Mejora';
+              }
+            } else {
+              ttfbVal.className = 'font-headline-md text-headline-md text-error';
+              if (ttfbDot) ttfbDot.className = 'w-2 h-2 rounded-full bg-error drop-shadow-[0_0_5px_rgba(255,180,171,0.5)]';
+              if (ttfbLabel) {
+                ttfbLabel.className = 'font-label-sm text-label-sm text-error/70 mt-1 flex items-center gap-1';
+                ttfbLabel.innerHTML = '<span class="material-symbols-outlined text-[14px]">warning</span> Deficiente';
+              }
+            }
+          }
+        }
+
+        // 3. Populate On-Page SEO Health Table
+        const tableBody = document.getElementById('seo-health-table-body');
+        if (tableBody && historyData.seo && historyData.seo.length > 0) {
+          tableBody.innerHTML = '';
+          historyData.seo.forEach(item => {
+            const findings = item.findings;
+            const titleText = findings.title || '(Sin título)';
+            const titleLength = findings.title ? findings.title.length : 0;
+            let titleStatus = 'Adecuado';
+            let titleClass = 'text-primary';
+            if (titleLength === 0) {
+              titleStatus = 'Falta';
+              titleClass = 'text-error';
+            } else if (titleLength > 60) {
+              titleStatus = 'Muy Largo';
+              titleClass = 'text-error';
+            } else if (titleLength < 30) {
+              titleStatus = 'Corto';
+              titleClass = 'text-tertiary';
+            }
+
+            const descText = findings.description || '(Sin descripción)';
+            const descLength = findings.description ? findings.description.length : 0;
+            let descStatus = 'Adecuado';
+            let descClass = 'text-primary';
+            if (descLength === 0) {
+              descStatus = 'Falta';
+              descClass = 'text-error';
+            } else if (descLength > 160) {
+              descStatus = 'Muy Largo';
+              descClass = 'text-error';
+            } else if (descLength < 70) {
+              descStatus = 'Corto';
+              descClass = 'text-tertiary';
+            }
+
+            const row = document.createElement('tr');
+            row.className = 'border-b border-outline-variant/10 hover:bg-surface-variant/10 transition-colors';
+            row.innerHTML = `
+              <td class="py-4 px-4 text-primary font-label-sm break-all">${findings.url}</td>
+              <td class="py-4 px-4">
+                <div class="truncate w-48 text-on-surface font-semibold">${titleText}</div>
+                <div class="text-[10px] ${titleClass} mt-1">${titleLength} caracteres (${titleStatus})</div>
+              </td>
+              <td class="py-4 px-4">
+                <div class="truncate w-48 text-on-surface-variant">${descText}</div>
+                <div class="text-[10px] ${descClass} mt-1">${descLength} caracteres (${descStatus})</div>
+              </td>
+              <td class="py-4 px-4 text-on-surface-variant font-mono">
+                H1: ${findings.h1Count} | H2: ${findings.h2Count}
+              </td>
+              <td class="py-4 px-4 text-on-surface-variant text-right">
+                Imágenes: ${findings.imagesWithoutAlt} de ${findings.totalImages} sin alt
+              </td>
+            `;
+            tableBody.appendChild(row);
+          });
+        }
+
+        // 4. Populate Detailed Issues List
+        const issuesList = document.getElementById('audit-issues-list');
+        if (issuesList) {
+          issuesList.innerHTML = '';
+          const allIssues = [];
+          if (historyData.seo && historyData.seo.length > 0) {
+            historyData.seo[0].findings.issues.forEach(issue => allIssues.push({ text: issue, category: 'SEO', severity: 'high' }));
+          }
+          if (historyData.performance && historyData.performance.length > 0) {
+            historyData.performance[0].metrics.issues.forEach(issue => allIssues.push({ text: issue, category: 'Rendimiento', severity: 'medium' }));
+          }
+
+          if (allIssues.length > 0) {
+            allIssues.forEach(issue => {
+              const div = document.createElement('div');
+              div.className = 'flex items-start gap-3 p-3 rounded bg-surface-container-high/40 border border-outline-variant/10 hover:border-error/30 transition-all';
+              
+              const catClass = issue.category === 'SEO' ? 'bg-primary/10 text-primary border-primary/20' : 'bg-tertiary/10 text-tertiary border-tertiary/20';
+              
+              div.innerHTML = `
+                <span class="material-symbols-outlined text-error text-[20px] shrink-0 mt-0.5">warning</span>
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="px-2 py-0.5 rounded text-[9px] uppercase tracking-wider font-semibold border ${catClass}">${issue.category}</span>
+                    <span class="text-on-surface text-body-sm font-semibold">${issue.text}</span>
+                  </div>
+                </div>
+              `;
+              issuesList.appendChild(div);
+            });
+          } else {
+            issuesList.innerHTML = '<p class="text-on-surface-variant text-body-sm p-4 text-center">✨ ¡Excelente! No se detectaron problemas en la última auditoría.</p>';
+          }
+        }
+      }
+
+      // Update Overall Score
+      const score = data.seoScore || 0;
+      document.getElementById('overall-health-score').textContent = score || '--';
+      
+      // Update SVG progress ring
+      const healthRing = document.getElementById('health-ring-progress');
+      if (healthRing) {
+        healthRing.setAttribute('stroke-dasharray', `${score}, 100`);
+      }
+
+      // Update Overall Health Status text
+      const statusEl = document.getElementById('overall-health-status');
+      if (statusEl) {
+        if (score >= 90) {
+          statusEl.textContent = 'Optimizado';
+          statusEl.className = 'font-body-sm text-body-sm text-primary';
+        } else if (score >= 70) {
+          statusEl.textContent = 'Requiere Atención';
+          statusEl.className = 'font-body-sm text-body-sm text-tertiary';
+        } else {
+          statusEl.textContent = 'Crítico';
+          statusEl.className = 'font-body-sm text-body-sm text-error';
+        }
+      }
+    } catch (e) {
+      console.error('Error loading audit data', e);
+    }
+  }
+
+  // Initial load
+  loadAuditData();
+
+  // Run Audit Logic
+  const dashAuditBtn = document.getElementById('dashboard-run-audit-btn');
+  const dashAuditInput = document.getElementById('dashboard-audit-url');
+  const agentConsole = document.getElementById('agent-console');
+  const consoleStatus = document.getElementById('console-status');
+  const consoleLogLines = document.getElementById('console-log-lines');
+
+  function addConsoleLog(text, type = 'info') {
+    if (!consoleLogLines) return;
+    const line = document.createElement('div');
+    line.className = 'flex items-start gap-2 py-0.5 border-b border-white/5 last:border-0';
+    
+    let colorClass = 'text-on-surface-variant';
+    let prefix = '> [SISTEMA]';
+    
+    if (type === 'telemetry') {
+      colorClass = 'text-sky-400';
+      prefix = '> [TELEMETRÍA]';
+    } else if (type === 'ai') {
+      colorClass = 'text-primary font-bold';
+      prefix = '🧠 [CEREBRO IA]';
+    } else if (type === 'success') {
+      colorClass = 'text-emerald-400 font-bold';
+      prefix = '✨ [ÉXITO]';
+    } else if (type === 'error') {
+      colorClass = 'text-error font-bold';
+      prefix = '❌ [ERROR]';
+    }
+
+    line.innerHTML = `
+      <span class="text-outline-variant/40 shrink-0 select-none">${new Date().toLocaleTimeString()}</span>
+      <span class="${colorClass} shrink-0 select-none">${prefix}</span>
+      <span class="${colorClass} break-all">${text}</span>
+    `;
+    
+    consoleLogLines.appendChild(line);
+    if (agentConsole) {
+      agentConsole.scrollTop = agentConsole.scrollHeight;
+    }
+  }
+
+  async function executeAudit(url) {
+    if (!url) return alert('Por favor ingresa una URL válida (ej. https://example.com)');
+    
+    if (dashAuditBtn) {
+      dashAuditBtn.disabled = true;
+      dashAuditBtn.innerHTML = '<span class="material-symbols-outlined animate-spin" style="animation: spin 1s linear infinite;">sync</span> Analizando...';
+    }
+    if (dashAuditInput) dashAuditInput.disabled = true;
+    
+    if (agentConsole) agentConsole.classList.remove('hidden');
+    if (consoleLogLines) consoleLogLines.innerHTML = '';
+    if (consoleStatus) consoleStatus.textContent = 'Ejecutando...';
+
+    const logsTimeline = [
+      { delay: 100, text: `Iniciando Puppeteer Headless Browser para auditar: ${url}`, type: 'telemetry' },
+      { delay: 1500, text: 'Navegando y extrayendo el DOM del sitio en vivo...', type: 'telemetry' },
+      { delay: 3500, text: 'Calculando métricas Core Web Vitals (LCP, FID, CLS)...', type: 'telemetry' },
+      { delay: 5500, text: 'Evaluando estructura SEO (Encabezados H1-H6, Meta tags, Enlaces)...', type: 'telemetry' },
+      { delay: 7500, text: 'Estructurando telemetría para el motor de Inteligencia Artificial...', type: 'info' },
+      { delay: 9000, text: 'Inicializando sesión con modelo Gemini 2.5 Flash...', type: 'ai' },
+      { delay: 11000, text: 'Gemini está interpretando los problemas técnicos de SEO y Performance...', type: 'ai' },
+      { delay: 13000, text: 'Generando Quick Wins y recomendaciones estratégicas accionables...', type: 'ai' },
+      { delay: 15500, text: 'Guardando auditoría completa y alertas en la Base de Datos SQLite...', type: 'info' }
+    ];
+
+    const timers = [];
+    logsTimeline.forEach(step => {
+      const t = setTimeout(() => addConsoleLog(step.text, step.type), step.delay);
+      timers.push(t);
+    });
+
+    const pollInterval = setInterval(loadAuditData, 4000);
+
+    try {
+      const res = await fetch('/api/run/web', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url })
+      });
+      const result = await res.json();
+      
+      timers.forEach(clearTimeout);
+      
+      if (!res.ok) throw new Error(result.error || 'Error desconocido');
+      
+      if (consoleStatus) consoleStatus.textContent = 'Completado';
+      addConsoleLog(`Auditoría de IA completada para ${url}`, 'success');
+      addConsoleLog(`Métricas actualizadas correctamente.`, 'success');
+      
+    } catch(e) {
+      timers.forEach(clearTimeout);
+      if (consoleStatus) consoleStatus.textContent = 'Error';
+      addConsoleLog(`Fallo en el proceso: ${e.message}`, 'error');
+      alert('Error: ' + e.message);
+    } finally {
+      clearInterval(pollInterval);
+      loadAuditData();
+      
+      if (dashAuditBtn) {
+        dashAuditBtn.disabled = false;
+        dashAuditBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">rocket_launch</span> Iniciar Auditoría de IA';
+      }
+      if (dashAuditInput) dashAuditInput.disabled = false;
+    }
+  }
+
+  if (dashAuditBtn) {
+    dashAuditBtn.addEventListener('click', () => {
+      const url = dashAuditInput.value.trim();
+      executeAudit(url);
+    });
+  }
+
+  // Custom keyframes for spinner
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Mobile Sidebar Drawer Logic
+  const menuToggleBtn = document.getElementById('menu-toggle-btn');
+  const sidebarNav = document.getElementById('sidebar-nav');
+  const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+  if (menuToggleBtn && sidebarNav) {
+    menuToggleBtn.addEventListener('click', () => {
+      sidebarNav.classList.remove('-translate-x-full');
+      if (sidebarOverlay) sidebarOverlay.classList.remove('hidden');
+    });
+  }
+
+  if (sidebarOverlay) {
+    sidebarOverlay.addEventListener('click', () => {
+      if (sidebarNav) sidebarNav.classList.add('-translate-x-full');
+      sidebarOverlay.classList.add('hidden');
+    });
+  }
+</script>
+</body></html>

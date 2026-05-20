@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Webmaster Brief Generator - Growth Optimizer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#131b2e",
+                      "on-secondary-container": "#a8afff",
+                      "on-primary-container": "#00574d",
+                      "surface-container-high": "#222a3d",
+                      "secondary-container": "#2f3aa3",
+                      "background": "#0b1326",
+                      "surface-variant": "#2d3449",
+                      "on-error": "#690005",
+                      "on-primary-fixed-variant": "#005047",
+                      "surface-bright": "#31394d",
+                      "primary-fixed-dim": "#3cddc7",
+                      "on-tertiary-fixed-variant": "#5c4300",
+                      "on-secondary": "#131e8c",
+                      "on-primary-fixed": "#00201c",
+                      "tertiary-fixed": "#ffdf9f",
+                      "on-error-container": "#ffdad6",
+                      "on-surface": "#dae2fd",
+                      "on-secondary-fixed-variant": "#2f3aa3",
+                      "surface": "#0b1326",
+                      "inverse-on-surface": "#283044",
+                      "inverse-primary": "#006b5f",
+                      "tertiary-fixed-dim": "#f9bd22",
+                      "surface-container-highest": "#2d3449",
+                      "error": "#ffb4ab",
+                      "surface-tint": "#3cddc7",
+                      "surface-container": "#171f33",
+                      "primary-container": "#2dd4bf",
+                      "on-tertiary-container": "#634900",
+                      "secondary-fixed-dim": "#bdc2ff",
+                      "primary-fixed": "#62fae3",
+                      "outline": "#859490",
+                      "on-tertiary": "#402d00",
+                      "secondary": "#bdc2ff",
+                      "error-container": "#93000a",
+                      "tertiary": "#ffd47b",
+                      "surface-dim": "#0b1326",
+                      "on-tertiary-fixed": "#261a00",
+                      "on-primary": "#003731",
+                      "secondary-fixed": "#e0e0ff",
+                      "on-background": "#dae2fd",
+                      "on-secondary-fixed": "#000767",
+                      "inverse-surface": "#dae2fd",
+                      "primary": "#57f1db",
+                      "tertiary-container": "#efb515",
+                      "surface-container-lowest": "#060e20",
+                      "on-surface-variant": "#bacac5",
+                      "outline-variant": "#3c4a46"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "16px",
+                      "stack-sm": "12px",
+                      "stack-lg": "48px",
+                      "stack-md": "24px",
+                      "container-padding": "24px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "JetBrains Mono"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "JetBrains Mono"
+                      ],
+                      "headline-xl": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-xl": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        
+        /* Glassmorphism effects */
+        .glass-panel {
+            background-color: rgba(19, 27, 46, 0.6); /* surface-container-low with opacity */
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .glass-card {
+            background-color: rgba(23, 31, 51, 0.5); /* surface-container */
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        .active-glow {
+            box-shadow: inset 0 0 20px 0 rgba(87, 241, 219, 0.05);
+            border-color: rgba(87, 241, 219, 0.2);
+        }
+
+        /* Ambient gradient background */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: radial-gradient(circle at 15% 50%, rgba(87, 241, 219, 0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 85% 30%, rgba(47, 58, 163, 0.04) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Command line style input */
+        .cmd-panel {
+            background-color: rgba(11, 19, 38, 0.9); /* surface-dim */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cmd-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1em;
+            background-color: theme('colors.primary');
+            vertical-align: text-bottom;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Custom Scrollbar for inner areas */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex selection:bg-primary/30 selection:text-primary">
+<div class="ambient-bg"></div>
+<!-- SideNavBar Shared Component -->
+<nav class="bg-surface-container-lowest dark:bg-surface-container-lowest h-screen w-64 fixed left-0 top-0 bg-surface-container-lowest/80 backdrop-blur-xl border-r border-outline-variant/10 z-50 flex flex-col h-full py-6 hidden md:flex">
+<div class="px-6 mb-stack-md flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary/20 flex items-center justify-center border border-primary/30">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="rocket_launch" data-weight="fill" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary tracking-tight">Growth Agent</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Antigravity platform</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto mt-4 px-2 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-colors duration-200 rounded-lg mx-2" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-colors duration-200 rounded-lg mx-2" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="search_check">search_check</span>
+<span class="font-label-md text-label-md">Web Audit</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-colors duration-200 rounded-lg mx-2" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="share">share</span>
+<span class="font-label-md text-label-md">Social Media</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-colors duration-200 rounded-lg mx-2" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="lightbulb">lightbulb</span>
+<span class="font-label-md text-label-md">Recommendations</span>
+</a>
+<!-- Active Tab -->
+<a class="flex items-center gap-3 px-4 py-3 text-primary bg-primary/10 border-r-2 border-primary rounded-l-lg ml-2 hover:bg-surface-variant/20 transition-colors duration-200 scale-[0.98] transition-transform duration-150 relative overflow-hidden group" href="#">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-[20px]" data-icon="article">article</span>
+<span class="font-label-md text-label-md">Webmaster Briefs</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-colors duration-200 rounded-lg mx-2" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+<div class="px-6 mt-auto">
+<button class="w-full py-3 px-4 bg-primary text-on-primary font-label-md text-label-md rounded-lg hover:bg-primary-fixed transition-colors flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(87,241,219,0.2)]">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+                Optimize Now
+            </button>
+</div>
+</nav>
+<!-- TopAppBar Shared Component -->
+<header class="bg-surface-container-low/50 dark:bg-surface-container-low/50 fixed top-0 right-0 left-0 md:left-64 h-16 backdrop-blur-md border-b border-outline-variant/10 z-40 flex justify-between items-center px-gutter h-full w-full">
+<div class="flex items-center md:hidden">
+<button class="p-2 text-on-surface-variant hover:bg-surface-variant/30 transition-all duration-200 rounded-full">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-headline-md text-headline-md font-black text-primary ml-2">Growth Optimizer</span>
+</div>
+<div class="hidden md:block">
+<!-- Breadcrumb or context could go here, but keeping clean per design -->
+</div>
+<div class="flex items-center gap-2">
+<div class="flex gap-1 mr-2">
+<button class="p-2 text-on-surface-variant hover:bg-surface-variant/30 transition-all duration-200 rounded-full flex items-center justify-center relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border border-surface-container-low"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-variant/30 transition-all duration-200 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+</button>
+</div>
+<button class="hidden md:flex items-center gap-2 px-4 py-1.5 border border-primary text-primary font-label-sm text-label-sm rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-[16px]">add</span>
+                Generate Brief
+            </button>
+<div class="h-8 w-8 rounded-full bg-surface-variant ml-2 overflow-hidden border border-outline-variant/30">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="A small circular profile picture of a professional individual, subtly lit with cool tones, fitting seamlessly into a modern dark-mode enterprise UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAacqvIgf-03JgJyLVFB5j__s9WcEj5dbprSjrmSIo-VxrihReKmeDcodeuaf_XQ6HHYji-FNawWtyLLin8EJBRYCbYyNUpoX6VN6GXjwAefvq6USSLN3PMr8Ts2P8q472mzl7k5G8tejpr6JnxjaK88Ly4BFK2-u4F3at9yaMd1z3W4I1mQDbNZUT8FlDZO3dd3iSBVlhRbnwXe0WyoyPVo-KWHLNe6qCY5esUwKYWjGJvRKfNS2NaSwRMeXUzhxRT4NXtzcm-2cun"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-0 md:ml-64 mt-16 p-container-padding flex flex-col h-[calc(100vh-4rem)] overflow-hidden">
+<!-- Header Section -->
+<div class="mb-stack-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shrink-0">
+<div>
+<div class="flex items-center gap-3 mb-1">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Brief Generator</h2>
+<span class="px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span> AI Active
+                    </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Constructing technical directives for the Webmaster Agent based on latest audit data.</p>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md text-label-md font-semibold flex items-center gap-2 hover:bg-primary-fixed transition-colors shadow-[0_4px_20px_-5px_rgba(87,241,219,0.4)]">
+<span class="material-symbols-outlined text-[18px]">send</span>
+                Send to Webmaster Agent
+            </button>
+</div>
+<!-- Split View Interface -->
+<div class="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-stack-md overflow-hidden min-h-0">
+<!-- Left Panel: AI Detected Issues (Pending Optimizations) -->
+<div class="col-span-1 lg:col-span-5 flex flex-col glass-panel rounded-xl overflow-hidden h-full">
+<div class="p-4 border-b border-outline-variant/10 bg-surface-container-highest/30 shrink-0 flex justify-between items-center">
+<h3 class="font-headline-md text-body-lg text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">target</span>
+                        Pending Optimizations
+                    </h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">3 Items Queued</span>
+</div>
+<div class="p-4 overflow-y-auto flex-1 flex flex-col gap-3">
+<!-- Issue Card 1 (Active) -->
+<div class="glass-card active-glow p-4 rounded-lg cursor-pointer transition-all hover:bg-surface-variant/30 relative">
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-primary rounded-r-full"></div>
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-0.5 rounded bg-error/10 text-error border border-error/20 font-label-sm text-[10px] tracking-wider uppercase">High Priority</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Performance</span>
+</div>
+<h4 class="font-body-md text-body-md font-semibold text-on-surface mb-1">LCP Core Web Vitals Failure</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-3">Hero image on homepage is uncompressed (2.4MB) and delaying Largest Contentful Paint by 3.2s.</p>
+<div class="flex items-center gap-2 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">add_circle</span>
+<span>Added to Brief</span>
+</div>
+</div>
+<!-- Issue Card 2 -->
+<div class="glass-card p-4 rounded-lg cursor-pointer transition-all hover:bg-surface-variant/30 hover:border-primary/30 opacity-70">
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-0.5 rounded bg-tertiary/10 text-tertiary border border-tertiary/20 font-label-sm text-[10px] tracking-wider uppercase">Medium</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">SEO</span>
+</div>
+<h4 class="font-body-md text-body-md font-semibold text-on-surface mb-1">Missing H1 on Product Pages</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-3">Template 'product-v2' relies on H2s for title rendering, negatively impacting structural indexing.</p>
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary font-label-sm text-label-sm transition-colors">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span>Add to Brief</span>
+</button>
+</div>
+<!-- Issue Card 3 -->
+<div class="glass-card p-4 rounded-lg cursor-pointer transition-all hover:bg-surface-variant/30 hover:border-primary/30 opacity-70">
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-0.5 rounded bg-secondary/10 text-secondary border border-secondary/20 font-label-sm text-[10px] tracking-wider uppercase">Low</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Accessibility</span>
+</div>
+<h4 class="font-body-md text-body-md font-semibold text-on-surface mb-1">Contrast Ratio in Footer</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-3">Legal links in footer have a contrast ratio of 3.1:1, failing WCAG AA requirements.</p>
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary font-label-sm text-label-sm transition-colors">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span>Add to Brief</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right Panel: Document Editor Interface -->
+<div class="col-span-1 lg:col-span-7 flex flex-col glass-panel rounded-xl overflow-hidden h-full relative">
+<!-- Document Toolbar -->
+<div class="p-3 border-b border-outline-variant/10 bg-surface-container-highest/30 shrink-0 flex justify-between items-center">
+<div class="flex gap-2">
+<button class="p-1.5 rounded text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[18px]">format_bold</span></button>
+<button class="p-1.5 rounded text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[18px]">format_italic</span></button>
+<button class="p-1.5 rounded text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[18px]">link</span></button>
+<div class="w-px h-6 bg-outline-variant/30 my-auto mx-1"></div>
+<button class="p-1.5 rounded text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[18px]">code</span></button>
+</div>
+<div class="flex items-center gap-2 text-primary/70 font-label-sm text-[11px] font-mono">
+<span class="material-symbols-outlined text-[14px] animate-spin">sync</span>
+                        Auto-saving...
+                    </div>
+</div>
+<!-- Document Canvas -->
+<div class="flex-1 overflow-y-auto p-6 md:p-8 bg-surface-dim/50">
+<div class="max-w-3xl mx-auto space-y-6">
+<!-- Doc Header -->
+<div class="border-b border-outline-variant/20 pb-4 mb-6">
+<input class="w-full bg-transparent border-none font-headline-md text-[28px] text-on-surface p-0 focus:ring-0 placeholder:text-on-surface-variant/30 font-semibold mb-2" type="text" value="Brief: Resolve LCP Bottleneck on Homepage"/>
+<div class="flex gap-4 font-label-sm text-label-sm text-on-surface-variant">
+<span>Agent: Webmaster</span>
+<span>Priority: High</span>
+<span>Date: Oct 24, 2023</span>
+</div>
+</div>
+<!-- Section: Problem Description -->
+<div class="space-y-2">
+<h3 class="font-label-md text-label-md text-primary tracking-wider uppercase">1. Problem Description</h3>
+<p class="font-body-md text-body-md text-on-surface/90 leading-relaxed">
+                                The primary hero image (<code class="text-secondary bg-secondary/10 px-1 py-0.5 rounded text-[13px]">hero-main-v4.jpg</code>) is currently served uncompressed at 2.4MB. This asset is blocking the main render path, causing the Largest Contentful Paint (LCP) to spike to 3.2 seconds on 4G mobile connections.
+                            </p>
+</div>
+<!-- Section: Visual Reference (Placeholder) -->
+<div class="space-y-2 my-6">
+<h3 class="font-label-md text-label-md text-primary tracking-wider uppercase">2. Visual Reference</h3>
+<div class="w-full h-48 bg-surface-container rounded-lg border border-dashed border-outline-variant/50 flex flex-col items-center justify-center relative overflow-hidden group">
+<div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-50"></div>
+<span class="material-symbols-outlined text-4xl text-on-surface-variant mb-2">image</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">hero-main-v4.jpg (Current State)</span>
+<button class="absolute inset-0 w-full h-full bg-surface-container-high/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-primary font-label-md">
+                                    Click to preview asset
+                                </button>
+</div>
+</div>
+<!-- Section: Technical Spec (Cmd Line style) -->
+<div class="space-y-2">
+<h3 class="font-label-md text-label-md text-primary tracking-wider uppercase">3. Technical Specification</h3>
+<div class="cmd-panel rounded-lg p-4 font-label-sm text-[13px] text-on-surface-variant leading-relaxed">
+<div class="flex justify-between items-center mb-2 border-b border-white/10 pb-2">
+<span class="text-on-surface font-mono">Directives</span>
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[16px]">content_copy</span></button>
+</div>
+<div class="space-y-1 font-mono">
+<p><span class="text-tertiary">ACTION</span>: Convert <span class="text-on-surface">hero-main-v4.jpg</span> to WebP format.</p>
+<p><span class="text-tertiary">TARGET_SIZE</span>: &lt; 200kb</p>
+<p><span class="text-tertiary">DIMENSIONS</span>: Maintain 1920x1080 native resolution.</p>
+<p><span class="text-tertiary">IMPLEMENTATION</span>: Add srcset for responsive loading.</p>
+<p class="mt-2 text-primary opacity-80">&gt; Ready for execution<span class="cmd-cursor"></span></p>
+</div>
+</div>
+</div>
+<!-- Section: Strategic Justification -->
+<div class="space-y-2 pb-8">
+<h3 class="font-label-md text-label-md text-primary tracking-wider uppercase">4. Strategic Justification</h3>
+<div class="glass-card p-4 rounded-l border-l-2 border-l-primary/50">
+<p class="font-body-sm text-body-sm text-on-surface/80 italic">
+                                    "Improving LCP to under 2.5 seconds will recover an estimated 8% bounce rate currently lost during initial load. This directly correlates with higher engagement on the primary conversion funnel."
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Settings - Growth Optimizer</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "var(--primary)",
+                        "primary-container": "var(--primary-container)",
+                        "secondary": "var(--secondary)",
+                        "secondary-container": "var(--secondary-container)",
+                        "background": "var(--background)",
+                        "surface": "var(--surface)",
+                        "surface-variant": "var(--surface-variant)",
+                        "on-primary": "var(--on-primary)",
+                        "on-secondary": "var(--on-secondary)",
+                        "on-background": "var(--on-background)",
+                        "on-surface": "var(--on-surface)",
+                        "on-surface-variant": "var(--on-surface-variant)",
+                        "error": "var(--error)",
+                        "error-container": "var(--error-container)",
+                        "on-error": "var(--on-error)",
+                        "surface-container-low": "var(--surface-container-low)",
+                        "surface-container-high": "var(--surface-container-high)",
+                        "surface-tint": "var(--surface-tint)",
+                        "outline": "var(--outline)",
+                        "outline-variant": "var(--outline-variant)"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "stack-sm": "12px",
+                        "stack-lg": "48px",
+                        "stack-md": "24px",
+                        "container-padding": "24px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-xl": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        :root {
+            --primary: #14b8a6;
+            --primary-container: #99e6e1;
+            --secondary: #f59e0b;
+            --secondary-container: #fde68a;
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --surface-variant: #e2e8f0;
+            --on-primary: #ffffff;
+            --on-secondary: #0f172a;
+            --on-background: #0f172a;
+            --on-surface: #0f172a;
+            --on-surface-variant: #64748b;
+            --error: #ef4444;
+            --error-container: #fee2e2;
+            --on-error: #ffffff;
+            --surface-container-low: #f1f5f9;
+            --surface-container-high: #e2e8f0;
+            --surface-tint: #14b8a6;
+            --outline: #cbd5e1;
+            --outline-variant: #94a3b8;
+        }
+
+        html.dark {
+            --primary: #57f1db;
+            --primary-container: #005047;
+            --secondary: #bdc2ff;
+            --secondary-container: #2f3aa3;
+            --background: #0B1120;
+            --surface: #0F172A;
+            --surface-variant: #1e293b;
+            --on-primary: #003731;
+            --on-secondary: #000767;
+            --on-background: #f8fafc;
+            --on-surface: #f8fafc;
+            --on-surface-variant: #94a3b8;
+            --error: #ffb4ab;
+            --error-container: #93000a;
+            --on-error: #690005;
+            --surface-container-low: #131b2e;
+            --surface-container-high: #222a3d;
+            --surface-tint: #3cddc7;
+            --outline: #475569;
+            --outline-variant: #334155;
+        }
+
+        /* Custom Precision Glassmorphism & Animations */
+        html.dark body {
+            background-color: #0F172A;
+            background-image: radial-gradient(circle at 10% 20%, rgba(87, 241, 219, 0.03) 0%, transparent 40%),
+                              radial-gradient(circle at 90% 80%, rgba(47, 58, 163, 0.05) 0%, transparent 50%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        html.light body {
+            background-color: #F8FAFC;
+            background-image: radial-gradient(circle at 10% 20%, rgba(87, 241, 219, 0.05) 0%, transparent 40%),
+                              radial-gradient(circle at 90% 80%, rgba(47, 58, 163, 0.08) 0%, transparent 50%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #0F172A;
+        }
+
+        .glass-panel {
+            background: rgba(19, 27, 46, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-left: 1px solid rgba(255, 255, 255, 0.04);
+            border-right: 1px solid rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.5);
+            color: #E2E8F0;
+        }
+
+        html.light .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 1);
+            border-left: 1px solid rgba(255, 255, 255, 0.8);
+            border-right: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.05);
+            color: #0F172A;
+        }
+
+        .glass-panel-active {
+            box-shadow: inset 0 0 20px rgba(87, 241, 219, 0.05), 0 4px 24px -4px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(87, 241, 219, 0.2);
+        }
+
+        html.light .glass-panel-active {
+            box-shadow: inset 0 0 20px rgba(87, 241, 219, 0.2), 0 4px 24px -4px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(87, 241, 219, 0.6);
+        }
+
+        .cmd-panel {
+            background: #0B1120;
+            border: 1px solid rgba(255,255,255,0.05);
+            color: #E2E8F0;
+        }
+
+        html.light .cmd-panel {
+            background: #F1F5F9;
+            border: 1px solid rgba(0,0,0,0.05);
+            color: #0F172A;
+        }
+
+        .glow-text-primary {
+            text-shadow: 0 0 10px rgba(87, 241, 219, 0.4);
+        }
+
+        .sparkline-path {
+            stroke: #57f1db;
+            stroke-width: 2;
+            fill: none;
+            filter: drop-shadow(0px 2px 4px rgba(87, 241, 219, 0.3));
+        }
+        
+        .sparkline-fill {
+            fill: url(#sparkline-gradient);
+        }
+
+        .ring-bg {
+            stroke: rgba(255, 255, 255, 0.05);
+        }
+
+        .ring-progress {
+            stroke: #57f1db;
+            filter: drop-shadow(0 0 8px rgba(87, 241, 219, 0.5));
+            transition: stroke-dasharray 1s ease-out;
+        }
+        
+        .blinking-cursor {
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Status Pills */
+        .status-pill-high { background: rgba(239, 181, 21, 0.15); color: #efb515; border: 1px solid rgba(239, 181, 21, 0.3); }
+        .status-pill-normal { background: rgba(189, 194, 255, 0.15); color: #bdc2ff; border: 1px solid rgba(189, 194, 255, 0.3); }
+        .status-pill-optimized { background: rgba(87, 241, 219, 0.15); color: #57f1db; border: 1px solid rgba(87, 241, 219, 0.3); }
+    </style>
+</head>
+<body class="text-on-surface bg-background font-body-md overflow-x-hidden">
+<!-- TopAppBar Component -->
+<header class="fixed top-0 right-0 left-0 md:left-64 h-16 bg-surface-container-low/50 dark:bg-surface-container-low/50 backdrop-blur-md border-b border-outline-variant/10 z-40 flex justify-between items-center px-gutter w-full md:w-[calc(100%-16rem)]">
+<div class="flex items-center gap-4">
+<!-- Mobile Menu Toggle (Hidden on Desktop) -->
+<button id="menu-toggle-btn" class="md:hidden text-on-surface-variant hover:text-on-surface p-2 rounded-full hover:bg-surface-variant/30 transition-all duration-200">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="font-headline-md text-headline-md font-black text-primary md:hidden">Growth Optimizer</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<input type="url" id="audit-url" placeholder="https://tu-sitio.com" class="hidden sm:block px-3 py-1.5 rounded bg-surface border border-outline-variant/30 text-body-sm font-body-sm focus:outline-none focus:border-primary transition-colors w-64 text-on-surface" required>
+<button id="run-audit-btn" class="hidden sm:flex bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-DEFAULT font-semibold hover:opacity-90 transition-opacity items-center gap-2 disabled:opacity-50">
+    <span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+    Analizar Web
+</button>
+<button id="theme-toggle" class="p-2 rounded-full hover:bg-surface-variant/30 transition-colors flex items-center justify-center text-on-surface-variant" aria-label="Toggle theme"></button>
+</div>
+<div class="h-8 w-8 rounded-full bg-surface-variant border border-outline-variant/30 overflow-hidden ml-2">
+<img alt="User profile photo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8iRj-lyU3oLr8uQXL197Y-u-mtrV5sIETD3otUpUQkgzGwBB9zBfw83uVCjneMJx_9BXk2kqRh7QrrVUoh8LWuVCRtnuVwWG6d6TOpnlp9_8YWxzv3fY2Ze47GfIAFAXrp4G9wMB5nrOIDgQsRD6_8W6JQfcr5TATq71QpLC_Dw_SI6ijzx_ERhmhnjSO8vVY8Y8KJWZZUqhyQDFoEzbsz8kbW8-b6CElbyUwKeItl6Fh0Rr5aiKMfkOvhEJ5DxCux9Xf1k0kHCLO"/>
+</div>
+</div>
+</header>
+<!-- Mobile Sidebar Overlay -->
+<div id="sidebar-overlay" class="fixed inset-0 bg-background/60 backdrop-blur-sm z-40 hidden md:hidden"></div>
+<!-- SideNavBar Component -->
+<nav id="sidebar-nav" class="fixed inset-y-0 left-0 w-64 bg-surface-container-lowest dark:bg-surface-container-lowest bg-surface-container-lowest/80 backdrop-blur-xl border-r border-outline-variant/10 z-50 py-6 flex flex-col h-screen transition-transform duration-300 transform -translate-x-full md:translate-x-0">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary">rocket_launch</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary text-[20px] leading-tight">Growth Agent</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant text-[10px]">Antigravity platform</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto px-4 space-y-1">
+<!-- Active Nav Item -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="code.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-md text-label-md font-bold">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="web_audit.html">
+<span class="material-symbols-outlined">search_check</span>
+<span class="font-label-md text-label-md">Web Audit</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="social_media.html">
+<span class="material-symbols-outlined">share</span>
+<span class="font-label-md text-label-md">Social Media</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="recommendations.html">
+<span class="material-symbols-outlined">lightbulb</span>
+<span class="font-label-md text-label-md">Recommendations</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="webmaster_briefs.html">
+<span class="material-symbols-outlined">article</span>
+<span class="font-label-md text-label-md">Webmaster Briefs</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-primary bg-primary/10 border-r-2 border-primary rounded-l-lg hover:bg-surface-variant/20 transition-colors duration-200 mt-8" href="settings.html">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Configuración</span>
+</a>
+</div>
+<div class="px-6 mt-auto pt-6">
+<button onclick="document.getElementById('run-audit-btn').click()" class="w-full bg-primary/10 text-primary border border-primary/30 hover:bg-primary/20 hover:border-primary/50 transition-all font-label-md text-label-md py-3 rounded-lg flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+                Optimizar Ahora
+            </button>
+</div>
+</nav>
+
+
+  <main class="md:ml-64 pt-16 min-h-screen p-container-padding max-w-4xl mx-auto space-y-8">
+    <section class="glass-panel p-6">
+      <h2 class="text-xl font-semibold mb-4 text-primary">Google Analytics</h2>
+      <form id="ga-form" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium mb-1" for="ga-view-id">ID de Vista (View ID)</label>
+          <input type="text" id="ga-view-id" name="viewId" class="w-full p-2 border rounded bg-surface border-outline-variant/30 text-on-surface" placeholder="ej. 123456789" required/>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1" for="ga-cred-file">Archivo JSON de Credenciales</label>
+          <input type="file" id="ga-cred-file" accept="application/json" class="w-full text-on-surface" required/>
+        </div>
+        <button type="submit" class="px-4 py-2 bg-primary text-on-primary rounded hover:opacity-90 transition-opacity font-semibold">Guardar Credenciales de GA</button>
+      </form>
+    </section>
+
+    <section class="glass-panel p-6">
+      <h2 class="text-xl font-semibold mb-4 text-primary">Meta Business Suite</h2>
+      <form id="meta-form" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium mb-1" for="meta-token">Token de Acceso (Access Token)</label>
+          <input type="text" id="meta-token" name="accessToken" class="w-full p-2 border rounded bg-surface border-outline-variant/30 text-on-surface" placeholder="EAA..." required/>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1" for="meta-page-id">ID de Página (Page ID)</label>
+          <input type="text" id="meta-page-id" name="pageId" class="w-full p-2 border rounded bg-surface border-outline-variant/30 text-on-surface" placeholder="1234567890" required/>
+        </div>
+        <button type="submit" class="px-4 py-2 bg-secondary text-on-secondary rounded hover:opacity-90 transition-opacity font-semibold">Guardar Credenciales de Meta</button>
+      </form>
+    </section>
+
+    <!-- LLM API Keys Section -->
+    <section class="glass-panel p-6">
+      <h2 class="text-xl font-semibold mb-4 text-primary">Inteligencia Artificial (LLM)</h2>
+      <p class="text-sm text-on-surface-variant mb-4">Ingresa el API Key de al menos un proveedor. El agente usará el primero que encuentre configurado.</p>
+      <form id="llm-form" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium mb-1" for="gemini-key">Gemini API Key</label>
+          <input type="password" id="gemini-key" name="geminiKey" class="w-full p-2 border rounded bg-surface border-outline-variant/30 text-on-surface" placeholder="AIza..."/>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1" for="openai-key">OpenAI API Key</label>
+          <input type="password" id="openai-key" name="openaiKey" class="w-full p-2 border rounded bg-surface border-outline-variant/30 text-on-surface" placeholder="sk-..."/>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1" for="claude-key">Claude API Key</label>
+          <input type="password" id="claude-key" name="claudeKey" class="w-full p-2 border rounded bg-surface border-outline-variant/30 text-on-surface" placeholder="sk-ant-..."/>
+        </div>
+        <button type="submit" class="px-4 py-2 bg-primary text-on-primary rounded hover:opacity-90 transition-opacity font-semibold">Guardar API Keys</button>
+      </form>
+    </section>
+
+    <!-- Automation Settings Section -->
+    <section class="glass-panel p-6">
+      <h2 class="text-xl font-semibold mb-4 text-primary">Automatización (Cron Job)</h2>
+      <p class="text-sm text-on-surface-variant mb-4">Configura la hora diaria y las URLs a evaluar de forma automatizada por el agente.</p>
+      <form id="cron-form" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium mb-1 text-on-surface" for="audit-time">Hora de la Auditoría Diaria</label>
+          <input type="time" id="audit-time" name="auditTime" class="w-full p-2 border rounded bg-surface border-outline-variant/30 text-on-surface" required/>
+          <p class="text-xs text-on-surface-variant/80 mt-1">Selecciona la hora en la que deseas que el agente realice la auditoría automática diaria.</p>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1" for="audit-urls">URLs a Auditar (separadas por comas)</label>
+          <input type="text" id="audit-urls" name="auditUrls" class="w-full p-2 border rounded bg-surface border-outline-variant/30 text-on-surface" placeholder="https://ejemplo.com, https://misitio.com" required/>
+        </div>
+        <button type="submit" class="px-4 py-2 bg-primary text-on-primary rounded hover:opacity-90 transition-opacity font-semibold">Guardar Automatización</button>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    // Theme toggle logic (same as in dashboard)
+    const toggle = document.getElementById('theme-toggle');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const saved = localStorage.getItem('theme');
+    const current = saved || (prefersDark.matches ? 'dark' : 'light');
+    document.documentElement.classList.toggle('dark', current === 'dark');
+    document.documentElement.classList.toggle('light', current === 'light');
+    const updateIcon = () => {
+      toggle.innerHTML = `<span class="material-symbols-outlined">${document.documentElement.classList.contains('dark') ? 'brightness_4' : 'brightness_7'}</span>`;
+    };
+    toggle.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.toggle('dark');
+      document.documentElement.classList.toggle('light', !isDark);
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateIcon();
+    });
+    updateIcon();
+
+    // Redirección del buscador de auditorías en barra superior
+    const auditBtn = document.getElementById('run-audit-btn');
+    const auditUrl = document.getElementById('audit-url');
+    if (auditBtn && auditUrl) {
+      auditBtn.addEventListener('click', () => {
+        const url = auditUrl.value.trim();
+        if (!url) return alert('Por favor ingresa una URL válida (ej. https://example.com)');
+        window.location.href = `code.html?auditUrl=${encodeURIComponent(url)}`;
+      });
+    }
+
+    // Fetch existing credentials to pre-fill forms
+    fetch('/api/credentials').then(r => r.json()).then(data => {
+      if (data.ga_view_id) document.getElementById('ga-view-id').value = data.ga_view_id;
+      if (data.meta_token) document.getElementById('meta-token').value = data.meta_token;
+      if (data.meta_page_id) document.getElementById('meta-page-id').value = data.meta_page_id;
+      if (data.gemini_key) document.getElementById('gemini-key').value = data.gemini_key;
+      if (data.openai_key) document.getElementById('openai-key').value = data.openai_key;
+      if (data.claude_key) document.getElementById('claude-key').value = data.claude_key;
+      if (data.audit_time) document.getElementById('audit-time').value = data.audit_time;
+      if (data.audit_urls) document.getElementById('audit-urls').value = data.audit_urls;
+    }).catch(console.error);
+
+    // Helper to read file as text
+    const readFileAsText = (file) => new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsText(file);
+    });
+
+    // Submit GA form
+    document.getElementById('ga-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const viewId = e.target.viewId.value.trim();
+      const file = e.target['ga-cred-file'].files[0];
+      if (!file) return alert('Please select credentials file');
+      const credJson = await readFileAsText(file);
+      fetch('/api/credentials', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'google_analytics', viewId, credentials: JSON.parse(credJson) })
+      }).then(r => r.ok ? alert('Guardado con éxito') : r.text().then(t=>alert(t)));
+    });
+
+    // Submit Meta form
+    document.getElementById('meta-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const accessToken = e.target.accessToken.value.trim();
+      const pageId = e.target.pageId.value.trim();
+      fetch('/api/credentials', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'meta_business', accessToken, pageId })
+      }).then(r => r.ok ? alert('Guardado con éxito') : r.text().then(t=>alert(t)));
+    });
+
+    // Submit LLM form
+    document.getElementById('llm-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      fetch('/api/credentials', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          type: 'llm', 
+          gemini_key: e.target.geminiKey.value.trim(),
+          openai_key: e.target.openaiKey.value.trim(),
+          claude_key: e.target.claudeKey.value.trim()
+        })
+      }).then(r => r.ok ? alert('Guardado con éxito') : r.text().then(t=>alert(t)));
+    });
+
+    // Submit Cron form
+    document.getElementById('cron-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      let timeVal = e.target.auditTime.value || '';
+      if (timeVal && timeVal.split(':').length > 2) {
+        timeVal = timeVal.split(':').slice(0, 2).join(':');
+      }
+      fetch('/api/credentials', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          type: 'automation', 
+          auditTime: timeVal,
+          auditUrls: e.target.auditUrls.value.trim()
+        })
+      }).then(r => r.ok ? alert('Automatización guardada con éxito') : r.text().then(t=>alert(t)));
+    });
+
+    // Mobile Sidebar Drawer Logic
+    const menuToggleBtn = document.getElementById('menu-toggle-btn');
+    const sidebarNav = document.getElementById('sidebar-nav');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+    if (menuToggleBtn && sidebarNav) {
+      menuToggleBtn.addEventListener('click', () => {
+        sidebarNav.classList.remove('-translate-x-full');
+        if (sidebarOverlay) sidebarOverlay.classList.remove('hidden');
+      });
+    }
+
+    if (sidebarOverlay) {
+      sidebarOverlay.addEventListener('click', () => {
+        if (sidebarNav) sidebarNav.classList.add('-translate-x-full');
+        sidebarOverlay.classList.add('hidden');
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Web Audit | Growth Optimizer</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#131b2e",
+                      "on-secondary-container": "#a8afff",
+                      "on-primary-container": "#00574d",
+                      "surface-container-high": "#222a3d",
+                      "secondary-container": "#2f3aa3",
+                      "background": "#0b1326",
+                      "surface-variant": "#2d3449",
+                      "on-error": "#690005",
+                      "on-primary-fixed-variant": "#005047",
+                      "surface-bright": "#31394d",
+                      "primary-fixed-dim": "#3cddc7",
+                      "on-tertiary-fixed-variant": "#5c4300",
+                      "on-secondary": "#131e8c",
+                      "on-primary-fixed": "#00201c",
+                      "tertiary-fixed": "#ffdf9f",
+                      "on-error-container": "#ffdad6",
+                      "on-surface": "#dae2fd",
+                      "on-secondary-fixed-variant": "#2f3aa3",
+                      "surface": "#0b1326",
+                      "inverse-on-surface": "#283044",
+                      "inverse-primary": "#006b5f",
+                      "tertiary-fixed-dim": "#f9bd22",
+                      "surface-container-highest": "#2d3449",
+                      "error": "#ffb4ab",
+                      "surface-tint": "#3cddc7",
+                      "surface-container": "#171f33",
+                      "primary-container": "#2dd4bf",
+                      "on-tertiary-container": "#634900",
+                      "secondary-fixed-dim": "#bdc2ff",
+                      "primary-fixed": "#62fae3",
+                      "outline": "#859490",
+                      "on-tertiary": "#402d00",
+                      "secondary": "#bdc2ff",
+                      "error-container": "#93000a",
+                      "tertiary": "#ffd47b",
+                      "surface-dim": "#0b1326",
+                      "on-tertiary-fixed": "#261a00",
+                      "on-primary": "#003731",
+                      "secondary-fixed": "#e0e0ff",
+                      "on-background": "#dae2fd",
+                      "on-secondary-fixed": "#000767",
+                      "inverse-surface": "#dae2fd",
+                      "primary": "#57f1db",
+                      "tertiary-container": "#efb515",
+                      "surface-container-lowest": "#060e20",
+                      "on-surface-variant": "#bacac5",
+                      "outline-variant": "#3c4a46"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "16px",
+                      "stack-sm": "12px",
+                      "stack-lg": "48px",
+                      "stack-md": "24px",
+                      "container-padding": "24px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "label-sm": ["JetBrains Mono"],
+                      "headline-lg-mobile": ["Inter"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "label-md": ["JetBrains Mono"],
+                      "headline-xl": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background-color: rgba(19, 27, 46, 0.6); /* surface-container-low with opacity */
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .active-glow {
+            box-shadow: inset 0 0 20px rgba(87, 241, 219, 0.05);
+        }
+        .tech-bg-gradient {
+            background: radial-gradient(circle at top right, rgba(87, 241, 219, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(47, 58, 163, 0.08) 0%, transparent 40%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased tech-bg-gradient min-h-screen flex selection:bg-primary/30 selection:text-primary">
+<!-- SideNavBar -->
+<nav class="bg-surface-container-lowest dark:bg-surface-container-lowest h-screen w-64 fixed left-0 top-0 bg-surface-container-lowest/80 backdrop-blur-xl border-r border-outline-variant/10 z-50 flex flex-col h-full py-6 hidden md:flex">
+<!-- Header -->
+<div class="px-6 mb-stack-lg">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant/20 overflow-hidden flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl">robot_2</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary text-sm">Growth Agent</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-xs">Antigravity platform</p>
+</div>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<div class="flex-1 px-3 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-primary bg-primary/10 border-r-2 border-primary hover:bg-surface-variant/20 transition-colors duration-200 rounded-lg scale-[0.98] transition-transform duration-150 active-glow" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="search_check">search_check</span>
+<span class="font-label-md text-label-md">Web Audit</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="share">share</span>
+<span class="font-label-md text-label-md">Social Media</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="lightbulb">lightbulb</span>
+<span class="font-label-md text-label-md">Recommendations</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="article">article</span>
+<span class="font-label-md text-label-md">Webmaster Briefs</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+<!-- CTA -->
+<div class="px-6 mt-auto">
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-3 rounded-lg hover:bg-primary-fixed transition-colors shadow-[0_0_15px_rgba(87,241,219,0.3)]">
+                Optimize Now
+            </button>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 md:ml-64 flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-surface-container-low/50 dark:bg-surface-container-low/50 fixed top-0 right-0 left-0 md:left-64 h-16 backdrop-blur-md border-b border-outline-variant/10 z-40 flex justify-between items-center px-gutter h-full w-full">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md font-black text-primary text-xl">Growth Optimizer</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-variant/30 transition-all duration-200 rounded-full">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-variant/30 transition-all duration-200 rounded-full">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+</button>
+<button class="hidden sm:flex items-center gap-2 bg-surface-container-high border border-outline-variant/30 px-4 py-2 rounded-full hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-primary text-sm">magic_button</span>
+<span class="font-label-sm text-label-sm text-primary">Generate Brief</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-outline-variant/30">
+<!-- Placeholder for profile image -->
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 mt-16 p-container-padding pt-stack-md flex flex-col gap-stack-lg max-w-7xl mx-auto w-full">
+<!-- Page Context Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-1 rounded text-[10px] uppercase font-label-sm text-label-sm tracking-wider bg-primary/10 text-primary border border-primary/20">Live Audit</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Target URL: acmecorp.com</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface">Technical SEO Audit</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">AI-driven analysis of core web vitals and architectural friction points.</p>
+</div>
+<div class="flex items-center gap-4 glass-panel px-4 py-3 rounded-xl">
+<div class="relative w-12 h-12 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-container-high" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-primary drop-shadow-[0_0_4px_rgba(87,241,219,0.5)]" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="78, 100" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<span class="absolute font-label-md text-label-md text-on-surface">78</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Overall Health</span>
+<span class="font-body-sm text-body-sm text-tertiary">Needs Attention</span>
+</div>
+</div>
+</div>
+<!-- Bento Grid Section -->
+<div class="grid grid-cols-12 gap-stack-md">
+<!-- Technical Performance (PageSpeed) -->
+<div class="col-span-12 xl:col-span-8 glass-panel rounded-xl p-stack-md flex flex-col gap-stack-sm active-glow">
+<div class="flex items-center justify-between mb-2">
+<h3 class="font-headline-md text-headline-md text-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">speed</span>
+                            Core Web Vitals
+                        </h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Mobile Emulation</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 h-full">
+<!-- LCP -->
+<div class="bg-surface-container-high/50 rounded-lg p-4 border border-outline-variant/10 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">LCP (Paint)</span>
+<span class="w-2 h-2 rounded-full bg-error drop-shadow-[0_0_5px_rgba(255,180,171,0.5)]"></span>
+</div>
+<div class="mt-4">
+<div class="font-headline-md text-headline-md text-error">3.2s</div>
+<div class="font-label-sm text-label-sm text-error/70 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span> Poor
+                                </div>
+</div>
+</div>
+<!-- FID -->
+<div class="bg-surface-container-high/50 rounded-lg p-4 border border-outline-variant/10 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">FID (Input)</span>
+<span class="w-2 h-2 rounded-full bg-primary drop-shadow-[0_0_5px_rgba(87,241,219,0.5)]"></span>
+</div>
+<div class="mt-4">
+<div class="font-headline-md text-headline-md text-primary">85ms</div>
+<div class="font-label-sm text-label-sm text-primary/70 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Good
+                                </div>
+</div>
+</div>
+<!-- CLS -->
+<div class="bg-surface-container-high/50 rounded-lg p-4 border border-outline-variant/10 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">CLS (Shift)</span>
+<span class="w-2 h-2 rounded-full bg-tertiary drop-shadow-[0_0_5px_rgba(255,212,123,0.5)]"></span>
+</div>
+<div class="mt-4">
+<div class="font-headline-md text-headline-md text-tertiary">0.15</div>
+<div class="font-label-sm text-label-sm text-tertiary/70 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">info</span> Needs Impr.
+                                </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Conversion Funnel -->
+<div class="col-span-12 xl:col-span-4 glass-panel rounded-xl p-stack-md flex flex-col">
+<h3 class="font-headline-md text-headline-md text-sm text-on-surface flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary text-[18px]">filter_alt</span>
+                        Conversion Funnel
+                    </h3>
+<div class="flex-1 flex flex-col justify-between gap-2 relative before:absolute before:left-4 before:top-4 before:bottom-4 before:w-px before:bg-outline-variant/30">
+<!-- Step 1 -->
+<div class="flex items-center gap-4 relative z-10">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-outline-variant/50 flex items-center justify-center font-label-sm text-label-sm">1</div>
+<div class="flex-1 bg-surface-container-high/40 rounded p-3 border border-outline-variant/10">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-sm text-label-sm text-on-surface">Page Load</span>
+<span class="font-label-md text-label-md text-primary">100%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded overflow-hidden">
+<div class="h-full bg-primary w-full"></div>
+</div>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex items-center gap-4 relative z-10">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-outline-variant/50 flex items-center justify-center font-label-sm text-label-sm">2</div>
+<div class="flex-1 bg-surface-container-high/40 rounded p-3 border border-outline-variant/10 relative">
+<div class="absolute -top-3 right-2 text-[10px] text-error font-label-sm bg-error/10 px-1 rounded">-32% Drop-off</div>
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-sm text-label-sm text-on-surface">Scroll &gt; 50%</span>
+<span class="font-label-md text-label-md text-on-surface">68%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded overflow-hidden">
+<div class="h-full bg-primary w-[68%] opacity-80"></div>
+</div>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex items-center gap-4 relative z-10">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-primary flex items-center justify-center font-label-sm text-label-sm shadow-[0_0_10px_rgba(87,241,219,0.2)]">3</div>
+<div class="flex-1 bg-primary/5 rounded p-3 border border-primary/20 relative">
+<div class="absolute -top-3 right-2 text-[10px] text-error font-label-sm bg-error/10 px-1 rounded">-53% Drop-off</div>
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-sm text-label-sm text-primary">CTA Click</span>
+<span class="font-label-md text-label-md text-primary">15%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded overflow-hidden">
+<div class="h-full bg-primary w-[15%] shadow-[0_0_8px_rgba(87,241,219,0.8)]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- UX/Architecture Heatmap Mockup -->
+<div class="col-span-12 glass-panel rounded-xl p-stack-md border border-outline-variant/20 overflow-hidden relative min-h-[400px] flex flex-col">
+<div class="flex items-center justify-between mb-6 z-10 relative">
+<h3 class="font-headline-md text-headline-md text-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">visibility</span>
+                            UX Architecture &amp; Friction Heatmap
+                        </h3>
+<div class="flex gap-2">
+<span class="px-3 py-1 rounded-full text-[10px] font-label-sm bg-error/10 text-error border border-error/20 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-pulse"></span> High Friction
+                            </span>
+</div>
+</div>
+<!-- Abstract Mockup Area -->
+<div class="flex-1 bg-surface-container-lowest/50 rounded-lg border border-outline-variant/10 relative overflow-hidden flex items-center justify-center">
+<!-- Wireframe representation of a site -->
+<div class="w-3/4 h-3/4 border-2 border-outline-variant/20 rounded-md relative flex flex-col bg-surface-container-low/30 backdrop-blur-sm">
+<!-- Header wireframe -->
+<div class="h-12 border-b border-outline-variant/20 flex items-center px-4 justify-between">
+<div class="w-24 h-4 bg-outline-variant/30 rounded"></div>
+<div class="flex gap-4"><div class="w-12 h-2 bg-outline-variant/30 rounded"></div><div class="w-12 h-2 bg-outline-variant/30 rounded"></div></div>
+</div>
+<!-- Hero wireframe -->
+<div class="h-48 border-b border-outline-variant/20 flex items-center justify-center flex-col gap-4 relative">
+<div class="w-1/2 h-6 bg-outline-variant/30 rounded"></div>
+<div class="w-1/3 h-3 bg-outline-variant/20 rounded"></div>
+<div class="w-32 h-10 bg-primary/20 border border-primary/40 rounded mt-2"></div>
+<!-- Heatmap Blob (Good) -->
+<div class="absolute right-1/4 top-1/2 w-24 h-24 bg-primary/20 blur-xl rounded-full mix-blend-screen pointer-events-none"></div>
+</div>
+<!-- Content wireframe -->
+<div class="flex-1 flex gap-4 p-4 relative">
+<div class="flex-1 space-y-3">
+<div class="w-full h-3 bg-outline-variant/20 rounded"></div>
+<div class="w-5/6 h-3 bg-outline-variant/20 rounded"></div>
+<div class="w-4/6 h-3 bg-outline-variant/20 rounded"></div>
+</div>
+<div class="w-1/3 h-full bg-outline-variant/10 rounded relative">
+<!-- Friction Point Callout Bubble -->
+<div class="absolute -top-4 -left-8 bg-surface-container-high border border-error/50 p-3 rounded-lg shadow-xl z-20 w-48">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-error text-[14px]">warning</span>
+<span class="font-label-sm text-label-sm text-error">Navigation Trap</span>
+</div>
+<p class="text-[10px] text-on-surface-variant font-body-sm leading-tight">Users scroll past secondary nav structure entirely due to low contrast.</p>
+<!-- pointer arrow -->
+<div class="absolute bottom-[-6px] right-8 w-3 h-3 bg-surface-container-high border-b border-r border-error/50 transform rotate-45"></div>
+</div>
+<!-- Heatmap Blob (Bad) -->
+<div class="absolute left-0 top-0 w-32 h-32 bg-error/20 blur-2xl rounded-full mix-blend-screen pointer-events-none animate-pulse"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- SEO Health Table -->
+<div class="col-span-12 glass-panel rounded-xl p-stack-md overflow-x-auto">
+<div class="flex items-center justify-between mb-6 min-w-[600px]">
+<h3 class="font-headline-md text-headline-md text-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">find_in_page</span>
+                            On-Page SEO Health
+                        </h3>
+<button class="font-label-sm text-label-sm text-primary hover:text-primary-fixed transition-colors flex items-center gap-1">
+                            Export Data <span class="material-symbols-outlined text-[14px]">download</span>
+</button>
+</div>
+<table class="w-full text-left border-collapse min-w-[600px]">
+<thead>
+<tr class="border-b border-outline-variant/20">
+<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-normal">Page Path</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-normal">Meta Title</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-normal">Primary Keyword</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-normal">Ranking Trend</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-normal text-right">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm">
+<tr class="border-b border-outline-variant/10 hover:bg-surface-variant/10 transition-colors">
+<td class="py-4 px-4 text-primary font-label-sm">/features/ai-audit</td>
+<td class="py-4 px-4">
+<div class="truncate w-48 text-on-surface">AI Web Audit Tool | Fast &amp; Deep Analysis</div>
+<div class="text-[10px] text-tertiary mt-1">42/60 chars (Suboptimal)</div>
+</td>
+<td class="py-4 px-4 text-on-surface-variant">ai web audit tool</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +3 pos
+                                    </div>
+</td>
+<td class="py-4 px-4 text-right">
+<span class="inline-flex px-2 py-1 bg-tertiary/10 text-tertiary border border-tertiary/20 rounded text-[10px] font-label-sm">Review Needed</span>
+</td>
+</tr>
+<tr class="border-b border-outline-variant/10 hover:bg-surface-variant/10 transition-colors">
+<td class="py-4 px-4 text-primary font-label-sm">/pricing</td>
+<td class="py-4 px-4">
+<div class="truncate w-48 text-on-surface">Pricing Plans for Growth Optimizer SaaS Platform Enterprise</div>
+<div class="text-[10px] text-error mt-1">64/60 chars (Too Long)</div>
+</td>
+<td class="py-4 px-4 text-on-surface-variant">growth optimizer pricing</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-1 text-error">
+<span class="material-symbols-outlined text-[14px]">trending_down</span> -1 pos
+                                    </div>
+</td>
+<td class="py-4 px-4 text-right">
+<span class="inline-flex px-2 py-1 bg-error/10 text-error border border-error/20 rounded text-[10px] font-label-sm">Critical</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-variant/10 transition-colors">
+<td class="py-4 px-4 text-primary font-label-sm">/blog/seo-trends-2024</td>
+<td class="py-4 px-4">
+<div class="truncate w-48 text-on-surface">Top SEO Trends in 2024 You Need to Know</div>
+<div class="text-[10px] text-primary/70 mt-1">41/60 chars (Optimal)</div>
+</td>
+<td class="py-4 px-4 text-on-surface-variant">seo trends 2024</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">horizontal_rule</span> Steady
+                                    </div>
+</td>
+<td class="py-4 px-4 text-right">
+<span class="inline-flex px-2 py-1 bg-primary/10 text-primary border border-primary/20 rounded text-[10px] font-label-sm">Optimized</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</div>
+</body></html>

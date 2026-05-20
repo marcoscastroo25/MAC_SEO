@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard - Growth Optimizer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "var(--primary)",
+                        "primary-container": "var(--primary-container)",
+                        "secondary": "var(--secondary)",
+                        "secondary-container": "var(--secondary-container)",
+                        "background": "var(--background)",
+                        "surface": "var(--surface)",
+                        "surface-variant": "var(--surface-variant)",
+                        "on-primary": "var(--on-primary)",
+                        "on-secondary": "var(--on-secondary)",
+                        "on-background": "var(--on-background)",
+                        "on-surface": "var(--on-surface)",
+                        "on-surface-variant": "var(--on-surface-variant)",
+                        "error": "var(--error)",
+                        "error-container": "var(--error-container)",
+                        "on-error": "var(--on-error)",
+                        "surface-container-low": "var(--surface-container-low)",
+                        "surface-container-high": "var(--surface-container-high)",
+                        "surface-tint": "var(--surface-tint)",
+                        "outline": "var(--outline)",
+                        "outline-variant": "var(--outline-variant)"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "stack-sm": "12px",
+                        "stack-lg": "48px",
+                        "stack-md": "24px",
+                        "container-padding": "24px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-xl": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        :root {
+            --primary: #14b8a6;
+            --primary-container: #99e6e1;
+            --secondary: #f59e0b;
+            --secondary-container: #fde68a;
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --surface-variant: #e2e8f0;
+            --on-primary: #ffffff;
+            --on-secondary: #0f172a;
+            --on-background: #0f172a;
+            --on-surface: #0f172a;
+            --on-surface-variant: #64748b;
+            --error: #ef4444;
+            --error-container: #fee2e2;
+            --on-error: #ffffff;
+            --surface-container-low: #f1f5f9;
+            --surface-container-high: #e2e8f0;
+            --surface-tint: #14b8a6;
+            --outline: #cbd5e1;
+            --outline-variant: #94a3b8;
+        }
+
+        html.dark {
+            --primary: #57f1db;
+            --primary-container: #005047;
+            --secondary: #bdc2ff;
+            --secondary-container: #2f3aa3;
+            --background: #0B1120;
+            --surface: #0F172A;
+            --surface-variant: #1e293b;
+            --on-primary: #003731;
+            --on-secondary: #000767;
+            --on-background: #f8fafc;
+            --on-surface: #f8fafc;
+            --on-surface-variant: #94a3b8;
+            --error: #ffb4ab;
+            --error-container: #93000a;
+            --on-error: #690005;
+            --surface-container-low: #131b2e;
+            --surface-container-high: #222a3d;
+            --surface-tint: #3cddc7;
+            --outline: #475569;
+            --outline-variant: #334155;
+        }
+
+        /* Custom Precision Glassmorphism & Animations */
+        html.dark body {
+            background-color: #0F172A;
+            background-image: radial-gradient(circle at 10% 20%, rgba(87, 241, 219, 0.03) 0%, transparent 40%),
+                              radial-gradient(circle at 90% 80%, rgba(47, 58, 163, 0.05) 0%, transparent 50%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        html.light body {
+            background-color: #F8FAFC;
+            background-image: radial-gradient(circle at 10% 20%, rgba(87, 241, 219, 0.05) 0%, transparent 40%),
+                              radial-gradient(circle at 90% 80%, rgba(47, 58, 163, 0.08) 0%, transparent 50%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #0F172A;
+        }
+
+        .glass-panel {
+            background: rgba(19, 27, 46, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-left: 1px solid rgba(255, 255, 255, 0.04);
+            border-right: 1px solid rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.5);
+            color: #E2E8F0;
+        }
+
+        html.light .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 1);
+            border-left: 1px solid rgba(255, 255, 255, 0.8);
+            border-right: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.05);
+            color: #0F172A;
+        }
+
+        .glass-panel-active {
+            box-shadow: inset 0 0 20px rgba(87, 241, 219, 0.05), 0 4px 24px -4px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(87, 241, 219, 0.2);
+        }
+
+        html.light .glass-panel-active {
+            box-shadow: inset 0 0 20px rgba(87, 241, 219, 0.2), 0 4px 24px -4px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(87, 241, 219, 0.6);
+        }
+
+        .cmd-panel {
+            background: #0B1120;
+            border: 1px solid rgba(255,255,255,0.05);
+            color: #E2E8F0;
+        }
+
+        html.light .cmd-panel {
+            background: #F1F5F9;
+            border: 1px solid rgba(0,0,0,0.05);
+            color: #0F172A;
+        }
+
+        .glow-text-primary {
+            text-shadow: 0 0 10px rgba(87, 241, 219, 0.4);
+        }
+
+        .sparkline-path {
+            stroke: #57f1db;
+            stroke-width: 2;
+            fill: none;
+            filter: drop-shadow(0px 2px 4px rgba(87, 241, 219, 0.3));
+        }
+        
+        .sparkline-fill {
+            fill: url(#sparkline-gradient);
+        }
+
+        .ring-bg {
+            stroke: rgba(255, 255, 255, 0.05);
+        }
+
+        .ring-progress {
+            stroke: #57f1db;
+            filter: drop-shadow(0 0 8px rgba(87, 241, 219, 0.5));
+            transition: stroke-dasharray 1s ease-out;
+        }
+        
+        .blinking-cursor {
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Status Pills */
+        .status-pill-high { background: rgba(239, 181, 21, 0.15); color: #efb515; border: 1px solid rgba(239, 181, 21, 0.3); }
+        .status-pill-normal { background: rgba(189, 194, 255, 0.15); color: #bdc2ff; border: 1px solid rgba(189, 194, 255, 0.3); }
+        .status-pill-optimized { background: rgba(87, 241, 219, 0.15); color: #57f1db; border: 1px solid rgba(87, 241, 219, 0.3); }
+    </style>
+</head>
+<body class="text-on-surface bg-background font-body-md overflow-x-hidden">
+<!-- TopAppBar Component -->
+<header class="fixed top-0 right-0 left-0 md:left-64 h-16 bg-surface-container-low/50 dark:bg-surface-container-low/50 backdrop-blur-md border-b border-outline-variant/10 z-40 flex justify-between items-center px-gutter w-full md:w-[calc(100%-16rem)]">
+<div class="flex items-center gap-4">
+<!-- Mobile Menu Toggle (Hidden on Desktop) -->
+<button id="menu-toggle-btn" class="md:hidden text-on-surface-variant hover:text-on-surface p-2 rounded-full hover:bg-surface-variant/30 transition-all duration-200">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="font-headline-md text-headline-md font-black text-primary md:hidden">Growth Agent</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<input type="url" id="audit-url" placeholder="https://tu-sitio.com" class="hidden sm:block px-3 py-1.5 rounded bg-surface border border-outline-variant/30 text-body-sm font-body-sm focus:outline-none focus:border-primary transition-colors w-64 text-on-surface" required>
+<button id="run-audit-btn" class="hidden sm:flex bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-DEFAULT font-semibold hover:opacity-90 transition-opacity items-center gap-2 disabled:opacity-50">
+    <span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+    Analizar Web
+</button>
+<button id="theme-toggle" class="p-2 rounded-full hover:bg-surface-variant/30 transition-colors flex items-center justify-center text-on-surface-variant" aria-label="Toggle theme"></button>
+</div>
+<div class="h-8 w-8 rounded-full bg-surface-variant border border-outline-variant/30 overflow-hidden ml-2">
+<img alt="User profile photo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8iRj-lyU3oLr8uQXL197Y-u-mtrV5sIETD3otUpUQkgzGwBB9zBfw83uVCjneMJx_9BXk2kqRh7QrrVUoh8LWuVCRtnuVwWG6d6TOpnlp9_8YWxzv3fY2Ze47GfIAFAXrp4G9wMB5nrOIDgQsRD6_8W6JQfcr5TATq71QpLC_Dw_SI6ijzx_ERhmhnjSO8vVY8Y8KJWZZUqhyQDFoEzbsz8kbW8-b6CElbyUwKeItl6Fh0Rr5aiKMfkOvhEJ5DxCux9Xf1k0kHCLO"/>
+</div>
+</div>
+</header>
+<!-- Mobile Sidebar Overlay -->
+<div id="sidebar-overlay" class="fixed inset-0 bg-background/60 backdrop-blur-sm z-40 hidden md:hidden"></div>
+<!-- SideNavBar Component -->
+<nav id="sidebar-nav" class="fixed inset-y-0 left-0 w-64 bg-surface-container-lowest dark:bg-surface-container-lowest bg-surface-container-lowest/80 backdrop-blur-xl border-r border-outline-variant/10 z-50 py-6 flex flex-col h-screen transition-transform duration-300 transform -translate-x-full md:translate-x-0">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary">rocket_launch</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary text-[20px] leading-tight">Growth Agent</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant text-[10px]">Plataforma Antigravity</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto px-4 space-y-1">
+<!-- Active Nav Item -->
+<a class="flex items-center gap-3 px-4 py-3 text-primary bg-primary/10 border-r-2 border-primary rounded-l-lg hover:bg-surface-variant/20 transition-colors duration-200 scale-[0.98] transition-transform duration-150" href="code.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-md text-label-md font-bold">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="web_audit.html">
+<span class="material-symbols-outlined">search_check</span>
+<span class="font-label-md text-label-md">Auditoría Web</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="social_media.html">
+<span class="material-symbols-outlined">share</span>
+<span class="font-label-md text-label-md">Redes Sociales</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="recommendations.html">
+<span class="material-symbols-outlined">lightbulb</span>
+<span class="font-label-md text-label-md">Recomendaciones</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="webmaster_briefs.html">
+<span class="material-symbols-outlined">article</span>
+<span class="font-label-md text-label-md">Briefs Webmaster</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200 mt-8" href="settings.html">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Configuración</span>
+</a>
+</div>
+<div class="px-6 mt-auto pt-6">
+<button onclick="document.getElementById('run-audit-btn').click()" class="w-full bg-primary/10 text-primary border border-primary/30 hover:bg-primary/20 hover:border-primary/50 transition-all font-label-md text-label-md py-3 rounded-lg flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+                Optimizar Ahora
+            </button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 pt-16 min-h-screen p-container-padding pb-24">
+<div class="max-w-7xl mx-auto space-y-stack-lg">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mt-4">
+<div>
+<h1 class="font-headline-xl text-headline-xl md:text-[40px] text-on-surface font-bold tracking-tight">Panel de Control</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Telemetría en tiempo real para tu motor de crecimiento digital.</p>
+</div>
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-primary">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    SISTEMA NOMINAL
+                </div>
+</div>
+
+<!-- Web Audit Control Center (Prominent Form) -->
+<div class="glass-panel rounded-xl p-6 relative overflow-hidden">
+  <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl"></div>
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+    <div class="flex-1">
+      <h2 class="font-headline-md text-body-lg text-on-surface font-bold flex items-center gap-2 text-[20px] mb-1">
+        <span class="material-symbols-outlined text-primary text-2xl">rocket_launch</span>
+        Centro de Control de Auditoría
+      </h2>
+      <p class="font-body-sm text-body-sm text-on-surface-variant">Introduce una URL para realizar una auditoría completa de SEO, rendimiento e insights de IA.</p>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+      <input type="url" id="dashboard-audit-url" placeholder="https://tu-sitio.com" class="px-4 py-2.5 rounded bg-surface border border-outline-variant/30 text-body-sm font-body-sm focus:outline-none focus:border-primary transition-colors text-on-surface w-full md:w-80" required>
+      <button id="dashboard-run-audit-btn" class="bg-primary text-on-primary font-label-md text-label-md px-6 py-2.5 rounded font-semibold hover:opacity-90 transition-opacity flex items-center justify-center gap-2 disabled:opacity-50 whitespace-nowrap">
+        <span class="material-symbols-outlined text-[18px]">bolt</span>
+        Iniciar Auditoría de IA
+      </button>
+    </div>
+  </div>
+  
+  <!-- Agent Console Logging (Visible during audit) -->
+  <div id="agent-console" class="hidden mt-6 p-4 rounded-lg bg-[#070b14] border border-outline-variant/20 font-mono text-[12px] text-on-surface-variant space-y-2 h-48 overflow-y-auto">
+    <div class="flex items-center justify-between border-b border-outline-variant/20 pb-2 mb-2">
+      <span class="text-primary font-bold flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+        CONSOLA DEL AGENTE DE IA
+      </span>
+      <span id="console-status" class="text-[10px] text-on-surface-variant uppercase">Ejecutando...</span>
+    </div>
+    <div id="console-log-lines" class="space-y-1">
+      <!-- Dynamically written -->
+    </div>
+  </div>
+</div>
+
+<!-- Top Row: Health Score & KPI Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Global Health Score (Bento Main) -->
+<div class="lg:col-span-4 glass-panel rounded-xl p-6 flex flex-col relative overflow-hidden group">
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-all duration-1000"></div>
+<h2 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">monitor_heart</span>
+                        Salud Web Global
+                    </h2>
+<div class="flex-1 flex flex-col items-center justify-center relative">
+<!-- SVG Ring -->
+<div class="relative w-48 h-48 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<circle class="ring-bg" cx="50" cy="50" fill="none" r="45" stroke-width="8"></circle>
+<circle class="ring-progress" cx="50" cy="50" fill="none" r="45" stroke-dasharray="240.3 282.7" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute flex flex-col items-center justify-center text-center">
+<span id="global-score" class="font-headline-xl text-headline-xl text-primary font-black glow-text-primary">--</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">%</span>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/20 flex justify-between items-center text-label-sm font-label-sm">
+<span class="text-on-surface-variant">+2.4% vs semana anterior</span>
+<span class="status-pill-optimized px-2 py-0.5 rounded-full text-[10px]">OPTIMIZADO</span>
+</div>
+</div>
+<!-- KPI Grid (Bento Secondary) -->
+<div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-gutter">
+<!-- Web Traffic -->
+<div class="glass-panel rounded-xl p-5 flex flex-col relative">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Tráfico Web</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">monitoring</span>
+</div>
+<div class="font-headline-lg text-headline-lg font-bold text-on-surface mb-4">124.5K</div>
+<!-- Sparkline -->
+<div class="mt-auto h-16 w-full relative">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 30">
+<defs>
+<lineargradient id="sparkline-gradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#57f1db" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#57f1db" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path class="sparkline-fill" d="M0,30 L0,20 Q10,15 20,25 T40,10 T60,20 T80,5 T100,15 L100,30 Z"></path>
+<path class="sparkline-path" d="M0,20 Q10,15 20,25 T40,10 T60,20 T80,5 T100,15"></path>
+</svg>
+</div>
+</div>
+<!-- SEO Score -->
+<div class="glass-panel rounded-xl p-5 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Puntuación SEO</span>
+<span class="material-symbols-outlined text-primary text-[16px]">travel_explore</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span id="seo-score" class="font-headline-lg text-headline-lg font-bold text-on-surface">--</span>
+<span class="font-label-md text-label-md text-on-surface-variant">/100</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full mt-4 overflow-hidden">
+<div id="seo-score-bar" class="bg-primary h-full rounded-full transition-all duration-1000" style="width: 0%;"></div>
+</div>
+<div class="mt-4 font-label-sm text-label-sm text-on-surface-variant">Top 5% de la industria</div>
+</div>
+<!-- Social Engagement -->
+<div class="glass-panel rounded-xl p-5 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Interacción en Redes</span>
+<span class="material-symbols-outlined text-on-secondary text-[16px]">groups</span>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2 text-label-md font-label-md">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Instagram
+                                </div>
+<span class="font-body-md text-body-md font-semibold text-on-surface">4.8%</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2 text-label-md font-label-md">
+<span class="w-2 h-2 rounded-full bg-surface-variant border border-outline-variant"></span> Facebook
+                                </div>
+<span class="font-body-md text-body-md font-semibold text-on-surface">2.1%</span>
+</div>
+</div>
+</div>
+<!-- Load Speed -->
+<div class="glass-panel rounded-xl p-5 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Velocidad de Carga Core</span>
+<span class="material-symbols-outlined text-error text-[16px]">speed</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span id="load-speed" class="font-headline-lg text-headline-lg font-bold text-on-surface">--</span>
+<span class="font-label-md text-label-md text-on-surface-variant">seg (LCP)</span>
+</div>
+<div class="mt-4 flex gap-2">
+<span class="status-pill-high px-2 py-0.5 rounded-full text-[10px] uppercase">Requiere atención</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Row: Insights & Activity -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+<!-- Active Insights (Command Line Style) -->
+<div class="cmd-panel rounded-xl p-6 flex flex-col">
+<div class="flex justify-between items-center mb-6 border-b border-outline-variant/20 pb-4">
+<h2 class="font-label-md text-label-md text-on-surface uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">terminal</span>
+                            Insights de IA Activos
+                        </h2>
+<span class="font-label-sm text-label-sm text-on-surface-variant">generados automáticamente</span>
+</div>
+<div id="insights-container" class="space-y-4 font-label-sm text-label-sm">
+<!-- Insights will be injected here via JS -->
+<div class="text-on-surface-variant opacity-70 text-sm">Cargando insights de IA...</div>
+</div>
+<div class="mt-4 flex items-center text-primary/70">
+<span>esperando entrada</span><span class="w-2 h-4 bg-primary ml-1 blinking-cursor"></span>
+</div>
+</div>
+<!-- Recent Activities (Glass List) -->
+<div class="glass-panel rounded-xl p-6 flex flex-col">
+<h2 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">history</span>
+                        Actividades Recientes
+                    </h2>
+<div id="activities-container" class="relative pl-4 space-y-6 before:absolute before:inset-y-0 before:left-[11px] before:w-px before:bg-outline-variant/30">
+<!-- Activities will be injected here via JS -->
+<div class="text-on-surface-variant opacity-70 text-sm pl-4">Cargando actividades recientes...</div>
+</div>
+<button class="mt-auto pt-6 text-primary hover:text-primary-fixed text-label-sm font-label-sm uppercase flex items-center gap-1 transition-colors">
+                        Ver Registro Completo <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<script>
+  // Theme Toggle Logic
+  const toggleBtn = document.getElementById('theme-toggle');
+  const prefersDarkTheme = window.matchMedia('(prefers-color-scheme: dark)');
+  const savedTheme = localStorage.getItem('theme');
+  const currentTheme = savedTheme || (prefersDarkTheme.matches ? 'dark' : 'light');
+  document.documentElement.classList.toggle('dark', currentTheme === 'dark');
+  document.documentElement.classList.toggle('light', currentTheme === 'light');
+  const updateIconTheme = () => {
+    if (toggleBtn) toggleBtn.innerHTML = `<span class="material-symbols-outlined">${document.documentElement.classList.contains('dark') ? 'brightness_4' : 'brightness_7'}</span>`;
+  };
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      const isDarkNow = document.documentElement.classList.toggle('dark');
+      document.documentElement.classList.toggle('light', !isDarkNow);
+      localStorage.setItem('theme', isDarkNow ? 'dark' : 'light');
+      updateIconTheme();
+    });
+    updateIconTheme();
+  }
+
+  // Dashboard Data Fetching
+  async function loadDashboardData() {
+    try {
+      const res = await fetch('/api/dashboard');
+      if (!res.ok) return;
+      const data = await res.json();
+      
+      // Update scores
+      const globalScore = data.globalScore || 0;
+      document.getElementById('global-score').textContent = data.globalScore || '--';
+      
+      // Update circular progress ring
+      const circumference = 2 * Math.PI * 45; // 282.74
+      const strokeDashoffset = (globalScore / 100) * circumference;
+      const progressRing = document.querySelector('.ring-progress');
+      if (progressRing) {
+        progressRing.setAttribute('stroke-dasharray', `${strokeDashoffset} ${circumference}`);
+      }
+
+      document.getElementById('seo-score').textContent = data.seoScore || '--';
+      document.getElementById('seo-score-bar').style.width = `${data.seoScore || 0}%`;
+      document.getElementById('load-speed').textContent = data.loadSpeed ? data.loadSpeed.toFixed(1) : '--';
+      
+      // Update Insights
+      const insightsContainer = document.getElementById('insights-container');
+      if (data.insights && data.insights.length > 0) {
+        insightsContainer.innerHTML = data.insights.map(i => `
+          <div class="flex gap-4 p-3 rounded bg-surface/50 border border-outline-variant/10 hover:border-primary/30 transition-colors">
+            <div class="mt-0.5 text-primary">&gt;</div>
+            <div>
+              <div class="text-on-surface-variant text-sm opacity-90 prose prose-invert max-w-none">${marked.parse(i.message)}</div>
+              <div class="text-[10px] text-on-surface-variant mt-2 opacity-50">${new Date(i.timestamp).toLocaleString()}</div>
+            </div>
+          </div>
+        `).join('');
+      } else {
+         insightsContainer.innerHTML = `<div class="text-on-surface-variant opacity-70 text-sm">No hay insights generados todavía. Corre una auditoría.</div>`;
+      }
+
+      // Update Activities
+      const activitiesContainer = document.getElementById('activities-container');
+      if (data.activities && data.activities.length > 0) {
+        activitiesContainer.innerHTML = data.activities.map(a => `
+          <div class="relative">
+            <div class="absolute -left-5 top-1 w-3 h-3 rounded-full ${a.severity === 'high' ? 'bg-error' : 'bg-surface-variant border border-outline-variant'} ring-4 ring-background"></div>
+            <div class="pl-4">
+              <div class="flex justify-between items-baseline mb-1">
+                <div class="font-body-sm text-body-sm text-on-surface font-medium capitalize">${a.severity} Alert</div>
+                <div class="font-label-sm text-label-sm text-on-surface-variant text-[10px]">${new Date(a.timestamp).toLocaleTimeString()}</div>
+              </div>
+              <div class="font-body-sm text-body-sm text-on-surface-variant">${a.message}</div>
+            </div>
+          </div>
+        `).join('');
+      } else {
+        activitiesContainer.innerHTML = `<div class="text-on-surface-variant opacity-70 text-sm pl-4">No hay actividad reciente.</div>`;
+      }
+    } catch(e) { console.error('Error loading dashboard', e); }
+  }
+
+  // Initial load
+  loadDashboardData();
+
+  // Run Audit Logic
+  const headerAuditBtn = document.getElementById('run-audit-btn');
+  const headerAuditInput = document.getElementById('audit-url');
+  const dashAuditBtn = document.getElementById('dashboard-run-audit-btn');
+  const dashAuditInput = document.getElementById('dashboard-audit-url');
+
+  const agentConsole = document.getElementById('agent-console');
+  const consoleStatus = document.getElementById('console-status');
+  const consoleLogLines = document.getElementById('console-log-lines');
+
+  // Synchronize inputs
+  if (headerAuditInput && dashAuditInput) {
+    headerAuditInput.addEventListener('input', (e) => {
+      dashAuditInput.value = e.target.value;
+    });
+    dashAuditInput.addEventListener('input', (e) => {
+      headerAuditInput.value = e.target.value;
+    });
+  }
+
+  // Check for query param auditUrl to trigger automatic audit
+  const urlParams = new URLSearchParams(window.location.search);
+  const paramUrl = urlParams.get('auditUrl');
+  if (paramUrl) {
+    if (dashAuditInput) {
+      dashAuditInput.value = paramUrl;
+      if (headerAuditInput) headerAuditInput.value = paramUrl;
+      setTimeout(() => {
+        if (dashAuditBtn) dashAuditBtn.click();
+        // Clear query parameters from URL without reloading
+        const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        window.history.replaceState({ path: cleanUrl }, '', cleanUrl);
+      }, 500);
+    }
+  }
+
+  function addConsoleLog(text, type = 'info') {
+    if (!consoleLogLines) return;
+    const line = document.createElement('div');
+    line.className = 'flex items-start gap-2 py-0.5 border-b border-white/5 last:border-0';
+    
+    let colorClass = 'text-on-surface-variant';
+    let prefix = '> [SISTEMA]';
+    
+    if (type === 'telemetry') {
+      colorClass = 'text-sky-400';
+      prefix = '> [TELEMETRÍA]';
+    } else if (type === 'ai') {
+      colorClass = 'text-primary font-bold';
+      prefix = '🧠 [CEREBRO IA]';
+    } else if (type === 'success') {
+      colorClass = 'text-emerald-400 font-bold';
+      prefix = '✨ [ÉXITO]';
+    } else if (type === 'error') {
+      colorClass = 'text-error font-bold';
+      prefix = '❌ [ERROR]';
+    }
+
+    line.innerHTML = `
+      <span class="text-outline-variant/40 shrink-0 select-none">${new Date().toLocaleTimeString()}</span>
+      <span class="${colorClass} shrink-0 select-none">${prefix}</span>
+      <span class="${colorClass} break-all">${text}</span>
+    `;
+    
+    consoleLogLines.appendChild(line);
+    if (agentConsole) {
+      agentConsole.scrollTop = agentConsole.scrollHeight;
+    }
+  }
+
+  async function executeAudit(url) {
+    if (!url) return alert('Por favor ingresa una URL válida (ej. https://example.com)');
+    
+    const buttons = [headerAuditBtn, dashAuditBtn].filter(Boolean);
+    const inputs = [headerAuditInput, dashAuditInput].filter(Boolean);
+    
+    buttons.forEach(btn => {
+      btn.disabled = true;
+      btn.innerHTML = '<span class="material-symbols-outlined animate-spin" style="animation: spin 1s linear infinite;">sync</span> Analizando...';
+    });
+    inputs.forEach(inp => inp.disabled = true);
+    
+    if (agentConsole) agentConsole.classList.remove('hidden');
+    if (consoleLogLines) consoleLogLines.innerHTML = '';
+    if (consoleStatus) consoleStatus.textContent = 'Ejecutando...';
+
+    // Progressive logs timeline simulation
+    const logsTimeline = [
+      { delay: 100, text: `Iniciando Puppeteer Headless Browser para auditar: ${url}`, type: 'telemetry' },
+      { delay: 1500, text: 'Navegando y extrayendo el DOM del sitio en vivo...', type: 'telemetry' },
+      { delay: 3500, text: 'Calculando métricas Core Web Vitals (LCP, FID, CLS)...', type: 'telemetry' },
+      { delay: 5500, text: 'Evaluando estructura SEO (Encabezados H1-H6, Meta tags, Enlaces)...', type: 'telemetry' },
+      { delay: 7500, text: 'Estructurando telemetría para el motor de Inteligencia Artificial...', type: 'info' },
+      { delay: 9000, text: 'Inicializando sesión con modelo Gemini 1.5 Flash...', type: 'ai' },
+      { delay: 11000, text: 'Gemini está interpretando los problemas técnicos de SEO y Performance...', type: 'ai' },
+      { delay: 13000, text: 'Generando Quick Wins y recomendaciones estratégicas accionables...', type: 'ai' },
+      { delay: 15500, text: 'Guardando auditoría completa y alertas en la Base de Datos SQLite...', type: 'info' }
+    ];
+
+    const timers = [];
+    logsTimeline.forEach(step => {
+      const t = setTimeout(() => addConsoleLog(step.text, step.type), step.delay);
+      timers.push(t);
+    });
+
+    const pollInterval = setInterval(loadDashboardData, 4000);
+
+    try {
+      const res = await fetch('/api/run/web', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url })
+      });
+      const result = await res.json();
+      
+      // Clear remaining simulated log timers
+      timers.forEach(clearTimeout);
+      
+      if (!res.ok) throw new Error(result.error || 'Error desconocido');
+      
+      if (consoleStatus) consoleStatus.textContent = 'Completado';
+      addConsoleLog(`Auditoría de IA completada para ${url}`, 'success');
+      addConsoleLog(`Recomendaciones guardadas. Global Health Score actualizado.`, 'success');
+      
+    } catch(e) {
+      timers.forEach(clearTimeout);
+      if (consoleStatus) consoleStatus.textContent = 'Error';
+      addConsoleLog(`Fallo en el proceso: ${e.message}`, 'error');
+      alert('Error: ' + e.message);
+    } finally {
+      clearInterval(pollInterval);
+      loadDashboardData(); // Final UI Refresh
+      
+      buttons.forEach(btn => {
+        btn.disabled = false;
+        btn.innerHTML = '<span class="material-symbols-outlined text-[18px]">rocket_launch</span> Iniciar Auditoría de IA';
+      });
+      inputs.forEach(inp => inp.disabled = false);
+    }
+  }
+
+  if (headerAuditBtn) {
+    headerAuditBtn.addEventListener('click', () => {
+      const url = headerAuditInput.value.trim();
+      executeAudit(url);
+    });
+  }
+  if (dashAuditBtn) {
+    dashAuditBtn.addEventListener('click', () => {
+      const url = dashAuditInput.value.trim();
+      executeAudit(url);
+    });
+  }
+
+  // Custom keyframes for spinner
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Mobile Sidebar Drawer Logic
+  const menuToggleBtn = document.getElementById('menu-toggle-btn');
+  const sidebarNav = document.getElementById('sidebar-nav');
+  const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+  if (menuToggleBtn && sidebarNav) {
+    menuToggleBtn.addEventListener('click', () => {
+      sidebarNav.classList.remove('-translate-x-full');
+      if (sidebarOverlay) sidebarOverlay.classList.remove('hidden');
+    });
+  }
+
+  if (sidebarOverlay) {
+    sidebarOverlay.addEventListener('click', () => {
+      if (sidebarNav) sidebarNav.classList.add('-translate-x-full');
+      sidebarOverlay.classList.add('hidden');
+    });
+  }
+</script>
+</body></html>

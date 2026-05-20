@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Webmaster Brief Generator - Growth Optimizer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#131b2e",
+                      "on-secondary-container": "#a8afff",
+                      "on-primary-container": "#00574d",
+                      "surface-container-high": "#222a3d",
+                      "secondary-container": "#2f3aa3",
+                      "background": "#0b1326",
+                      "surface-variant": "#2d3449",
+                      "on-error": "#690005",
+                      "on-primary-fixed-variant": "#005047",
+                      "surface-bright": "#31394d",
+                      "primary-fixed-dim": "#3cddc7",
+                      "on-tertiary-fixed-variant": "#5c4300",
+                      "on-secondary": "#131e8c",
+                      "on-primary-fixed": "#00201c",
+                      "tertiary-fixed": "#ffdf9f",
+                      "on-error-container": "#ffdad6",
+                      "on-surface": "#dae2fd",
+                      "on-secondary-fixed-variant": "#2f3aa3",
+                      "surface": "#0b1326",
+                      "inverse-on-surface": "#283044",
+                      "inverse-primary": "#006b5f",
+                      "tertiary-fixed-dim": "#f9bd22",
+                      "surface-container-highest": "#2d3449",
+                      "error": "#ffb4ab",
+                      "surface-tint": "#3cddc7",
+                      "surface-container": "#171f33",
+                      "primary-container": "#2dd4bf",
+                      "on-tertiary-container": "#634900",
+                      "secondary-fixed-dim": "#bdc2ff",
+                      "primary-fixed": "#62fae3",
+                      "outline": "#859490",
+                      "on-tertiary": "#402d00",
+                      "secondary": "#bdc2ff",
+                      "error-container": "#93000a",
+                      "tertiary": "#ffd47b",
+                      "surface-dim": "#0b1326",
+                      "on-tertiary-fixed": "#261a00",
+                      "on-primary": "#003731",
+                      "secondary-fixed": "#e0e0ff",
+                      "on-background": "#dae2fd",
+                      "on-secondary-fixed": "#000767",
+                      "inverse-surface": "#dae2fd",
+                      "primary": "#57f1db",
+                      "tertiary-container": "#efb515",
+                      "surface-container-lowest": "#060e20",
+                      "on-surface-variant": "#bacac5",
+                      "outline-variant": "#3c4a46"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "16px",
+                      "stack-sm": "12px",
+                      "stack-lg": "48px",
+                      "stack-md": "24px",
+                      "container-padding": "24px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "JetBrains Mono"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "JetBrains Mono"
+                      ],
+                      "headline-xl": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-xl": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        
+        /* Glassmorphism effects */
+        .glass-panel {
+            background-color: rgba(19, 27, 46, 0.6); /* surface-container-low with opacity */
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .glass-card {
+            background-color: rgba(23, 31, 51, 0.5); /* surface-container */
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        .active-glow {
+            box-shadow: inset 0 0 20px 0 rgba(87, 241, 219, 0.05);
+            border-color: rgba(87, 241, 219, 0.2);
+        }
+
+        /* Ambient gradient background */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: radial-gradient(circle at 15% 50%, rgba(87, 241, 219, 0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 85% 30%, rgba(47, 58, 163, 0.04) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Command line style input */
+        .cmd-panel {
+            background-color: rgba(11, 19, 38, 0.9); /* surface-dim */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cmd-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1em;
+            background-color: theme('colors.primary');
+            vertical-align: text-bottom;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Custom Scrollbar for inner areas */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex selection:bg-primary/30 selection:text-primary">
+<div class="ambient-bg"></div>
+<!-- SideNavBar Component -->
+<div id="sidebar-overlay" class="fixed inset-0 bg-background/60 backdrop-blur-sm z-40 hidden md:hidden"></div>
+<nav id="sidebar-nav" class="fixed inset-y-0 left-0 w-64 bg-surface-container-lowest bg-surface-container-lowest/80 backdrop-blur-xl border-r border-outline-variant/10 z-50 py-6 flex flex-col h-screen transition-transform duration-300 transform -translate-x-full md:translate-x-0">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary">rocket_launch</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary text-[20px] leading-tight">Growth Agent</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant text-[10px]">Plataforma Antigravity</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="code.html">
+<span class="material-symbols-outlined font-normal">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="web_audit.html">
+<span class="material-symbols-outlined">search_check</span>
+<span class="font-label-md text-label-md">Auditoría Web</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="social_media.html">
+<span class="material-symbols-outlined font-normal">share</span>
+<span class="font-label-md text-label-md">Redes Sociales</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="recommendations.html">
+<span class="material-symbols-outlined">lightbulb</span>
+<span class="font-label-md text-label-md">Recomendaciones</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-primary bg-primary/10 border-r-2 border-primary rounded-l-lg hover:bg-surface-variant/20 transition-colors duration-200 scale-[0.98] transition-transform duration-150" href="webmaster_briefs.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">article</span>
+<span class="font-label-md text-label-md font-bold">Briefs Webmaster</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200 mt-8" href="settings.html">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Configuración</span>
+</a>
+</div>
+<div class="px-6 mt-auto pt-6">
+<button onclick="window.location.href='code.html'" class="w-full bg-primary/10 text-primary border border-primary/30 hover:bg-primary/20 hover:border-primary/50 transition-all font-label-md text-label-md py-3 rounded-lg flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+                Optimizar Ahora
+            </button>
+</div>
+</nav>
+<!-- TopAppBar Component -->
+<header class="bg-surface-container-low/50 dark:bg-surface-container-low/50 fixed top-0 right-0 left-0 md:left-64 h-16 backdrop-blur-md border-b border-outline-variant/10 z-40 flex justify-between items-center px-gutter">
+<div class="flex items-center gap-4">
+<button id="menu-toggle-btn" class="md:hidden text-on-surface-variant hover:text-on-surface p-2 rounded-full hover:bg-surface-variant/30 transition-all duration-200 flex items-center justify-center">
+  <span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-headline-md text-headline-md font-black text-primary text-xl">Growth Agent</span>
+</div>
+<div class="flex items-center gap-4">
+<button id="theme-toggle" class="p-2 text-on-surface-variant hover:bg-surface-container-high/50 transition-all rounded-full flex items-center justify-center">
+  <span class="material-symbols-outlined">brightness_4</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-variant/30 transition-all duration-200 rounded-full p-2">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-outline-variant/30 ml-2">
+<img alt="User profile photo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8iRj-lyU3oLr8uQXL197Y-u-mtrV5sIETD3otUpUQkgzGwBB9zBfw83uVCjneMJx_9BXk2kqRh7QrrVUoh8LWuVCRtnuVwWG6d6TOpnlp9_8YWxzv3fY2Ze47GfIAFAXrp4G9wMB5nrOIDgQsRD6_8W6JQfcr5TATq71QpLC_Dw_SI6ijzx_ERhmhnjSO8vVY8Y8KJWZZUqhyQDFoEzbsz8kbW8-b6CElbyUwKeItl6Fh0Rr5aiKMfkOvhEJ5DxCux9Xf1k0kHCLO"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-0 md:ml-64 mt-16 p-container-padding flex flex-col h-[calc(100vh-4rem)] overflow-hidden">
+<!-- Header Section -->
+<div class="mb-stack-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shrink-0">
+<div>
+<div class="flex items-center gap-3 mb-1">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Generador de Informes</h2>
+<span class="px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span> IA Activa
+                    </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Construcción de directivas técnicas para el Webmaster basadas en los últimos datos de auditoría.</p>
+</div>
+<button id="send-webmaster-btn" class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md text-label-md font-semibold flex items-center gap-2 hover:bg-primary-fixed transition-colors shadow-[0_4px_20px_-5px_rgba(87,241,219,0.4)]">
+<span class="material-symbols-outlined text-[18px]">send</span>
+                Enviar al Webmaster
+            </button>
+</div>
+<!-- Split View Interface -->
+<div class="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-stack-md overflow-hidden min-h-0">
+<!-- Left Panel: AI Detected Issues (Pending Optimizations) -->
+<div class="col-span-1 lg:col-span-5 flex flex-col glass-panel rounded-xl overflow-hidden h-full">
+<div class="p-4 border-b border-outline-variant/10 bg-surface-container-highest/30 shrink-0 flex justify-between items-center">
+<h3 class="font-headline-md text-body-lg text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">target</span>
+                        Optimizaciones Pendientes
+                    </h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">3 Tareas en Cola</span>
+</div>
+<div class="p-4 overflow-y-auto flex-1 flex flex-col gap-3">
+<!-- Issue Card 1 (Active) -->
+<div id="card-lcp" class="brief-card glass-card active-glow p-4 rounded-lg cursor-pointer transition-all hover:bg-surface-variant/30 relative">
+<div class="active-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-primary rounded-r-full"></div>
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-0.5 rounded bg-error/10 text-error border border-error/20 font-label-sm text-[10px] tracking-wider uppercase">Prioridad Alta</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Rendimiento</span>
+</div>
+<h4 class="font-body-md text-body-md font-semibold text-on-surface mb-1">Fallo en LCP (Core Web Vitals)</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-3">La imagen principal en la página de inicio está sin comprimir (2.4MB) y retrasa el LCP por 3.2s.</p>
+<div class="flex items-center gap-2 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">add_circle</span>
+<span>Añadido al Informe</span>
+</div>
+</div>
+<!-- Issue Card 2 -->
+<div id="card-h1" class="brief-card glass-card p-4 rounded-lg cursor-pointer transition-all hover:bg-surface-variant/30 hover:border-primary/30 opacity-70 relative">
+<div class="active-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-primary rounded-r-full hidden"></div>
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-0.5 rounded bg-tertiary/10 text-tertiary border border-tertiary/20 font-label-sm text-[10px] tracking-wider uppercase">Media</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">SEO</span>
+</div>
+<h4 class="font-body-md text-body-md font-semibold text-on-surface mb-1">Falta la etiqueta H1 en Páginas de Productos</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-3">La plantilla 'product-v2' depende de etiquetas H2 para renderizar el título, afectando la indexación.</p>
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary font-label-sm text-label-sm transition-colors">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span>Añadir al Informe</span>
+</button>
+</div>
+<!-- Issue Card 3 -->
+<div id="card-contrast" class="brief-card glass-card p-4 rounded-lg cursor-pointer transition-all hover:bg-surface-variant/30 hover:border-primary/30 opacity-70 relative">
+<div class="active-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-primary rounded-r-full hidden"></div>
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-0.5 rounded bg-secondary/10 text-secondary border border-secondary/20 font-label-sm text-[10px] tracking-wider uppercase">Baja</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Accesibilidad</span>
+</div>
+<h4 class="font-body-md text-body-md font-semibold text-on-surface mb-1">Relación de Contraste en el Pie de Página</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-3">Los enlaces legales en el pie de página tienen una relación de 3.1:1, no cumpliendo con los estándares de WCAG AA.</p>
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary font-label-sm text-label-sm transition-colors">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span>Añadir al Informe</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right Panel: Document Editor Interface -->
+<div class="col-span-1 lg:col-span-7 flex flex-col glass-panel rounded-xl overflow-hidden h-full relative">
+<!-- Document Toolbar -->
+<div class="p-3 border-b border-outline-variant/10 bg-surface-container-highest/30 shrink-0 flex justify-between items-center">
+<div class="flex gap-2">
+<button class="p-1.5 rounded text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[18px]">format_bold</span></button>
+<button class="p-1.5 rounded text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[18px]">format_italic</span></button>
+<button class="p-1.5 rounded text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[18px]">link</span></button>
+<div class="w-px h-6 bg-outline-variant/30 my-auto mx-1"></div>
+<button class="p-1.5 rounded text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[18px]">code</span></button>
+</div>
+<div class="flex items-center gap-2 text-primary/70 font-label-sm text-[11px] font-mono" id="autosave-status">
+<span id="autosave-icon" class="material-symbols-outlined text-[14px] text-emerald-400">check_circle</span>
+<span id="autosave-text">Guardado en Base de Datos</span>
+</div>
+</div>
+<!-- Document Canvas -->
+<div class="flex-1 overflow-y-auto p-6 md:p-8 bg-surface-dim/50">
+<div class="max-w-3xl mx-auto space-y-6">
+<!-- Doc Header -->
+<div class="border-b border-outline-variant/20 pb-4 mb-6">
+<input id="brief-title-input" class="w-full bg-transparent border-none font-headline-md text-[28px] text-on-surface p-0 focus:ring-0 placeholder:text-on-surface-variant/30 font-semibold mb-2" type="text" value="Brief: Resolver cuello de botella de LCP en inicio"/>
+<div class="flex gap-4 font-label-sm text-label-sm text-on-surface-variant">
+<span>Agente: Webmaster</span>
+<span>Prioridad: Alta</span>
+<span>Fecha: 20 de Mayo, 2026</span>
+</div>
+</div>
+<!-- Section: Problem Description -->
+<div class="space-y-2">
+<h3 class="font-label-md text-label-md text-primary tracking-wider uppercase">1. Descripción del Problema</h3>
+<p class="font-body-md text-body-md text-on-surface/90 leading-relaxed" contenteditable="true" id="brief-desc-input">
+La imagen principal del hero (<code class="text-secondary bg-secondary/10 px-1 py-0.5 rounded text-[13px]">hero-main-v4.jpg</code>) se sirve actualmente sin comprimir con un tamaño de 2.4MB. Este recurso está bloqueando la ruta de renderizado principal, haciendo que el LCP (Renderizado de la Mayor Pintura de Contenido) se eleve a 3.2 segundos en conexiones móviles 4G.
+                            </p>
+</div>
+<!-- Section: Visual Reference (Placeholder) -->
+<div class="space-y-2 my-6">
+<h3 class="font-label-md text-label-md text-primary tracking-wider uppercase">2. Referencia Visual</h3>
+<div class="w-full h-48 bg-surface-container rounded-lg border border-dashed border-outline-variant/50 flex flex-col items-center justify-center relative overflow-hidden group">
+<div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-50"></div>
+<span class="material-symbols-outlined text-4xl text-on-surface-variant mb-2">image</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">hero-main-v4.jpg (Estado Actual)</span>
+<button class="absolute inset-0 w-full h-full bg-surface-container-high/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-primary font-label-md">
+                                    Haga clic para previsualizar el recurso
+                                </button>
+</div>
+</div>
+<!-- Section: Technical Spec (Cmd Line style) -->
+<div class="space-y-2">
+<h3 class="font-label-md text-label-md text-primary tracking-wider uppercase">3. Especificación Técnica</h3>
+<div class="cmd-panel rounded-lg p-4 font-label-sm text-[13px] text-on-surface-variant leading-relaxed">
+<div class="flex justify-between items-center mb-2 border-b border-white/10 pb-2">
+<span class="text-on-surface font-mono">Directivas</span>
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[16px]">content_copy</span></button>
+</div>
+<div class="space-y-1 font-mono" id="brief-tech-spec">
+<p><span class="text-tertiary">ACCIÓN</span>: Convertir <span class="text-on-surface">hero-main-v4.jpg</span> al formato WebP.</p>
+<p><span class="text-tertiary">TAMAÑO_OBJETIVO</span>: &lt; 200kb</p>
+<p><span class="text-tertiary">DIMENSIONES</span>: Mantener la resolución nativa de 1920x1080.</p>
+<p><span class="text-tertiary">IMPLEMENTACIÓN</span>: Añadir srcset para carga responsiva.</p>
+<p class="mt-2 text-primary opacity-80">&gt; Listo para ejecución<span class="cmd-cursor"></span></p>
+</div>
+</div>
+</div>
+<!-- Section: Strategic Justification -->
+<div class="space-y-2 pb-8">
+<h3 class="font-label-md text-label-md text-primary tracking-wider uppercase">4. Justificación Estratégica</h3>
+<div class="glass-card p-4 rounded-l border-l-2 border-l-primary/50">
+<p class="font-body-sm text-body-sm text-on-surface/80 italic" contenteditable="true" id="brief-just-input">
+                                    "Mejorar el LCP por debajo de 2.5 segundos recuperará una tasa de rebote estimada del 8% que se pierde actualmente durante la carga inicial. Esto se correlaciona directamente con una mayor conversión en el embudo principal."
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Modal Container (hidden by default) -->
+<div id="report-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+  <!-- Backdrop -->
+  <div id="modal-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+  
+  <!-- Modal Content -->
+  <div class="relative w-full max-w-3xl max-h-[85vh] bg-[#0c1424] border border-outline-variant/20 rounded-xl shadow-2xl overflow-hidden flex flex-col z-10 glass-panel">
+    <!-- Header -->
+    <div class="p-5 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-highest/20">
+      <h3 class="font-headline-md text-body-lg text-on-surface flex items-center gap-2 font-bold">
+        <span class="material-symbols-outlined text-primary text-2xl">assessment</span>
+        Generador de Informe para Webmasters
+      </h3>
+      <button id="close-modal-btn" class="text-on-surface-variant hover:text-on-surface p-1 rounded-full hover:bg-surface-variant/20 transition-colors flex items-center justify-center">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    
+    <!-- Tabs -->
+    <div class="flex border-b border-outline-variant/10 bg-surface-container-high/30">
+      <button id="tab-ai-agent" class="flex-1 py-3 px-4 text-center font-label-md text-label-md text-primary border-b-2 border-primary transition-all font-semibold focus:outline-none">
+        🤖 Para Agente de IA (JSON/MD)
+      </button>
+      <button id="tab-human-dev" class="flex-1 py-3 px-4 text-center font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all border-b-2 border-transparent focus:outline-none">
+        👥 Para Webmasters Humanos (Reporte Completo)
+      </button>
+    </div>
+    
+    <!-- Report Content Pane -->
+    <div class="flex-1 overflow-y-auto p-6 space-y-4 flex flex-col">
+      <textarea id="report-text-area" class="w-full flex-1 p-4 rounded-lg bg-[#070b14] border border-outline-variant/20 font-mono text-[12px] text-on-surface-variant focus:outline-none focus:border-primary/50 min-h-[350px] resize-none" readonly></textarea>
+      
+      <!-- Actions -->
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pt-2">
+        <span class="text-xs text-on-surface-variant">Clic en copiar para guardar al portapapeles.</span>
+        <div class="flex gap-3 w-full sm:w-auto">
+          <button id="download-report-btn" class="flex-1 sm:flex-initial px-4 py-2 bg-surface-container-high text-on-surface border border-outline-variant/20 rounded-lg hover:bg-surface-variant/30 transition-all font-label-md text-label-md flex items-center justify-center gap-1.5 font-semibold">
+            <span class="material-symbols-outlined text-[18px]">download</span> Descargar (.md)
+          </button>
+          <button id="copy-report-btn" class="flex-1 sm:flex-initial px-5 py-2 bg-primary text-on-primary rounded-lg hover:opacity-90 transition-all font-label-md text-label-md font-semibold flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(87,241,219,0.3)]">
+            <span class="material-symbols-outlined text-[18px]">content_copy</span> Copiar Reporte
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+<script>
+  // Theme Toggle Logic
+  const toggle = document.getElementById('theme-toggle');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+  const saved = localStorage.getItem('theme');
+  const current = saved || (prefersDark.matches ? 'dark' : 'light');
+  document.documentElement.classList.toggle('dark', current === 'dark');
+  document.documentElement.classList.toggle('light', current === 'light');
+  
+  const updateIcon = () => {
+    toggle.innerHTML = `<span class="material-symbols-outlined">${document.documentElement.classList.contains('dark') ? 'brightness_4' : 'brightness_7'}</span>`;
+  };
+  toggle.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    document.documentElement.classList.toggle('light', !isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    updateIcon();
+  });
+  updateIcon();
+
+  // Real Database Persistence for Webmaster Briefs
+  let currentBriefId = 'lcp';
+  const statusIcon = document.getElementById('autosave-icon');
+  const statusText = document.getElementById('autosave-text');
+  let saveTimeout = null;
+
+  async function loadBrief(id) {
+    try {
+      const res = await fetch(`/api/briefs/${id}`);
+      if (!res.ok) return;
+      const data = await res.json();
+      
+      document.getElementById('brief-title-input').value = data.title;
+      document.getElementById('brief-desc-input').textContent = data.description;
+      document.getElementById('brief-just-input').textContent = data.justification;
+      
+      // Update technical spec preview based on ID
+      const techSpec = document.getElementById('brief-tech-spec');
+      if (techSpec) {
+        if (id === 'lcp') {
+          techSpec.innerHTML = `
+            <p><span class="text-tertiary">ACCIÓN</span>: Convertir <span class="text-on-surface">hero-main-v4.jpg</span> al formato WebP.</p>
+            <p><span class="text-tertiary">TAMAÑO_OBJETIVO</span>: &lt; 200kb</p>
+            <p><span class="text-tertiary">DIMENSIONES</span>: Mantener la resolución nativa de 1920x1080.</p>
+            <p><span class="text-tertiary">IMPLEMENTACIÓN</span>: Añadir srcset para carga responsiva.</p>
+            <p class="mt-2 text-primary opacity-80">&gt; Listo para ejecución<span class="cmd-cursor"></span></p>
+          `;
+        } else if (id === 'h1') {
+          techSpec.innerHTML = `
+            <p><span class="text-tertiary">ACCIÓN</span>: Reemplazar etiqueta H2 en plantilla de título de producto.</p>
+            <p><span class="text-tertiary">ELEMENTO_CSS</span>: <span class="text-on-surface">h2.product-title</span> a <span class="text-on-surface">h1.product-title</span></p>
+            <p><span class="text-tertiary">REGLA_SEO</span>: Asegurar un único elemento H1 por página de producto.</p>
+            <p><span class="text-tertiary">IMPLEMENTACIÓN</span>: Modificar plantilla php/blade/html del tema.</p>
+            <p class="mt-2 text-primary opacity-80">&gt; Listo para ejecución<span class="cmd-cursor"></span></p>
+          `;
+        } else if (id === 'contrast') {
+          techSpec.innerHTML = `
+            <p><span class="text-tertiary">ACCIÓN</span>: Modificar código de color en hoja de estilos.</p>
+            <p><span class="text-tertiary">VALOR_ACTUAL</span>: <span class="text-on-surface">#718096</span> (contraste 3.1:1)</p>
+            <p><span class="text-tertiary">VALOR_NUEVO</span>: <span class="text-on-surface">#4A5568</span> (contraste 4.5:1)</p>
+            <p><span class="text-tertiary">ARCHIVO</span>: css/variables.css o footer.css</p>
+            <p class="mt-2 text-primary opacity-80">&gt; Listo para ejecución<span class="cmd-cursor"></span></p>
+          `;
+        }
+      }
+    } catch (e) {
+      console.error('Error loading brief', e);
+    }
+  }
+
+  function triggerAutosave() {
+    if (statusIcon) {
+      statusIcon.className = 'material-symbols-outlined text-[14px] animate-spin text-primary';
+      statusIcon.textContent = 'sync';
+    }
+    if (statusText) statusText.textContent = 'Autoguardando...';
+
+    clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(async () => {
+      const title = document.getElementById('brief-title-input').value;
+      const description = document.getElementById('brief-desc-input').textContent.trim();
+      const justification = document.getElementById('brief-just-input').textContent.trim();
+      
+      try {
+        const res = await fetch(`/api/briefs/${currentBriefId}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, description, justification })
+        });
+        if (res.ok) {
+          if (statusIcon) {
+            statusIcon.className = 'material-symbols-outlined text-[14px] text-emerald-400';
+            statusIcon.textContent = 'check_circle';
+          }
+          if (statusText) statusText.textContent = 'Guardado en Base de Datos';
+        } else {
+          throw new Error('Failed to save');
+        }
+      } catch (err) {
+        if (statusIcon) {
+          statusIcon.className = 'material-symbols-outlined text-[14px] text-error';
+          statusIcon.textContent = 'error';
+        }
+        if (statusText) statusText.textContent = 'Error al autoguardar';
+      }
+    }, 1200);
+  }
+
+  // Card switching implementation
+  document.querySelectorAll('.brief-card').forEach(card => {
+    card.addEventListener('click', () => {
+      // Remove active classes
+      document.querySelectorAll('.brief-card').forEach(c => {
+        c.classList.remove('active-glow');
+        c.classList.add('opacity-70');
+        const ind = c.querySelector('.active-indicator');
+        if (ind) ind.classList.add('hidden');
+      });
+      
+      // Add active state to clicked card
+      card.classList.add('active-glow');
+      card.classList.remove('opacity-70');
+      const ind = card.querySelector('.active-indicator');
+      if (ind) ind.classList.remove('hidden');
+      
+      // Switch ID and load
+      currentBriefId = card.id.replace('card-', '');
+      loadBrief(currentBriefId);
+    });
+  });
+
+  // Bind to editable areas
+  const titleInput = document.getElementById('brief-title-input');
+  const descInput = document.getElementById('brief-desc-input');
+  const justInput = document.getElementById('brief-just-input');
+
+  if (titleInput) titleInput.addEventListener('input', triggerAutosave);
+  if (descInput) descInput.addEventListener('input', triggerAutosave);
+  if (justInput) justInput.addEventListener('input', triggerAutosave);
+
+  // Initial load
+  loadBrief(currentBriefId);
+
+  // Report Modal Interaction and Report Generation
+  const sendWebmasterBtn = document.getElementById('send-webmaster-btn');
+  const reportModal = document.getElementById('report-modal');
+  const closeModalBtn = document.getElementById('close-modal-btn');
+  const modalBackdrop = document.getElementById('modal-backdrop');
+  const reportTextArea = document.getElementById('report-text-area');
+  const tabAiAgent = document.getElementById('tab-ai-agent');
+  const tabHumanDev = document.getElementById('tab-human-dev');
+  const copyReportBtn = document.getElementById('copy-report-btn');
+  const downloadReportBtn = document.getElementById('download-report-btn');
+
+  let activeTab = 'ai'; // 'ai' or 'human'
+  let cachedBriefs = null;
+
+  async function fetchAllBriefs() {
+    const ids = ['lcp', 'h1', 'contrast'];
+    const fetchBriefs = ids.map(id => fetch(`/api/briefs/${id}`).then(r => r.json()));
+    cachedBriefs = await Promise.all(fetchBriefs);
+    return cachedBriefs;
+  }
+
+  function generateReportText() {
+    if (!cachedBriefs) return '';
+    
+    // Find each brief
+    const lcp = cachedBriefs.find(b => b.id === 'lcp') || {};
+    const h1 = cachedBriefs.find(b => b.id === 'h1') || {};
+    const contrast = cachedBriefs.find(b => b.id === 'contrast') || {};
+
+    if (activeTab === 'ai') {
+      return `# CONTEXTO DE AGENTE DE IA - OPTIMIZADOR WEBMASTER
+Modelo de Telemetría e Instrucciones de Corrección de SEO y Rendimiento.
+
+[INSTRUCCIÓN DEL SISTEMA]
+Eres un agente de IA experto en desarrollo webmaster. Tu tarea es aplicar los siguientes cambios técnicos detallados en el código de la aplicación. Para cada tarea, lee la descripción, la justificación y ejecuta el plan de acción técnica provisto.
+
+---
+
+## TAREA 1: ${lcp.title || 'Fallo en LCP'}
+- **Identificador**: lcp
+- **Prioridad**: ALTA (Rendimiento Core Web Vitals)
+- **Problema/Descripción**: ${lcp.description || ''}
+- **Justificación**: ${lcp.justification || ''}
+- **Plan de Acción**:
+  1. Convertir 'hero-main-v4.jpg' al formato WebP.
+  2. Tamaño objetivo: < 200kb.
+  3. Dimensiones: Mantener resolución nativa de 1920x1080.
+  4. Implementación: Carga responsiva (srcset) con imágenes alternativas comprimidas.
+
+## TAREA 2: ${h1.title || 'Falta la etiqueta H1'}
+- **Identificador**: h1
+- **Prioridad**: MEDIA (SEO On-Page)
+- **Problema/Descripción**: ${h1.description || ''}
+- **Justificación**: ${h1.justification || ''}
+- **Plan de Acción**:
+  1. Reemplazar la etiqueta H2 en la plantilla de título de producto.
+  2. Elemento CSS: h2.product-title a h1.product-title.
+  3. SEO: Asegurar un único elemento H1 por página de producto.
+
+## TAREA 3: ${contrast.title || 'Relación de Contraste'}
+- **Identificador**: contrast
+- **Prioridad**: BAJA (Accesibilidad WCAG 2.1 AA)
+- **Problema/Descripción**: ${contrast.description || ''}
+- **Justificación**: ${contrast.justification || ''}
+- **Plan de Acción**:
+  1. Modificar código de color en hoja de estilos.
+  2. Valor actual: #718096 (contraste 3.1:1).
+  3. Valor nuevo: #4A5568 (contraste 4.5:1).
+  4. Archivo: css/variables.css o footer.css.`;
+    } else {
+      return `# INFORME DE OPTIMIZACIÓN WEB Y SEO TÉCNICO
+Generado automáticamente por Growth Optimizer AI
+Fecha: ${new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+
+Estimado equipo de desarrollo / Webmaster:
+
+A continuación se detalla el informe con los problemas técnicos y recomendaciones accionables para mejorar el rendimiento, accesibilidad y SEO de nuestra plataforma web.
+
+======================================================================
+1. RESOLUCIÓN DE CUELLO DE BOTELLA DE LCP (Prioridad Alta)
+======================================================================
+- Título: ${lcp.title || 'Fallo en LCP (Core Web Vitals)'}
+- Descripción: ${lcp.description || ''}
+- Impacto Comercial: ${lcp.justification || ''}
+- Directiva Técnica:
+  * Acción: Convertir 'hero-main-v4.jpg' al formato WebP.
+  * Tamaño Objetivo: < 200kb.
+  * Dimensiones: Mantener la resolución nativa de 1920x1080.
+  * Implementación: Carga responsiva (srcset) con imágenes alternativas comprimidas.
+
+======================================================================
+2. OPTIMIZACIÓN DE ETIQUETAS H1 EN PRODUCTOS (Prioridad Media)
+======================================================================
+- Título: ${h1.title || 'Falta la etiqueta H1 en Páginas de Productos'}
+- Descripción: ${h1.description || ''}
+- Impacto Comercial: ${h1.justification || ''}
+- Directiva Técnica:
+  * Acción: Reemplazar etiqueta H2 en plantilla de título de producto.
+  * Elemento CSS: h2.product-title a h1.product-title.
+  * Regla SEO: Asegurar un único elemento H1 por página de producto.
+
+======================================================================
+3. MEJORA DE CONTRASTE EN PIE DE PÁGINA (Prioridad Baja)
+======================================================================
+- Título: ${contrast.title || 'Relación de Contraste en el Pie de Página'}
+- Descripción: ${contrast.description || ''}
+- Impacto Comercial: ${contrast.justification || ''}
+- Directiva Técnica:
+  * Acción: Modificar código de color en hoja de estilos.
+  * Valor Actual: #718096 (contraste 3.1:1).
+  * Valor Nuevo: #4A5568 (contraste 4.5:1).
+  * Archivo: css/variables.css o footer.css.
+
+---
+Si tiene alguna duda, puede responder a este ticket o auditar de nuevo la web desde el Panel de Control.`;
+    }
+  }
+
+  function updateReportView() {
+    reportTextArea.value = generateReportText();
+  }
+
+  if (sendWebmasterBtn) {
+    sendWebmasterBtn.addEventListener('click', async () => {
+      reportTextArea.value = 'Generando informe consolidado desde la base de datos...';
+      reportModal.classList.remove('hidden');
+      try {
+        await fetchAllBriefs();
+        updateReportView();
+      } catch (err) {
+        reportTextArea.value = 'Error cargando los datos de los briefs: ' + err.message;
+      }
+    });
+  }
+
+  const closeModal = () => {
+    reportModal.classList.add('hidden');
+  };
+
+  if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+  if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+
+  if (tabAiAgent) {
+    tabAiAgent.addEventListener('click', () => {
+      activeTab = 'ai';
+      tabAiAgent.className = 'flex-1 py-3 px-4 text-center font-label-md text-label-md text-primary border-b-2 border-primary transition-all font-semibold focus:outline-none';
+      tabHumanDev.className = 'flex-1 py-3 px-4 text-center font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all border-b-2 border-transparent focus:outline-none';
+      updateReportView();
+    });
+  }
+
+  if (tabHumanDev) {
+    tabHumanDev.addEventListener('click', () => {
+      activeTab = 'human';
+      tabHumanDev.className = 'flex-1 py-3 px-4 text-center font-label-md text-label-md text-primary border-b-2 border-primary transition-all font-semibold focus:outline-none';
+      tabAiAgent.className = 'flex-1 py-3 px-4 text-center font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all border-b-2 border-transparent focus:outline-none';
+      updateReportView();
+    });
+  }
+
+  if (copyReportBtn) {
+    copyReportBtn.addEventListener('click', () => {
+      reportTextArea.select();
+      navigator.clipboard.writeText(reportTextArea.value).then(() => {
+        const originalText = copyReportBtn.innerHTML;
+        copyReportBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">done</span> ¡Copiado!';
+        setTimeout(() => {
+          copyReportBtn.innerHTML = originalText;
+        }, 2000);
+      }).catch(err => {
+        alert('Error al copiar al portapapeles: ' + err);
+      });
+    });
+  }
+
+  if (downloadReportBtn) {
+    downloadReportBtn.addEventListener('click', () => {
+      const text = reportTextArea.value;
+      const blob = new Blob([text], { type: 'text/markdown;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `informe_webmaster_${activeTab}.md`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  }
+
+  // Mobile Sidebar Drawer Logic
+  const menuToggleBtn = document.getElementById('menu-toggle-btn');
+  const sidebarNav = document.getElementById('sidebar-nav');
+  const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+  if (menuToggleBtn && sidebarNav) {
+    menuToggleBtn.addEventListener('click', () => {
+      sidebarNav.classList.remove('-translate-x-full');
+      if (sidebarOverlay) sidebarOverlay.classList.remove('hidden');
+    });
+  }
+
+  if (sidebarOverlay) {
+    sidebarOverlay.addEventListener('click', () => {
+      if (sidebarNav) sidebarNav.classList.add('-translate-x-full');
+      sidebarOverlay.classList.add('hidden');
+    });
+  }
+</script>
+</body></html>

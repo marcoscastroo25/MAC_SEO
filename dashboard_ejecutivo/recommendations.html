@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Recommendations | Growth Optimizer</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+  
+  <script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                "colors": {
+                    "primary": "var(--primary)",
+                    "primary-container": "var(--primary-container)",
+                    "secondary": "var(--secondary)",
+                    "secondary-container": "var(--secondary-container)",
+                    "background": "var(--background)",
+                    "surface": "var(--surface)",
+                    "surface-variant": "var(--surface-variant)",
+                    "on-primary": "var(--on-primary)",
+                    "on-secondary": "var(--on-secondary)",
+                    "on-background": "var(--on-background)",
+                    "on-surface": "var(--on-surface)",
+                    "on-surface-variant": "var(--on-surface-variant)",
+                    "error": "var(--error)",
+                    "error-container": "var(--error-container)",
+                    "on-error": "var(--on-error)",
+                    "surface-container-low": "var(--surface-container-low)",
+                    "surface-container-high": "var(--surface-container-high)",
+                    "surface-tint": "var(--surface-tint)",
+                    "outline": "var(--outline)",
+                    "outline-variant": "var(--outline-variant)"
+                },
+                "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+                },
+                "spacing": {
+                    "gutter": "16px",
+                    "stack-sm": "12px",
+                    "stack-lg": "48px",
+                    "stack-md": "24px",
+                    "container-padding": "24px",
+                    "base": "8px"
+                },
+                "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-sm": ["JetBrains Mono"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-md": ["JetBrains Mono"],
+                    "headline-xl": ["Inter"]
+                }
+            }
+        }
+    }
+  </script>
+
+  <style>
+    :root {
+        --background: #ffffff;
+        --on-background: #191c1e;
+        --surface: #f8fafc;
+        --on-surface: #0f172a;
+        --surface-container-low: #f1f5f9;
+        --surface-container-high: #e2e8f0;
+        --primary: #0f172a;
+        --on-primary: #ffffff;
+        --secondary: #475569;
+        --on-secondary: #ffffff;
+        --outline-variant: #cbd5e1;
+        --on-surface-variant: #334155;
+        --error: #ba1a1a;
+        --error-container: #ffdad6;
+    }
+    html.dark {
+        --background: #0b1326;
+        --on-background: #dae2fd;
+        --surface: #0b1326;
+        --on-surface: #dae2fd;
+        --surface-container-low: #171f33;
+        --surface-container-high: #2d3449;
+        --primary: #3cddc7;
+        --on-primary: #003731;
+        --secondary: #bdc2ff;
+        --on-secondary: #131e8c;
+        --outline-variant: #3c4a46;
+        --on-surface-variant: #bacac5;
+        --error: #ffb4ab;
+        --error-container: #93000a;
+    }
+    body {
+        background-color: var(--background);
+        color: var(--on-background);
+        font-family: 'Inter', sans-serif;
+    }
+    .glass-panel {
+        background: rgba(23, 31, 51, 0.4);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--outline-variant);
+    }
+    html.light .glass-panel {
+        background: rgba(241, 245, 249, 0.8);
+        border: 1px solid rgba(15, 23, 42, 0.1);
+    }
+    .cmd-panel {
+        background: #0f172a;
+        border: 1px solid var(--outline-variant);
+        color: #f8fafc;
+    }
+    html.light .cmd-panel {
+        background: #1e293b;
+        color: #f8fafc;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+
+  <!-- TopAppBar Component -->
+  <header class="bg-surface-container-low/50 fixed top-0 right-0 left-0 md:left-64 h-16 backdrop-blur-md border-b border-outline-variant/30 z-40 flex justify-between items-center px-gutter">
+    <div class="flex items-center gap-4">
+      <button id="menu-toggle-btn" class="md:hidden text-on-surface-variant hover:text-on-surface p-2 rounded-full hover:bg-surface-variant/30 transition-all duration-200 flex items-center justify-center">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      <span class="font-headline-md font-black text-primary text-xl">Growth Optimizer</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <button id="theme-toggle" class="p-2 text-on-surface-variant hover:bg-surface-container-high/50 transition-all rounded-full flex items-center justify-center">
+        <span class="material-symbols-outlined">brightness_4</span>
+      </button>
+      <div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-outline-variant/30">
+        <img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8iRj-lyU3oLr8uQXL197Y-u-mtrV5sIETD3otUpUQkgzGwBB9zBfw83uVCjneMJx_9BXk2kqRh7QrrVUoh8LWuVCRtnuVwWG6d6TOpnlp9_8YWxzv3fY2Ze47GfIAFAXrp4G9wMB5nrOIDgQsRD6_8W6JQfcr5TATq71QpLC_Dw_SI6ijzx_ERhmhnjSO8vVY8Y8KJWZZUqhyQDFoEzbsz8kbW8-b6CElbyUwKeItl6Fh0Rr5aiKMfkOvhEJ5DxCux9Xf1k0kHCLO"/>
+      </div>
+    </div>
+  </header>
+
+  <!-- SideNavBar Component -->
+  <div id="sidebar-overlay" class="fixed inset-0 bg-background/60 backdrop-blur-sm z-40 hidden md:hidden"></div>
+  <nav id="sidebar-nav" class="fixed inset-y-0 left-0 w-64 bg-surface-container-lowest bg-surface-container-lowest/80 backdrop-blur-xl border-r border-outline-variant/30 z-50 py-6 flex flex-col h-screen transition-transform duration-300 transform -translate-x-full md:translate-x-0">
+    <div class="px-6 mb-8 flex items-center gap-3">
+      <div class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+        <span class="material-symbols-outlined text-primary">rocket_launch</span>
+      </div>
+      <div>
+        <div class="font-headline-md font-bold text-primary text-[20px] leading-tight">Growth Agent</div>
+        <div class="font-label-sm text-on-surface-variant text-[10px]">Plataforma Antigravity</div>
+      </div>
+    </div>
+    <div class="flex-1 overflow-y-auto px-4 space-y-1">
+      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-container-high/50 transition-colors" href="code.html">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span class="font-label-md text-label-md">Dashboard</span>
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-container-high/50 transition-colors" href="web_audit.html">
+        <span class="material-symbols-outlined">search_check</span>
+        <span class="font-label-md text-label-md">Auditoría Web</span>
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-container-high/50 transition-colors" href="social_media.html">
+        <span class="material-symbols-outlined">share</span>
+        <span class="font-label-md text-label-md">Redes Sociales</span>
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-primary bg-primary/10 border-r-2 border-primary rounded-l-lg hover:bg-surface-container-high/50 transition-colors scale-[0.98]" href="recommendations.html">
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+        <span class="font-label-md text-label-md font-bold">Recomendaciones</span>
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-container-high/50 transition-colors" href="webmaster_briefs.html">
+        <span class="material-symbols-outlined">article</span>
+        <span class="font-label-md text-label-md">Briefs Webmaster</span>
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-container-high/50 transition-colors mt-8" href="settings.html">
+        <span class="material-symbols-outlined">settings</span>
+        <span class="font-label-md text-label-md">Configuración</span>
+      </a>
+    </div>
+    <div class="px-6 mt-auto pt-6 border-t border-outline-variant/20">
+      <button onclick="window.location.href='code.html'" class="w-full bg-primary/10 text-primary border border-primary/30 hover:bg-primary/20 hover:border-primary/50 transition-all font-label-md text-label-md py-3 rounded-lg flex justify-center items-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">bolt</span>
+        Optimizar Ahora
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="md:ml-64 pt-20 min-h-screen p-container-padding pb-24">
+    <div class="max-w-5xl mx-auto space-y-8">
+      
+      <!-- Header -->
+      <div class="flex flex-col md:flex-row justify-between md:items-end gap-4 mt-4">
+        <div>
+          <h1 class="font-headline-xl text-3xl md:text-4xl text-on-surface font-bold tracking-tight">Recomendaciones Estratégicas de IA</h1>
+          <p class="font-body-md text-on-surface-variant mt-2">Recomendaciones y Quick Wins generados por IA a partir de tus auditorías.</p>
+        </div>
+        <div id="ai-status-badge" class="flex items-center gap-2 text-label-sm text-on-surface-variant border border-outline-variant/30 px-3 py-1.5 rounded-full bg-surface-container-low">
+          <span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
+          <span>Cargando estado de IA...</span>
+        </div>
+      </div>
+
+      <!-- AI Info Box -->
+      <div class="glass-panel rounded-xl p-6 relative overflow-hidden flex flex-col md:flex-row items-center gap-6">
+        <div class="text-primary text-5xl bg-primary/10 p-4 rounded-xl">
+          <span class="material-symbols-outlined text-4xl">auto_awesome</span>
+        </div>
+        <div>
+          <h2 class="text-lg font-semibold text-on-surface mb-1">¿Cómo interactúa la IA aquí?</h2>
+          <p class="text-sm text-on-surface-variant leading-relaxed">
+            Cada vez que ejecutas un análisis con el botón <strong>Analizar Web</strong> o mediante la automatización programada, el agente recopila los problemas técnicos de SEO y Rendimiento. Esta telemetría se procesa utilizando tu <strong>API Key configurada (Gemini, OpenAI o Claude)</strong> para generar planes estratégicos accionables detallados (Quick Wins) que se guardan y muestran a continuación.
+          </p>
+        </div>
+      </div>
+
+      <!-- Recommendations List -->
+      <div class="cmd-panel rounded-xl p-6 flex flex-col space-y-6">
+        <h2 class="font-label-md text-label-md text-on-surface uppercase tracking-wider flex items-center gap-2 border-b border-outline-variant/20 pb-4">
+          <span class="material-symbols-outlined text-primary text-[18px]">terminal</span>
+          Historial de Recomendaciones de IA
+        </h2>
+        
+        <div id="recommendations-container" class="space-y-6">
+          <div class="text-on-surface-variant text-sm py-4">Cargando recomendaciones...</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    // Theme toggle logic
+    const toggle = document.getElementById('theme-toggle');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const saved = localStorage.getItem('theme');
+    const current = saved || (prefersDark.matches ? 'dark' : 'light');
+    document.documentElement.classList.toggle('dark', current === 'dark');
+    document.documentElement.classList.toggle('light', current === 'light');
+    
+    const updateIcon = () => {
+      toggle.innerHTML = `<span class="material-symbols-outlined">${document.documentElement.classList.contains('dark') ? 'brightness_4' : 'brightness_7'}</span>`;
+    };
+    toggle.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.toggle('dark');
+      document.documentElement.classList.toggle('light', !isDark);
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateIcon();
+    });
+    updateIcon();
+
+    // Check LLM Key configured
+    fetch('/api/credentials').then(r => r.json()).then(data => {
+      const badge = document.getElementById('ai-status-badge');
+      if (data.gemini_key || data.openai_key || data.claude_key) {
+        let provider = 'Activo';
+        if (data.gemini_key) provider = 'Gemini 3.5 Flash';
+        else if (data.openai_key) provider = 'OpenAI GPT-4o';
+        else if (data.claude_key) provider = 'Claude 3 Haiku';
+        
+        badge.innerHTML = `
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="text-emerald-500 font-semibold">IA Conectada (${provider})</span>
+        `;
+      } else {
+        badge.innerHTML = `
+          <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+          <span class="text-amber-500 font-semibold">IA Desconectada (Faltan API Keys)</span>
+        `;
+      }
+    }).catch(console.error);
+
+    // Fetch recommendations from dashboard endpoint
+    fetch('/api/dashboard').then(r => r.json()).then(data => {
+      const container = document.getElementById('recommendations-container');
+      if (data.insights && data.insights.length > 0) {
+        container.innerHTML = data.insights.map(i => `
+          <div class="p-5 rounded-lg bg-surface border border-outline-variant/30 hover:border-primary/40 transition-all flex flex-col gap-3">
+            <div class="flex items-center justify-between text-xs text-on-surface-variant border-b border-outline-variant/20 pb-2">
+              <span class="font-mono text-primary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">precision_manufacturing</span>
+                SISTEMA ANALIZADO
+              </span>
+              <span>${new Date(i.timestamp).toLocaleString()}</span>
+            </div>
+            <div class="prose prose-invert max-w-none text-sm text-on-background/90 leading-relaxed font-sans">
+              ${marked.parse(i.message)}
+            </div>
+          </div>
+        `).join('');
+      } else {
+        container.innerHTML = `
+          <div class="text-center p-8 border border-dashed border-outline-variant/30 rounded-lg">
+            <span class="material-symbols-outlined text-4xl text-on-surface-variant/50 mb-2">lightbulb_outline</span>
+            <p class="text-on-surface-variant text-sm">No se han generado recomendaciones de IA aún.</p>
+            <p class="text-xs text-on-surface-variant/75 mt-1">Por favor, asegúrate de ingresar una API Key en <a href="settings.html" class="text-primary underline">Configuración</a> y luego haz clic en <strong>Optimizar Ahora</strong> o <strong>Iniciar Auditoría de IA</strong> para auditar una web.</p>
+          </div>
+        `;
+      }
+    }).catch(err => {
+      console.error(err);
+      document.getElementById('recommendations-container').innerHTML = '<div class="text-error text-sm">Error cargando recomendaciones.</div>';
+    });
+
+    // Mobile Sidebar Drawer Logic
+    const menuToggleBtn = document.getElementById('menu-toggle-btn');
+    const sidebarNav = document.getElementById('sidebar-nav');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+    if (menuToggleBtn && sidebarNav) {
+      menuToggleBtn.addEventListener('click', () => {
+        sidebarNav.classList.remove('-translate-x-full');
+        if (sidebarOverlay) sidebarOverlay.classList.remove('hidden');
+      });
+    }
+
+    if (sidebarOverlay) {
+      sidebarOverlay.addEventListener('click', () => {
+        if (sidebarNav) sidebarNav.classList.add('-translate-x-full');
+        sidebarOverlay.classList.add('hidden');
+      });
+    }
+  </script>
+</body>
+</html>
