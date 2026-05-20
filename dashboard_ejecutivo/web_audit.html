@@ -122,23 +122,9 @@
         }
     </style>
 </head>
-<body class="bg-background text-on-surface font-body-md text-body-md antialiased tech-bg-gradient min-h-screen flex selection:bg-primary/30 selection:text-primary">
-<!-- SideNavBar -->
-<nav class="bg-surface-container-lowest dark:bg-surface-container-lowest h-screen w-64 fixed left-0 top-0 bg-surface-container-lowest/80 backdrop-blur-xl border-r border-outline-variant/10 z-50 flex flex-col h-full py-6 hidden md:flex">
-<!-- Header -->
-<div class="px-6 mb-stack-lg">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant/20 overflow-hidden flex items-center justify-center">
-<span class="material-symbols-outlined text-primary text-xl">robot_2</span>
-</div>
-<div>
-<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary text-sm">Growth Agent</h1>
-<p class="font-body-sm text-body-sm text-on-surface-variant text-xs">Antigravity platform</p>
-</div>
-</div>
-</div>
-  <!-- SideNavBar Component -->
-  <div id="sidebar-overlay" class="fixed inset-0 bg-background/60 backdrop-blur-sm z-40 hidden md:hidden"></div>
+<body class="text-on-surface bg-background font-body-md overflow-x-hidden antialiased tech-bg-gradient selection:bg-primary/30 selection:text-primary">
+  <!-- SideNavBar Drawer -->
+  <div id="sidebar-overlay" class="fixed inset-0 bg-background/60 backdrop-blur-sm z-40 hidden"></div>
   <nav id="sidebar-nav" class="fixed inset-y-0 left-0 w-64 bg-surface-container-lowest bg-surface-container-lowest/80 backdrop-blur-xl border-r border-outline-variant/30 z-50 py-6 flex flex-col h-screen transition-transform duration-300 transform -translate-x-full md:translate-x-0">
     <div class="px-6 mb-8 flex items-center gap-3">
       <div class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
@@ -181,58 +167,84 @@
       </button>
     </div>
   </nav>
-  <!-- Main Content Wrapper -->
-  <div class="flex-1 md:ml-64 flex flex-col min-h-screen">
-    <!-- TopAppBar -->
-    <header class="bg-surface-container-low/50 dark:bg-surface-container-low/50 fixed top-0 right-0 left-0 md:left-64 h-16 backdrop-blur-md border-b border-outline-variant/10 z-40 flex justify-between items-center px-gutter">
-      <div class="flex items-center gap-4">
-        <button id="menu-toggle-btn" class="md:hidden text-on-surface-variant hover:text-on-surface p-2 rounded-full hover:bg-surface-variant/30 transition-all duration-200 flex items-center justify-center">
-          <span class="material-symbols-outlined">menu</span>
-        </button>
-        <span class="font-headline-md text-headline-md font-black text-primary text-xl">Growth Optimizer</span>
+
+  <!-- TopAppBar -->
+  <header class="bg-surface-container-low/50 dark:bg-surface-container-low/50 fixed top-0 right-0 left-0 md:left-64 h-16 backdrop-blur-md border-b border-outline-variant/10 z-40 flex justify-between items-center px-gutter">
+    <div class="flex items-center gap-4">
+      <button id="menu-toggle-btn" class="md:hidden text-on-surface-variant hover:text-on-surface p-2 rounded-full hover:bg-surface-variant/30 transition-all duration-200 flex items-center justify-center">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      <span class="font-headline-md text-headline-md font-black text-primary text-xl">Growth Optimizer</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <button id="theme-toggle" class="p-2 text-on-surface-variant hover:bg-surface-container-high/50 transition-all rounded-full flex items-center justify-center">
+        <span class="material-symbols-outlined">brightness_4</span>
+      </button>
+      <button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-variant/30 transition-all duration-200 rounded-full">
+        <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+      </button>
+      <div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-outline-variant/30">
+        <img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8iRj-lyU3oLr8uQXL197Y-u-mtrV5sIETD3otUpUQkgzGwBB9zBfw83uVCjneMJx_9BXk2kqRh7QrrVUoh8LWuVCRtnuVwWG6d6TOpnlp9_8YWxzv3fY2Ze47GfIAFAXrp4G9wMB5nrOIDgQsRD6_8W6JQfcr5TATq71QpLC_Dw_SI6ijzx_ERhmhnjSO8vVY8Y8KJWZZUqhyQDFoEzbsz8kbW8-b6CElbyUwKeItl6Fh0Rr5aiKMfkOvhEJ5DxCux9Xf1k0kHCLO"/>
       </div>
-<div class="flex items-center gap-4">
-<button id="theme-toggle" class="p-2 text-on-surface-variant hover:bg-surface-container-high/50 transition-all rounded-full flex items-center justify-center">
-  <span class="material-symbols-outlined">brightness_4</span>
-</button>
-<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-variant/30 transition-all duration-200 rounded-full">
-<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
-</button>
-<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-outline-variant/30">
-  <img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8iRj-lyU3oLr8uQXL197Y-u-mtrV5sIETD3otUpUQkgzGwBB9zBfw83uVCjneMJx_9BXk2kqRh7QrrVUoh8LWuVCRtnuVwWG6d6TOpnlp9_8YWxzv3fY2Ze47GfIAFAXrp4G9wMB5nrOIDgQsRD6_8W6JQfcr5TATq71QpLC_Dw_SI6ijzx_ERhmhnjSO8vVY8Y8KJWZZUqhyQDFoEzbsz8kbW8-b6CElbyUwKeItl6Fh0Rr5aiKMfkOvhEJ5DxCux9Xf1k0kHCLO"/>
-</div>
-</div>
-</header>
-<!-- Main Canvas -->
-<main class="flex-1 mt-16 p-container-padding pt-stack-md flex flex-col gap-stack-lg max-w-7xl mx-auto w-full">
+    </div>
+  </header>
+
+  <!-- Main Canvas -->
+  <main class="md:ml-64 pt-24 min-h-screen p-container-padding flex flex-col gap-stack-lg max-w-7xl mx-auto w-full">
 <!-- Page Context Header -->
 <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
-<div>
-<div class="flex items-center gap-2 mb-2">
-<span class="px-2 py-1 rounded text-[10px] uppercase font-label-sm text-label-sm tracking-wider bg-primary/10 text-primary border border-primary/20">Auditoría en Vivo</span>
-<span id="target-url-text" class="font-label-sm text-label-sm text-on-surface-variant">URL de Destino: --</span>
+  <div>
+    <div class="flex items-center gap-2 mb-2">
+      <span class="px-2 py-1 rounded text-[10px] uppercase font-label-sm text-label-sm tracking-wider bg-primary/10 text-primary border border-primary/20">Auditoría en Vivo</span>
+      <span id="target-url-text" class="font-label-sm text-label-sm text-on-surface-variant">URL de Destino: --</span>
+    </div>
+    <h2 class="font-headline-lg text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface">Auditoría SEO Técnica</h2>
+    <p class="font-body-md text-body-md text-on-surface-variant mt-1">Análisis impulsado por IA de las métricas web vitales y puntos de fricción estructural.</p>
+  </div>
+  <div class="flex items-center gap-4 glass-panel px-4 py-3 rounded-xl">
+    <div class="relative w-12 h-12 flex items-center justify-center">
+      <svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+        <path class="text-surface-container-high" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+        <path id="health-ring-progress" class="text-primary drop-shadow-[0_0_4px_rgba(87,241,219,0.5)]" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="0, 100" stroke-linecap="round" stroke-width="3"></path>
+      </svg>
+      <span id="overall-health-score" class="absolute font-label-md text-label-md text-on-surface">--</span>
+    </div>
+    <div class="flex flex-col">
+      <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Salud General</span>
+      <span id="overall-health-status" class="font-body-sm text-body-sm text-tertiary">--</span>
+    </div>
+  </div>
 </div>
-<h2 class="font-headline-lg text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface">Auditoría SEO Técnica</h2>
-<p class="font-body-md text-body-md text-on-surface-variant mt-1">Análisis impulsado por IA de las métricas web vitales y puntos de fricción estructural.</p>
-</div>
-<div class="flex items-center gap-4 glass-panel px-4 py-3 rounded-xl">
-<div class="relative w-12 h-12 flex items-center justify-center">
-<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
-<path class="text-surface-container-high" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
-<path id="health-ring-progress" class="text-primary drop-shadow-[0_0_4px_rgba(87,241,219,0.5)]" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="0, 100" stroke-linecap="round" stroke-width="3"></path>
-</svg>
-<span id="overall-health-score" class="absolute font-label-md text-label-md text-on-surface">--</span>
-</div>
-<div class="flex flex-col">
-<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Salud General</span>
-<span id="overall-health-status" class="font-body-sm text-body-sm text-tertiary">--</span>
-</div>
-</div>
+
+<!-- Tarjeta Explicativa de la Auditoría Web -->
+<div class="glass-panel rounded-xl p-5 border border-outline-variant/10 bg-surface-container-lowest/30">
+  <div class="flex items-start gap-4">
+    <span class="material-symbols-outlined text-primary text-3xl">info</span>
+    <div class="space-y-1">
+      <h3 class="font-label-lg text-on-surface font-bold text-sm">¿Cómo funciona esta auditoría?</h3>
+      <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+        El <strong>Agente de Optimización de Crecimiento</strong> simula de forma autónoma una visita real a tu sitio web utilizando un navegador controlado por código (Puppeteer). Durante la simulación, el agente realiza tres análisis principales:
+      </p>
+      <ul class="list-disc pl-5 font-body-sm text-body-sm text-on-surface-variant space-y-1 mt-2">
+        <li><strong>Rendimiento Técnico:</strong> Mide los Core Web Vitals (velocidad de carga visual, interactividad y estabilidad).</li>
+        <li><strong>Estructura SEO On-Page:</strong> Inspecciona etiquetas HTML (títulos, descripciones, jerarquía H1/H2, imágenes sin texto alternativo) esenciales para posicionar en Google.</li>
+        <li><strong>Experiencia de Usuario (UX):</strong> Analiza contrastes, alineaciones y genera un mapa de calor predictivo de fricción visual.</li>
+      </ul>
+    </div>
+  </div>
 </div>
 
 <!-- Web Audit Control Center (Prominent Form) -->
 <div class="glass-panel rounded-xl p-6 relative overflow-hidden">
   <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl"></div>
+  
+  <div class="border-b border-outline-variant/10 pb-4 mb-4 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <span class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">1</span>
+      <span class="font-label-md text-on-surface uppercase tracking-wider text-xs font-bold">Paso 1: Configurar URL de Auditoría</span>
+    </div>
+  </div>
+
   <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
     <div class="flex-1">
       <h2 class="font-headline-md text-body-lg text-on-surface font-bold flex items-center gap-2 text-[20px] mb-1">
@@ -255,7 +267,7 @@
     <div class="flex items-center justify-between border-b border-outline-variant/20 pb-2 mb-2">
       <span class="text-primary font-bold flex items-center gap-1.5">
         <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
-        CONSOLA DEL AGENTE DE IA
+        CONSOLA DEL AGENTE DE IA (EJECUCIÓN EN VIVO)
       </span>
       <span id="console-status" class="text-[10px] text-on-surface-variant uppercase">Ejecutando...</span>
     </div>
@@ -265,204 +277,260 @@
   </div>
 </div>
 <!-- Bento Grid Section -->
+<div class="col-span-12 mt-6">
+  <div class="flex items-center gap-2 mb-4">
+    <span class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">3</span>
+    <span class="font-label-md text-on-surface uppercase tracking-wider text-xs font-bold">Paso 3: Diagnóstico de Rendimiento y Conversión Técnica</span>
+  </div>
+</div>
+
 <div class="grid grid-cols-12 gap-stack-md">
-<!-- Technical Performance (PageSpeed) -->
-<div class="col-span-12 xl:col-span-8 glass-panel rounded-xl p-stack-md flex flex-col gap-stack-sm active-glow">
-<div class="flex items-center justify-between mb-2">
-<h3 class="font-headline-md text-headline-md text-sm text-on-surface flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[18px]">speed</span>
-                             Métricas Web Principales (Core Web Vitals)
-                        </h3>
-<span class="font-label-sm text-label-sm text-on-surface-variant">Emulación Móvil</span>
+  <!-- Technical Performance (PageSpeed) -->
+  <div class="col-span-12 xl:col-span-8 glass-panel rounded-xl p-stack-md flex flex-col gap-stack-sm active-glow">
+    <div class="flex items-center justify-between mb-2">
+      <h3 class="font-headline-md text-headline-md text-sm text-on-surface flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-[18px]">speed</span>
+        Métricas Web Principales (Core Web Vitals)
+      </h3>
+      <span class="font-label-sm text-label-sm text-on-surface-variant">Emulación Móvil (Puppeteer)</span>
+    </div>
+    
+    <!-- Core Web Vitals Explanation Box -->
+    <div class="bg-surface-container-low/30 rounded p-3 text-[11px] text-on-surface-variant leading-relaxed mb-2">
+      Estas métricas de Google indican la velocidad y estabilidad percibida por un usuario real en móvil:
+      <span class="text-primary font-bold">LCP</span> (Tiempo en cargar el contenido principal),
+      <span class="text-primary font-bold">FCP</span> (Primer elemento visual en pantalla) y
+      <span class="text-primary font-bold">TTFB</span> (Tiempo de respuesta del servidor).
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 h-full">
+      <!-- LCP -->
+      <div class="bg-surface-container-high/50 rounded-lg p-4 border border-outline-variant/10 flex flex-col justify-between">
+        <div class="flex justify-between items-start">
+          <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">LCP (Carga Visual)</span>
+          <span id="lcp-dot" class="w-2 h-2 rounded-full bg-error drop-shadow-[0_0_5px_rgba(255,180,171,0.5)]"></span>
+        </div>
+        <div class="mt-4">
+          <div id="lcp-value" class="font-headline-md text-headline-md text-error">--</div>
+          <div id="lcp-label" class="font-label-sm text-label-sm text-error/70 mt-1 flex items-center gap-1">
+            <span class="material-symbols-outlined text-[14px]">warning</span> Cargando...
+          </div>
+        </div>
+        <div class="text-[10px] text-on-surface-variant/60 mt-2">Ideal: &lt; 2.5s</div>
+      </div>
+      <!-- FCP -->
+      <div class="bg-surface-container-high/50 rounded-lg p-4 border border-outline-variant/10 flex flex-col justify-between">
+        <div class="flex justify-between items-start">
+          <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">FCP (Primer Pintado)</span>
+          <span id="fcp-dot" class="w-2 h-2 rounded-full bg-primary drop-shadow-[0_0_5px_rgba(87,241,219,0.5)]"></span>
+        </div>
+        <div class="mt-4">
+          <div id="fcp-value" class="font-headline-md text-headline-md text-primary">--</div>
+          <div id="fcp-label" class="font-label-sm text-label-sm text-primary/70 mt-1 flex items-center gap-1">
+            <span class="material-symbols-outlined text-[14px]">check_circle</span> Cargando...
+          </div>
+        </div>
+        <div class="text-[10px] text-on-surface-variant/60 mt-2">Ideal: &lt; 1.8s</div>
+      </div>
+      <!-- TTFB -->
+      <div class="bg-surface-container-high/50 rounded-lg p-4 border border-outline-variant/10 flex flex-col justify-between">
+        <div class="flex justify-between items-start">
+          <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">TTFB (Respuesta Servidor)</span>
+          <span id="ttfb-dot" class="w-2 h-2 rounded-full bg-tertiary drop-shadow-[0_0_5px_rgba(255,212,123,0.5)]"></span>
+        </div>
+        <div class="mt-4">
+          <div id="ttfb-value" class="font-headline-md text-headline-md text-tertiary">--</div>
+          <div id="ttfb-label" class="font-label-sm text-label-sm text-tertiary/70 mt-1 flex items-center gap-1">
+            <span class="material-symbols-outlined text-[14px]">info</span> Cargando...
+          </div>
+        </div>
+        <div class="text-[10px] text-on-surface-variant/60 mt-2">Ideal: &lt; 0.6s</div>
+      </div>
+    </div>
+  </div>
+  <!-- Conversion Funnel -->
+  <div class="col-span-12 xl:col-span-4 glass-panel rounded-xl p-stack-md flex flex-col">
+    <h3 class="font-headline-md text-headline-md text-sm text-on-surface flex items-center gap-2 mb-2">
+      <span class="material-symbols-outlined text-primary text-[18px]">filter_alt</span>
+      Embudo de Conversión Técnico
+    </h3>
+    
+    <div class="bg-surface-container-low/30 rounded p-3 text-[11px] text-on-surface-variant leading-relaxed mb-4">
+      Muestra cómo el retraso en la carga web (LCP/FCP) incrementa la tasa de abandono proyectada de tus visitas.
+    </div>
+
+    <div class="flex-1 flex flex-col justify-between gap-2 relative before:absolute before:left-4 before:top-4 before:bottom-4 before:w-px before:bg-outline-variant/30">
+      <!-- Step 1 -->
+      <div class="flex items-center gap-4 relative z-10">
+        <div class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-outline-variant/50 flex items-center justify-center font-label-sm text-label-sm">1</div>
+        <div class="flex-1 bg-surface-container-high/40 rounded p-3 border border-outline-variant/10">
+          <div class="flex justify-between items-center mb-1">
+            <span class="font-label-sm text-label-sm text-on-surface">Carga de Página</span>
+            <span class="font-label-md text-label-md text-primary">100%</span>
+          </div>
+          <div class="h-1 w-full bg-surface-container-highest rounded overflow-hidden">
+            <div class="h-full bg-primary w-full"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Step 2 -->
+      <div class="flex items-center gap-4 relative z-10">
+        <div class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-outline-variant/50 flex items-center justify-center font-label-sm text-label-sm">2</div>
+        <div class="flex-1 bg-surface-container-high/40 rounded p-3 border border-outline-variant/10 relative">
+          <div class="absolute -top-3 right-2 text-[10px] text-error font-label-sm bg-error/10 px-1 rounded">-32% Abandono</div>
+          <div class="flex justify-between items-center mb-1">
+            <span class="font-label-sm text-label-sm text-on-surface">Scroll &gt; 50%</span>
+            <span class="font-label-md text-label-md text-on-surface">68%</span>
+          </div>
+          <div class="h-1 w-full bg-surface-container-highest rounded overflow-hidden">
+            <div class="h-full bg-primary w-[68%] opacity-80"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Step 3 -->
+      <div class="flex items-center gap-4 relative z-10">
+        <div class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-primary flex items-center justify-center font-label-sm text-label-sm shadow-[0_0_10px_rgba(87,241,219,0.2)]">3</div>
+        <div class="flex-1 bg-primary/5 rounded p-3 border border-primary/20 relative">
+          <div class="absolute -top-3 right-2 text-[10px] text-error font-label-sm bg-error/10 px-1 rounded">-53% Abandono</div>
+          <div class="flex justify-between items-center mb-1">
+            <span class="font-label-sm text-label-sm text-primary">Clic en CTA</span>
+            <span class="font-label-md text-label-md text-primary">15%</span>
 </div>
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 h-full">
-<!-- LCP -->
-<div class="bg-surface-container-high/50 rounded-lg p-4 border border-outline-variant/10 flex flex-col justify-between">
-<div class="flex justify-between items-start">
-<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">LCP (Carga)</span>
-<span id="lcp-dot" class="w-2 h-2 rounded-full bg-error drop-shadow-[0_0_5px_rgba(255,180,171,0.5)]"></span>
+          <div class="h-1 w-full bg-surface-container-highest rounded overflow-hidden">
+            <div class="h-full bg-primary w-[15%] shadow-[0_0_8px_rgba(87,241,219,0.8)]"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="mt-4">
-<div id="lcp-value" class="font-headline-md text-headline-md text-error">--</div>
-<div id="lcp-label" class="font-label-sm text-label-sm text-error/70 mt-1 flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">warning</span> Cargando...
-                                </div>
-</div>
-</div>
-<!-- FCP -->
-<div class="bg-surface-container-high/50 rounded-lg p-4 border border-outline-variant/10 flex flex-col justify-between">
-<div class="flex justify-between items-start">
-<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">FCP (Pintura)</span>
-<span id="fcp-dot" class="w-2 h-2 rounded-full bg-primary drop-shadow-[0_0_5px_rgba(87,241,219,0.5)]"></span>
-</div>
-<div class="mt-4">
-<div id="fcp-value" class="font-headline-md text-headline-md text-primary">--</div>
-<div id="fcp-label" class="font-label-sm text-label-sm text-primary/70 mt-1 flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">check_circle</span> Cargando...
-                                </div>
-</div>
-</div>
-<!-- TTFB -->
-<div class="bg-surface-container-high/50 rounded-lg p-4 border border-outline-variant/10 flex flex-col justify-between">
-<div class="flex justify-between items-start">
-<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">TTFB (Respuesta)</span>
-<span id="ttfb-dot" class="w-2 h-2 rounded-full bg-tertiary drop-shadow-[0_0_5px_rgba(255,212,123,0.5)]"></span>
-</div>
-<div class="mt-4">
-<div id="ttfb-value" class="font-headline-md text-headline-md text-tertiary">--</div>
-<div id="ttfb-label" class="font-label-sm text-label-sm text-tertiary/70 mt-1 flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">info</span> Cargando...
-                                </div>
-</div>
-</div>
-</div>
-</div>
-<!-- Conversion Funnel -->
-<div class="col-span-12 xl:col-span-4 glass-panel rounded-xl p-stack-md flex flex-col">
-<h3 class="font-headline-md text-headline-md text-sm text-on-surface flex items-center gap-2 mb-6">
-<span class="material-symbols-outlined text-primary text-[18px]">filter_alt</span>
-                        Embudo de Conversión
-                    </h3>
-<div class="flex-1 flex flex-col justify-between gap-2 relative before:absolute before:left-4 before:top-4 before:bottom-4 before:w-px before:bg-outline-variant/30">
-<!-- Step 1 -->
-<div class="flex items-center gap-4 relative z-10">
-<div class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-outline-variant/50 flex items-center justify-center font-label-sm text-label-sm">1</div>
-<div class="flex-1 bg-surface-container-high/40 rounded p-3 border border-outline-variant/10">
-<div class="flex justify-between items-center mb-1">
-<span class="font-label-sm text-label-sm text-on-surface">Carga de Página</span>
-<span class="font-label-md text-label-md text-primary">100%</span>
-</div>
-<div class="h-1 w-full bg-surface-container-highest rounded overflow-hidden">
-<div class="h-full bg-primary w-full"></div>
-</div>
-</div>
-</div>
-<!-- Step 2 -->
-<div class="flex items-center gap-4 relative z-10">
-<div class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-outline-variant/50 flex items-center justify-center font-label-sm text-label-sm">2</div>
-<div class="flex-1 bg-surface-container-high/40 rounded p-3 border border-outline-variant/10 relative">
-<div class="absolute -top-3 right-2 text-[10px] text-error font-label-sm bg-error/10 px-1 rounded">-32% Abandono</div>
-<div class="flex justify-between items-center mb-1">
-<span class="font-label-sm text-label-sm text-on-surface">Scroll &gt; 50%</span>
-<span class="font-label-md text-label-md text-on-surface">68%</span>
-</div>
-<div class="h-1 w-full bg-surface-container-highest rounded overflow-hidden">
-<div class="h-full bg-primary w-[68%] opacity-80"></div>
-</div>
-</div>
-</div>
-<!-- Step 3 -->
-<div class="flex items-center gap-4 relative z-10">
-<div class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-primary flex items-center justify-center font-label-sm text-label-sm shadow-[0_0_10px_rgba(87,241,219,0.2)]">3</div>
-<div class="flex-1 bg-primary/5 rounded p-3 border border-primary/20 relative">
-<div class="absolute -top-3 right-2 text-[10px] text-error font-label-sm bg-error/10 px-1 rounded">-53% Abandono</div>
-<div class="flex justify-between items-center mb-1">
-<span class="font-label-sm text-label-sm text-primary">Clic en CTA</span>
-<span class="font-label-md text-label-md text-primary">15%</span>
-</div>
-<div class="h-1 w-full bg-surface-container-highest rounded overflow-hidden">
-<div class="h-full bg-primary w-[15%] shadow-[0_0_8px_rgba(87,241,219,0.8)]"></div>
-</div>
-</div>
-</div>
-</div>
-</div>
+
 <!-- UX/Architecture Heatmap Mockup -->
+<div class="col-span-12 mt-6">
+  <div class="flex items-center gap-2 mb-4">
+    <span class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">4</span>
+    <span class="font-label-md text-on-surface uppercase tracking-wider text-xs font-bold">Paso 4: Diagnóstico de Experiencia y Diseño (UX)</span>
+  </div>
+</div>
+
 <div class="col-span-12 glass-panel rounded-xl p-stack-md border border-outline-variant/20 overflow-hidden relative min-h-[400px] flex flex-col">
-<div class="flex items-center justify-between mb-6 z-10 relative">
-<h3 class="font-headline-md text-headline-md text-sm text-on-surface flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[18px]">visibility</span>
-                            Mapa de Calor de Fricción y Arquitectura UX
-                        </h3>
-<div class="flex gap-2">
-<span class="px-3 py-1 rounded-full text-[10px] font-label-sm bg-error/10 text-error border border-error/20 flex items-center gap-1">
-<span class="w-1.5 h-1.5 rounded-full bg-error animate-pulse"></span> Fricción Alta
-                            </span>
+  <div class="flex items-center justify-between mb-2 z-10 relative">
+    <h3 class="font-headline-md text-headline-md text-sm text-on-surface flex items-center gap-2">
+      <span class="material-symbols-outlined text-primary text-[18px]">visibility</span>
+      Mapa de Calor de Fricción y Arquitectura UX
+    </h3>
+    <div class="flex gap-2">
+      <span class="px-3 py-1 rounded-full text-[10px] font-label-sm bg-error/10 text-error border border-error/20 flex items-center gap-1">
+        <span class="w-1.5 h-1.5 rounded-full bg-error animate-pulse"></span> Fricción Alta
+      </span>
+    </div>
+  </div>
+  
+  <div class="bg-surface-container-low/30 rounded p-3 text-[11px] text-on-surface-variant leading-relaxed mb-6 z-10 relative">
+    Representación predictiva de la interacción del usuario. La IA detecta elementos confusos, de bajo contraste o mal alineados que provocan que los clientes abandonen la página sin comprar o contactar.
+  </div>
+
+  <!-- Abstract Mockup Area -->
+  <div class="flex-1 bg-surface-container-lowest/50 rounded-lg border border-outline-variant/10 relative overflow-hidden flex items-center justify-center">
+    <!-- Wireframe representation of a site -->
+    <div class="w-3/4 h-3/4 border-2 border-outline-variant/20 rounded-md relative flex flex-col bg-surface-container-low/30 backdrop-blur-sm">
+      <!-- Header wireframe -->
+      <div class="h-12 border-b border-outline-variant/20 flex items-center px-4 justify-between">
+        <div class="w-24 h-4 bg-outline-variant/30 rounded"></div>
+        <div class="flex gap-4"><div class="w-12 h-2 bg-outline-variant/30 rounded"></div><div class="w-12 h-2 bg-outline-variant/30 rounded"></div></div>
+      </div>
+      <!-- Hero wireframe -->
+      <div class="h-48 border-b border-outline-variant/20 flex items-center justify-center flex-col gap-4 relative">
+        <div class="w-1/2 h-6 bg-outline-variant/30 rounded"></div>
+        <div class="w-1/3 h-3 bg-outline-variant/20 rounded"></div>
+        <div class="w-32 h-10 bg-primary/20 border border-primary/40 rounded mt-2"></div>
+        <!-- Heatmap Blob (Good) -->
+        <div class="absolute right-1/4 top-1/2 w-24 h-24 bg-primary/20 blur-xl rounded-full mix-blend-screen pointer-events-none"></div>
+      </div>
+      <!-- Content wireframe -->
+      <div class="flex-1 flex gap-4 p-4 relative">
+        <div class="flex-1 space-y-3">
+          <div class="w-full h-3 bg-outline-variant/20 rounded"></div>
+          <div class="w-5/6 h-3 bg-outline-variant/20 rounded"></div>
+          <div class="w-4/6 h-3 bg-outline-variant/20 rounded"></div>
+        </div>
+        <div class="w-1/3 h-full bg-outline-variant/10 rounded relative">
+          <!-- Friction Point Callout Bubble -->
+          <div class="absolute -top-4 -left-8 bg-surface-container-high border border-error/50 p-3 rounded-lg shadow-xl z-20 w-48">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="material-symbols-outlined text-error text-[14px]">warning</span>
+              <span class="font-label-sm text-label-sm text-error">Trampa de Navegación</span>
+            </div>
+            <p class="text-[10px] text-on-surface-variant font-body-sm leading-tight">Los usuarios ignoran la estructura de navegación secundaria debido al bajo contraste.</p>
+            <!-- pointer arrow -->
+            <div class="absolute bottom-[-6px] right-8 w-3 h-3 bg-surface-container-high border-b border-r border-error/50 transform rotate-45"></div>
+          </div>
+          <!-- Heatmap Blob (Bad) -->
+          <div class="absolute left-0 top-0 w-32 h-32 bg-error/20 blur-2xl rounded-full mix-blend-screen pointer-events-none animate-pulse"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- Paso 5 Header -->
+<div class="col-span-12 mt-6">
+  <div class="flex items-center gap-2 mb-4">
+    <span class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">5</span>
+    <span class="font-label-md text-on-surface uppercase tracking-wider text-xs font-bold">Paso 5: Diagnóstico de SEO Técnico y Listado de Correcciones</span>
+  </div>
 </div>
-<!-- Abstract Mockup Area -->
-<div class="flex-1 bg-surface-container-lowest/50 rounded-lg border border-outline-variant/10 relative overflow-hidden flex items-center justify-center">
-<!-- Wireframe representation of a site -->
-<div class="w-3/4 h-3/4 border-2 border-outline-variant/20 rounded-md relative flex flex-col bg-surface-container-low/30 backdrop-blur-sm">
-<!-- Header wireframe -->
-<div class="h-12 border-b border-outline-variant/20 flex items-center px-4 justify-between">
-<div class="w-24 h-4 bg-outline-variant/30 rounded"></div>
-<div class="flex gap-4"><div class="w-12 h-2 bg-outline-variant/30 rounded"></div><div class="w-12 h-2 bg-outline-variant/30 rounded"></div></div>
-</div>
-<!-- Hero wireframe -->
-<div class="h-48 border-b border-outline-variant/20 flex items-center justify-center flex-col gap-4 relative">
-<div class="w-1/2 h-6 bg-outline-variant/30 rounded"></div>
-<div class="w-1/3 h-3 bg-outline-variant/20 rounded"></div>
-<div class="w-32 h-10 bg-primary/20 border border-primary/40 rounded mt-2"></div>
-<!-- Heatmap Blob (Good) -->
-<div class="absolute right-1/4 top-1/2 w-24 h-24 bg-primary/20 blur-xl rounded-full mix-blend-screen pointer-events-none"></div>
-</div>
-<!-- Content wireframe -->
-<div class="flex-1 flex gap-4 p-4 relative">
-<div class="flex-1 space-y-3">
-<div class="w-full h-3 bg-outline-variant/20 rounded"></div>
-<div class="w-5/6 h-3 bg-outline-variant/20 rounded"></div>
-<div class="w-4/6 h-3 bg-outline-variant/20 rounded"></div>
-</div>
-<div class="w-1/3 h-full bg-outline-variant/10 rounded relative">
-<!-- Friction Point Callout Bubble -->
-<div class="absolute -top-4 -left-8 bg-surface-container-high border border-error/50 p-3 rounded-lg shadow-xl z-20 w-48">
-<div class="flex items-center gap-2 mb-1">
-<span class="material-symbols-outlined text-error text-[14px]">warning</span>
-<span class="font-label-sm text-label-sm text-error">Trampa de Navegación</span>
-</div>
-<p class="text-[10px] text-on-surface-variant font-body-sm leading-tight">Los usuarios ignoran la estructura de navegación secundaria debido al bajo contraste.</p>
-<!-- pointer arrow -->
-<div class="absolute bottom-[-6px] right-8 w-3 h-3 bg-surface-container-high border-b border-r border-error/50 transform rotate-45"></div>
-</div>
-<!-- Heatmap Blob (Bad) -->
-<div class="absolute left-0 top-0 w-32 h-32 bg-error/20 blur-2xl rounded-full mix-blend-screen pointer-events-none animate-pulse"></div>
-</div>
-</div>
-</div>
-</div>
-</div>
+
 <!-- Detailed Audit Issues List -->
 <div class="col-span-12 glass-panel rounded-xl p-stack-md flex flex-col gap-4">
-<h3 class="font-headline-md text-headline-md text-sm text-on-surface flex items-center gap-2">
-<span class="material-symbols-outlined text-error text-[20px]">gavel</span>
-                            Problemas Técnicos Detectados por el Agente
-                        </h3>
-<div id="audit-issues-list" class="space-y-2 max-h-64 overflow-y-auto pr-2">
-<p class="text-on-surface-variant text-body-sm italic p-4 text-center">No se han detectado problemas en la última auditoría.</p>
-</div>
+  <h3 class="font-headline-md text-headline-md text-sm text-on-surface flex items-center gap-2">
+    <span class="material-symbols-outlined text-error text-[20px]">gavel</span>
+    Problemas Técnicos Detectados por el Agente
+  </h3>
+  
+  <div class="bg-surface-container-low/30 rounded p-3 text-[11px] text-on-surface-variant leading-relaxed">
+    Lista de tareas accionables que el agente autónomo ha identificado para resolver de inmediato.
+  </div>
+
+  <div id="audit-issues-list" class="space-y-2 max-h-64 overflow-y-auto pr-2">
+    <p class="text-on-surface-variant text-body-sm italic p-4 text-center">No se han detectado problemas en la última auditoría.</p>
+  </div>
 </div>
 
 <!-- SEO Health Table -->
 <div class="col-span-12 glass-panel rounded-xl p-stack-md overflow-x-auto">
-<div class="flex items-center justify-between mb-6 min-w-[600px]">
-<h3 class="font-headline-md text-headline-md text-sm text-on-surface flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[18px]">find_in_page</span>
-                            Salud SEO On-Page (Historial)
-                        </h3>
-<button class="font-label-sm text-label-sm text-primary hover:text-primary-fixed transition-colors flex items-center gap-1">
-                            Exportar Datos <span class="material-symbols-outlined text-[14px]">download</span>
-</button>
-</div>
-<table class="w-full text-left border-collapse min-w-[600px]">
-<thead>
-<tr class="border-b border-outline-variant/20">
-<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-normal">URL Auditada</th>
-<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-normal">Meta Título</th>
-<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-normal">Meta Descripción</th>
-<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-normal">Encabezados (H1/H2)</th>
-<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-normal text-right">Imágenes Sin Alt</th>
-</tr>
-</thead>
-<tbody id="seo-health-table-body" class="font-body-sm text-body-sm">
-<tr class="border-b border-outline-variant/10 hover:bg-surface-variant/10 transition-colors">
-<td colspan="5" class="py-8 text-center text-on-surface-variant italic">Cargando datos de auditoría...</td>
-</tr>
-</tbody>
-</table>
+  <div class="flex items-center justify-between mb-2 min-w-[600px]">
+    <h3 class="font-headline-md text-headline-md text-sm text-on-surface flex items-center gap-2">
+      <span class="material-symbols-outlined text-primary text-[18px]">find_in_page</span>
+      Salud SEO On-Page (Historial)
+    </h3>
+    <button class="font-label-sm text-label-sm text-primary hover:text-primary-fixed transition-colors flex items-center gap-1">
+      Exportar Datos <span class="material-symbols-outlined text-[14px]">download</span>
+    </button>
+  </div>
+  
+  <div class="bg-surface-container-low/30 rounded p-3 text-[11px] text-on-surface-variant leading-relaxed mb-6 min-w-[600px]">
+    Revisión detallada de las etiquetas y metadatos recolectados del código de las páginas auditadas. Esencial para asegurar que los motores de búsqueda rastreen tu web sin errores.
+  </div>
+
+  <table class="w-full text-left border-collapse min-w-[600px]">
+    <thead>
+      <tr class="border-b border-outline-variant/20">
+        <th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-normal">URL Auditada</th>
+        <th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-normal">Meta Título</th>
+        <th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-normal">Meta Descripción</th>
+        <th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-normal">Encabezados (H1/H2)</th>
+        <th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-normal text-right">Imágenes Sin Alt</th>
+      </tr>
+    </thead>
+    <tbody id="seo-health-table-body" class="font-body-sm text-body-sm">
+      <tr class="border-b border-outline-variant/10 hover:bg-surface-variant/10 transition-colors">
+        <td colspan="5" class="py-8 text-center text-on-surface-variant italic">Cargando datos de auditoría...</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 </main>
-</div>
 <script>
   // Theme Toggle Logic
   const toggle = document.getElementById('theme-toggle');
