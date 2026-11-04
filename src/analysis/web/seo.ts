@@ -12,6 +12,17 @@ export interface SeoAuditResult {
   totalImages: number;
   score: number;
   issues: string[];
+  sslActive: boolean;
+  securityHeaders: {
+    hsts: boolean;
+    csp: boolean;
+    xfo: boolean;
+    xcto: boolean;
+  };
+  securityScore: number;
+  securityIssues: string[];
+  keywordsFound: string[];
+  localSeoScore: number;
 }
 
 export async function runSeoAudit(url: string): Promise<SeoAuditResult> {
@@ -22,7 +33,10 @@ export async function runSeoAudit(url: string): Promise<SeoAuditResult> {
   const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
   try {
     const page = await browser.newPage();
-    await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
+    const response = await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
+    
+    // Get headers
+    const headers = response ? response.headers() : {};
     
     // Get fully rendered HTML
     const html = await page.content();
@@ -68,11 +82,59 @@ export async function runSeoAudit(url: string): Promise<SeoAuditResult> {
 
     if (imagesWithoutAlt > 0) {
       issues.push(`Falta el atributo alt en ${imagesWithoutAlt} de ${totalImages} imágenes`);
-      score -= (imagesWithoutAlt / totalImages) * 20; 
+      score -= Math.round((imagesWithoutAlt / totalImages) * 20); 
     }
 
     // Normalizar score
     score = Math.max(0, Math.round(score));
+
+    // --- SECURITY CHECKS ---
+    const securityIssues: string[] = [];
+    let securityScore = 100;
+    
+    const sslActive = url.toLowerCase().startsWith('https');
+    if (!sslActive) {
+      securityIssues.push('El sitio web no está utilizando HTTPS (conexión no encriptada).');
+      securityScore -= 40;
+    }
+
+    const hsts = !!(headers['strict-transport-security']);
+    const csp = !!(headers['content-security-policy']);
+    const xfo = !!(headers['x-frame-options']);
+    const xcto = !!(headers['x-content-type-options']);
+
+    if (!hsts) {
+      securityIssues.push('Falta la cabecera Strict-Transport-Security (HSTS).');
+      securityScore -= 15;
+    }
+    if (!csp) {
+      securityIssues.push('Falta la cabecera Content-Security-Policy (CSP).');
+      securityScore -= 15;
+    }
+    if (!xfo) {
+      securityIssues.push('Falta la cabecera X-Frame-Options (protección contra clickjacking).');
+      securityScore -= 15;
+    }
+    if (!xcto) {
+      securityIssues.push('Falta la cabecera X-Content-Type-Options (protección contra MIME-sniffing).');
+      securityScore -= 15;
+    }
+
+    securityScore = Math.max(0, securityScore);
+
+    // --- LOCAL SEO KEYWORD CHECKS ---
+    const db = await getDb();
+    const keywordsRow = await db.get('SELECT token FROM credentials WHERE service = "niche_keywords"');
+    const keywordsList: string[] = keywordsRow && keywordsRow.token 
+      ? keywordsRow.token.split(',').map((k: string) => k.trim().toLowerCase()).filter(Boolean)
+      : ["seguridad electrónica", "cámaras", "monitoreo web", "brazo cerco eléctricos"]; // Defaults
+
+    const pageText = $('body').text().toLowerCase();
+    const keywordsFound = keywordsList.filter((kw: string) => pageText.includes(kw));
+    
+    const localSeoScore = keywordsList.length > 0 
+      ? Math.round((keywordsFound.length / keywordsList.length) * 100) 
+      : 100;
 
     const result: SeoAuditResult = {
       url,
@@ -83,17 +145,22 @@ export async function runSeoAudit(url: string): Promise<SeoAuditResult> {
       imagesWithoutAlt,
       totalImages,
       score,
-      issues
+      issues,
+      sslActive,
+      securityHeaders: { hsts, csp, xfo, xcto },
+      securityScore,
+      securityIssues,
+      keywordsFound,
+      localSeoScore
     };
 
     // Save to Database
-    const db = await getDb();
     await db.run(
       'INSERT INTO seo_audit (score, findings) VALUES (?, ?)',
       [score, JSON.stringify(result)]
     );
 
-    console.log(`✅ Auditoría SEO completada. Score: ${score}/100`);
+    console.log(`✅ Auditoría SEO completada. Score: ${score}/100. Seguridad: ${securityScore}/100. SEO Local: ${localSeoScore}/100`);
     return result;
 
   } catch (error: any) {

@@ -266,11 +266,15 @@
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
 <span class="font-label-md text-label-md font-bold">Dashboard</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="web_audit.html">
-<span class="material-symbols-outlined">search_check</span>
-<span class="font-label-md text-label-md">Web Audit</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="social_media.html">
+    <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="web_audit.html">
+      <span class="material-symbols-outlined">search_check</span>
+      <span class="font-label-md text-label-md">Web Audit</span>
+    </a>
+    <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="competitors.html">
+      <span class="material-symbols-outlined">leaderboard</span>
+      <span class="font-label-md text-label-md">Competidores</span>
+    </a>
+    <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="social_media.html">
 <span class="material-symbols-outlined">share</span>
 <span class="font-label-md text-label-md">Social Media</span>
 </a>
@@ -365,6 +369,60 @@
         <button type="submit" class="px-4 py-2 bg-primary text-on-primary rounded hover:opacity-90 transition-opacity font-semibold">Guardar Automatización</button>
       </form>
     </section>
+
+    <!-- Local SEO & Niche Section -->
+    <section class="glass-panel p-6">
+      <h2 class="text-xl font-semibold mb-4 text-primary">SEO Local e Industria</h2>
+      <p class="text-sm text-on-surface-variant mb-4">Configura los términos clave de tu negocio y el país objetivo. Estos parámetros los usa la IA para compararte con tu competencia.</p>
+      <form id="niche-form" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium mb-1" for="niche-name-input">Nombre del Nicho / Industria</label>
+          <input type="text" id="niche-name-input" name="nicheName" class="w-full p-2 border rounded bg-surface border-outline-variant/30 text-on-surface" placeholder="ej. Seguridad Electrónica" required/>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1" for="niche-country-input">País Objetivo</label>
+          <input type="text" id="niche-country-input" name="nicheCountry" class="w-full p-2 border rounded bg-surface border-outline-variant/30 text-on-surface" placeholder="ej. Panamá" required/>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1" for="niche-keywords-input">Palabras Clave (separadas por comas)</label>
+          <input type="text" id="niche-keywords-input" name="nicheKeywords" class="w-full p-2 border rounded bg-surface border-outline-variant/30 text-on-surface" placeholder="cámaras, seguridad electrónica, monitoreo web" required/>
+        </div>
+        <button type="submit" class="px-4 py-2 bg-primary text-on-primary rounded hover:opacity-90 transition-opacity font-semibold">Guardar Nicho y Palabras Clave</button>
+      </form>
+    </section>
+
+    <!-- SMTP Configuration Section -->
+    <section class="glass-panel p-6">
+      <h2 class="text-xl font-semibold mb-4 text-primary">Alertas por Correo Electrónico (SMTP)</h2>
+      <p class="text-sm text-on-surface-variant mb-4">Configura las notificaciones por correo para recibir el estatus de tu web al completarse cada auditoría.</p>
+      <form id="smtp-form" class="space-y-4">
+        <div class="flex items-center gap-3">
+          <input type="checkbox" id="smtp-enabled" name="smtpEnabled" class="w-4 h-4 text-primary bg-surface border-outline-variant/30 rounded focus:ring-primary"/>
+          <label class="text-sm font-medium" for="smtp-enabled">Activar Alertas por Correo</label>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1" for="smtp-host">Servidor SMTP</label>
+          <input type="text" id="smtp-host" name="smtpHost" class="w-full p-2 border rounded bg-surface border-outline-variant/30 text-on-surface" placeholder="ej. smtp.gmail.com"/>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1" for="smtp-port">Puerto SMTP</label>
+          <input type="number" id="smtp-port" name="smtpPort" class="w-full p-2 border rounded bg-surface border-outline-variant/30 text-on-surface" placeholder="ej. 587"/>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1" for="smtp-user">Usuario / Correo Emisor</label>
+          <input type="email" id="smtp-user" name="smtpUser" class="w-full p-2 border rounded bg-surface border-outline-variant/30 text-on-surface" placeholder="ej. tu-correo@gmail.com"/>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1" for="smtp-password">Contraseña / Token de Aplicación</label>
+          <input type="password" id="smtp-password" name="smtpPassword" class="w-full p-2 border rounded bg-surface border-outline-variant/30 text-on-surface" placeholder="••••••••••••"/>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1" for="smtp-recipient">Correo Destinatario (Recibe las alertas)</label>
+          <input type="email" id="smtp-recipient" name="smtpRecipient" class="w-full p-2 border rounded bg-surface border-outline-variant/30 text-on-surface" placeholder="ej. destinatario@gmail.com"/>
+        </div>
+        <button type="submit" class="px-4 py-2 bg-secondary text-on-secondary rounded hover:opacity-90 transition-opacity font-semibold">Guardar Configuración SMTP</button>
+      </form>
+    </section>
   </main>
 
   <script>
@@ -407,6 +465,15 @@
       if (data.claude_key) document.getElementById('claude-key').value = data.claude_key;
       if (data.audit_time) document.getElementById('audit-time').value = data.audit_time;
       if (data.audit_urls) document.getElementById('audit-urls').value = data.audit_urls;
+      if (data.niche_name) document.getElementById('niche-name-input').value = data.niche_name;
+      if (data.niche_country) document.getElementById('niche-country-input').value = data.niche_country;
+      if (data.niche_keywords) document.getElementById('niche-keywords-input').value = data.niche_keywords;
+      if (data.smtp_host) document.getElementById('smtp-host').value = data.smtp_host;
+      if (data.smtp_port) document.getElementById('smtp-port').value = data.smtp_port;
+      if (data.smtp_user) document.getElementById('smtp-user').value = data.smtp_user;
+      if (data.smtp_password) document.getElementById('smtp-password').value = data.smtp_password;
+      if (data.smtp_recipient) document.getElementById('smtp-recipient').value = data.smtp_recipient;
+      if (data.smtp_enabled) document.getElementById('smtp-enabled').checked = (data.smtp_enabled === 'true');
     }).catch(console.error);
 
     // Helper to read file as text
@@ -474,6 +541,39 @@
           auditUrls: e.target.auditUrls.value.trim()
         })
       }).then(r => r.ok ? alert('Automatización guardada con éxito') : r.text().then(t=>alert(t)));
+    });
+
+    // Submit Niche form
+    document.getElementById('niche-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      fetch('/api/credentials', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          type: 'niche', 
+          niche_name: e.target.nicheName.value.trim(),
+          niche_country: e.target.nicheCountry.value.trim(),
+          niche_keywords: e.target.nicheKeywords.value.trim()
+        })
+      }).then(r => r.ok ? alert('Nicho y palabras clave guardados con éxito') : r.text().then(t=>alert(t)));
+    });
+
+    // Submit SMTP form
+    document.getElementById('smtp-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      fetch('/api/credentials', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          type: 'smtp', 
+          smtp_host: e.target.smtpHost.value.trim(),
+          smtp_port: e.target.smtpPort.value.trim(),
+          smtp_user: e.target.smtpUser.value.trim(),
+          smtp_password: e.target.smtpPassword.value.trim(),
+          smtp_recipient: e.target.smtpRecipient.value.trim(),
+          smtp_enabled: e.target.smtpEnabled.checked
+        })
+      }).then(r => r.ok ? alert('Configuración SMTP guardada con éxito') : r.text().then(t=>alert(t)));
     });
 
     // Mobile Sidebar Drawer Logic

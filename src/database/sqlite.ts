@@ -52,6 +52,16 @@ export async function initDb(): Promise<Database> {
       justification TEXT,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
+
+    CREATE TABLE IF NOT EXISTS competitors (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      url TEXT UNIQUE,
+      name TEXT,
+      seo_score INTEGER,
+      performance_score INTEGER,
+      details JSON,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
   `);
 
   console.log('✅ SQLite Database initialized at', dbPath);

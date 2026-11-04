@@ -3,13 +3,14 @@ import { getDb } from './src/database/sqlite';
 
 async function testModel(modelName: string, apiKey: string) {
   try {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
+    const url = `https://generativelanguage.googleapis.com/v1/models/${modelName}:generateContent?key=${apiKey}`;
     const res = await axios.post(url, {
       contents: [
         { role: 'user', parts: [{ text: 'Hola, di "hola"' }] }
       ]
     }, {
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json' },
+      timeout: 30000
     });
     console.log(`✅ Model ${modelName} worked! Response:`, res.data?.candidates?.[0]?.content?.parts?.[0]?.text);
     return true;
@@ -30,12 +31,10 @@ async function main() {
   console.log('Using API Key:', apiKey.slice(0, 10) + '...');
 
   const models = [
-    'gemini-1.5-flash',
-    'gemini-1.5-flash-latest',
-    'gemini-1.5-pro',
-    'gemini-2.0-flash',
     'gemini-2.5-flash',
-    'gemini-pro'
+    'gemini-2.0-flash-001',
+    'gemini-2.0-flash',
+    'gemini-1.5-flash'
   ];
 
   for (const model of models) {

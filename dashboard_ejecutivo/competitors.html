@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Análisis de Competencia | Growth Optimizer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            surface: 'var(--surface)',
+            'surface-dim': 'var(--surface-dim)',
+            'surface-bright': 'var(--surface-bright)',
+            primary: 'var(--primary)',
+            'on-primary': 'var(--on-primary)',
+            secondary: 'var(--secondary)',
+            'on-surface': 'var(--on-surface)',
+            'on-surface-variant': 'var(--on-surface-variant)',
+            outline: 'var(--outline)',
+            'outline-variant': 'var(--outline-variant)',
+            'surface-container-low': 'var(--surface-container-low)',
+            'surface-container-high': 'var(--surface-container-high)',
+            'surface-tint': 'var(--surface-tint)',
+            error: 'var(--error)'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --surface: #0b1326;
+      --surface-dim: #0b1326;
+      --surface-bright: #31394d;
+      --primary: #57f1db;
+      --on-primary: #003731;
+      --secondary: #bdc2ff;
+      --on-surface: #dae2fd;
+      --on-surface-variant: #bacac5;
+      --outline: #859490;
+      --outline-variant: #3c4a46;
+      --surface-container-low: #131b2e;
+      --surface-container-high: #222a3d;
+      --surface-tint: #3cddc7;
+      --error: #ffb4ab;
+    }
+
+    html.light {
+      --surface: #ffffff;
+      --surface-dim: #f8fafc;
+      --surface-bright: #f1f5f9;
+      --primary: #0ea5e9;
+      --on-primary: #ffffff;
+      --secondary: #6366f1;
+      --on-surface: #0f172a;
+      --on-surface-variant: #475569;
+      --outline: #94a3b8;
+      --outline-variant: #e2e8f0;
+      --surface-container-low: #f8fafc;
+      --surface-container-high: #cbd5e1;
+      --surface-tint: #0ea5e9;
+      --error: #ef4444;
+    }
+
+    html.dark body {
+      background-color: #0F172A;
+      background-image: radial-gradient(circle at 10% 20%, rgba(87, 241, 219, 0.03) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(47, 58, 163, 0.05) 0%, transparent 50%);
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
+
+    html.light body {
+      background-color: #F8FAFC;
+      background-image: radial-gradient(circle at 10% 20%, rgba(87, 241, 219, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(47, 58, 163, 0.08) 0%, transparent 50%);
+      background-attachment: fixed;
+      min-height: 100vh;
+      color: #0F172A;
+    }
+
+    .glass-panel {
+      background: rgba(19, 27, 46, 0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-left: 1px solid rgba(255, 255, 255, 0.04);
+      border-right: 1px solid rgba(0, 0, 0, 0.2);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.5);
+      color: #E2E8F0;
+    }
+
+    html.light .glass-panel {
+      background: rgba(255, 255, 255, 0.8);
+      border-top: 1px solid rgba(255, 255, 255, 1);
+      border-left: 1px solid rgba(255, 255, 255, 0.8);
+      border-right: 1px solid rgba(0, 0, 0, 0.05);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.05);
+      color: #0F172A;
+    }
+
+    .glass-panel-active {
+      box-shadow: inset 0 0 20px rgba(87, 241, 219, 0.05), 0 4px 24px -4px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(87, 241, 219, 0.2);
+    }
+
+    html.light .glass-panel-active {
+      box-shadow: inset 0 0 20px rgba(87, 241, 219, 0.2), 0 4px 24px -4px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(87, 241, 219, 0.6);
+    }
+  </style>
+</head>
+<body class="font-sans antialiased text-on-surface">
+
+  <!-- TOP BAR -->
+  <header class="fixed top-0 left-0 right-0 z-30 flex items-center justify-between px-6 py-4 glass-panel border-b border-outline-variant h-16">
+    <div class="flex items-center gap-3">
+      <span class="material-symbols-outlined text-primary text-2xl">leaderboard</span>
+      <span class="font-headline-md text-headline-md font-black text-primary text-xl">Growth Optimizer</span>
+      <span class="px-2 py-0.5 text-[10px] font-mono rounded bg-primary/10 text-primary border border-primary/20">AGENT V2</span>
+    </div>
+    
+    <div class="flex items-center gap-4">
+      <!-- Light/Dark Mode Switcher -->
+      <button id="theme-toggle" class="p-2 rounded-lg hover:bg-surface-container-high/30 transition-colors flex items-center justify-center">
+        <span class="material-symbols-outlined text-on-surface-variant" id="theme-icon">dark_mode</span>
+      </button>
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="font-label-sm text-[12px] text-on-surface-variant">Conectado</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- SIDEBAR NAVIGATION -->
+  <aside class="fixed top-16 left-0 bottom-0 z-20 w-64 hidden md:flex flex-col py-6 glass-panel border-r border-outline-variant">
+    <div class="flex items-center gap-3 px-6 mb-8">
+      <div class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+        <span class="material-symbols-outlined text-primary">rocket_launch</span>
+      </div>
+      <div>
+        <div class="font-headline-md text-headline-md font-bold text-primary text-[20px] leading-tight">Growth Agent</div>
+        <div class="font-label-sm text-label-sm text-on-surface-variant text-[10px]">Plataforma Antigravity</div>
+      </div>
+    </div>
+
+    <div class="flex-1 overflow-y-auto px-4 space-y-1">
+      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="code.html">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span class="font-label-md text-label-md">Dashboard</span>
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="web_audit.html">
+        <span class="material-symbols-outlined">search_check</span>
+        <span class="font-label-md text-label-md">Web Audit</span>
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-primary bg-primary/10 border-r-2 border-primary rounded-l-lg hover:bg-surface-variant/20 transition-colors duration-200" href="competitors.html">
+        <span class="material-symbols-outlined">leaderboard</span>
+        <span class="font-label-md text-label-md font-bold">Competidores</span>
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="social_media.html">
+        <span class="material-symbols-outlined">share</span>
+        <span class="font-label-md text-label-md">Social Media</span>
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="recommendations.html">
+        <span class="material-symbols-outlined">lightbulb</span>
+        <span class="font-label-md text-label-md">Recommendations</span>
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="webmaster_briefs.html">
+        <span class="material-symbols-outlined">article</span>
+        <span class="font-label-md text-label-md">Webmaster Briefs</span>
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200 mt-8" href="settings.html">
+        <span class="material-symbols-outlined">settings</span>
+        <span class="font-label-md text-label-md">Configuración</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="md:ml-64 pt-24 min-h-screen p-6 max-w-5xl mx-auto space-y-8 pb-16">
+    
+    <!-- HEADER INTRO -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <h1 class="text-3xl font-bold font-sans tracking-tight text-white dark:text-white light:text-slate-900">Análisis Competitivo e Inteligencia de Nicho</h1>
+        <p class="text-on-surface-variant text-sm mt-1">Detecta a tus rivales inmediatos en Panamá, audita sus métricas técnicas y obtén una estrategia automatizada por IA para superarlos.</p>
+      </div>
+      
+      <div class="flex gap-2">
+        <button id="detect-btn" class="bg-primary text-on-primary font-bold px-4 py-2.5 rounded-lg hover:bg-primary/80 transition-all text-sm flex items-center gap-2 shadow-lg shadow-primary/10">
+          <span class="material-symbols-outlined text-[18px]">psychology</span>
+          Autodetectar Nicho & Rivales (IA)
+        </button>
+        <button id="audit-all-btn" class="bg-surface-container-high/40 border border-outline/30 text-on-surface px-4 py-2.5 rounded-lg hover:bg-surface-container-high/70 transition-all text-sm flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">youtube_searched_for</span>
+          Auditar Competidores
+        </button>
+      </div>
+    </div>
+
+    <!-- CONSOLE CONSOLE/STATUS LOGGER -->
+    <div id="status-console" class="hidden glass-panel p-4 border border-primary/20 rounded-xl bg-black/30 font-mono text-sm space-y-2">
+      <div class="flex items-center gap-2 text-primary">
+        <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+        <span>PROCESANDO ANÁLISIS DE MERCADO IA:</span>
+      </div>
+      <p id="console-text" class="text-on-surface-variant text-xs">Iniciando crawler y consulta de Gemini...</p>
+    </div>
+
+    <!-- NICHE DETAILS & KEYWORDS SUGGESTIONS -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="glass-panel p-6 rounded-xl md:col-span-1 space-y-4">
+        <h2 class="text-lg font-bold text-primary flex items-center gap-2">
+          <span class="material-symbols-outlined">target</span>
+          Perfil de Nicho Activo
+        </h2>
+        
+        <div>
+          <label class="text-[11px] uppercase tracking-wider text-on-surface-variant block">Giro/Nicho del Negocio</label>
+          <div id="niche-display" class="text-white font-semibold text-md font-sans">Detectando...</div>
+        </div>
+
+        <div>
+          <label class="text-[11px] uppercase tracking-wider text-on-surface-variant block">País Objetivo</label>
+          <div id="country-display" class="text-white font-semibold text-md font-sans">Panamá</div>
+        </div>
+
+        <div class="pt-2 border-t border-outline-variant">
+          <p class="text-[11px] text-on-surface-variant">Puedes re-analizar tu web haciendo clic en <strong>Autodetectar</strong>. El agente escaneará tu contenido y redefinirá los objetivos.</p>
+        </div>
+      </div>
+
+      <div class="glass-panel p-6 rounded-xl md:col-span-2 space-y-4">
+        <h2 class="text-lg font-bold text-primary flex items-center gap-2">
+          <span class="material-symbols-outlined">search</span>
+          Palabras Clave Sugeridas y Monitoreadas
+        </h2>
+        <p class="text-on-surface-variant text-xs">Términos sugeridos por IA con mayor volumen en tu nicho para posicionarte en Panamá:</p>
+        
+        <div id="keywords-tags" class="flex flex-wrap gap-2 pt-2">
+          <!-- Tags dynamically populated -->
+          <span class="text-xs text-on-surface-variant bg-surface-container-high/40 px-3 py-1.5 rounded-lg border border-outline-variant/30">Ninguna palabra clave cargada. Utiliza autodetección.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLE COMPARATIVE WITH COMPETITORS -->
+    <div class="glass-panel p-6 rounded-xl space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <h2 class="text-lg font-bold text-primary flex items-center gap-2">
+          <span class="material-symbols-outlined">compare_arrows</span>
+          Matriz de Comparación Competitiva
+        </h2>
+        
+        <!-- Add Manual Competitor -->
+        <form id="add-competitor-form" class="flex gap-2 w-full sm:w-auto">
+          <input type="text" id="comp-name" placeholder="Nombre (ej. Alarmas Panamá)" required class="bg-surface-container-low border border-outline/30 rounded-lg px-3 py-1.5 text-xs text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:border-primary w-1/3">
+          <input type="url" id="comp-url" placeholder="https://competidor.com" required class="bg-surface-container-low border border-outline/30 rounded-lg px-3 py-1.5 text-xs text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:border-primary flex-1">
+          <button type="submit" class="bg-primary/20 border border-primary/40 text-primary text-xs px-3 py-1.5 rounded-lg hover:bg-primary/30 transition-all font-bold">
+            + Añadir
+          </button>
+        </form>
+      </div>
+
+      <!-- TABLE CONTAINER -->
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-outline-variant/50 text-[11px] uppercase tracking-wider text-on-surface-variant">
+              <th class="py-3 px-4">Competidor</th>
+              <th class="py-3 px-4">URL</th>
+              <th class="py-3 px-4 text-center">Score SEO</th>
+              <th class="py-3 px-4 text-center">Score Rendimiento</th>
+              <th class="py-3 px-4 text-center">Seguridad (SSL)</th>
+              <th class="py-3 px-4 text-right">Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="competitors-list" class="divide-y divide-outline-variant/30 text-sm">
+            <tr>
+              <td colspan="6" class="py-8 text-center text-on-surface-variant text-xs">Cargando lista de competidores...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- AI STRATEGY & GAP REPORT -->
+    <div class="glass-panel p-6 rounded-xl space-y-6">
+      <div class="flex items-center justify-between border-b border-outline-variant pb-4">
+        <h2 class="text-xl font-bold text-primary flex items-center gap-2">
+          <span class="material-symbols-outlined">insights</span>
+          Plan Táctico para Superar a la Competencia
+        </h2>
+        <div class="flex gap-2">
+          <button id="copy-report-btn" class="bg-surface-container-high/40 hover:bg-surface-container-high border border-outline/30 text-on-surface text-xs px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[14px]">content_copy</span>
+            Copiar Reporte
+          </button>
+          <button id="download-report-btn" class="bg-surface-container-high/40 hover:bg-surface-container-high border border-outline/30 text-on-surface text-xs px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[14px]">download</span>
+            Descargar Markdown
+          </button>
+        </div>
+      </div>
+
+      <!-- REPORT VIEWER CONTAINER -->
+      <div id="report-container" class="prose max-w-none text-on-surface-variant leading-relaxed text-sm space-y-4">
+        <div class="py-8 text-center text-on-surface-variant text-xs">Haz clic en <strong>Auditar Competidores</strong> para cargar las métricas y generar la estrategia automatizada por IA.</div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Theme Management
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    
+    function applyTheme(theme) {
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+        themeIcon.textContent = 'light_mode';
+      } else {
+        document.documentElement.classList.remove('light');
+        document.documentElement.classList.add('dark');
+        themeIcon.textContent = 'dark_mode';
+      }
+      localStorage.setItem('theme', theme);
+    }
+    
+    // Initial Theme
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    applyTheme(savedTheme);
+    
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.classList.contains('light') ? 'dark' : 'light';
+      applyTheme(currentTheme);
+    });
+
+    // Helper: Markdown parser
+    function renderMarkdown(md) {
+      if (!md) return '';
+      // Clean paragraphs
+      let html = md;
+      html = html.replace(/^# (.*$)/gim, '<h1 class="text-2xl font-bold my-4 text-primary border-b border-primary/20 pb-2">$1</h1>');
+      html = html.replace(/^## (.*$)/gim, '<h2 class="text-xl font-bold my-4 text-primary border-b border-outline-variant/40 pb-1">$1</h2>');
+      html = html.replace(/^### (.*$)/gim, '<h3 class="text-lg font-bold my-3 text-white dark:text-white light:text-slate-800">$1</h3>');
+      html = html.replace(/^\* (.*$)/gim, '<li class="ml-6 list-disc text-on-surface-variant my-1.5">$1</li>');
+      html = html.replace(/^- (.*$)/gim, '<li class="ml-6 list-disc text-on-surface-variant my-1.5">$1</li>');
+      html = html.replace(/\*\*(.*?)\*\*/g, '<strong class="text-primary font-semibold">$1</strong>');
+      html = html.replace(/`(.*?)`/g, '<code class="bg-surface-container-low border border-outline-variant/30 px-1.5 py-0.5 rounded text-secondary font-mono text-xs">$1</code>');
+      
+      // Clean consecutive list items
+      html = html.replace(/(<li.*<\/li>)/g, '<ul class="my-3">$1</ul>');
+      html = html.replace(/<\/ul>\s*<ul class="my-3">/g, ''); // Join lists
+      
+      return html.split('\n').filter(l => l.trim() !== '').map(l => {
+        if (l.startsWith('<h') || l.startsWith('<u') || l.startsWith('<l') || l.startsWith('</u')) return l;
+        return `<p class="my-3 text-on-surface-variant">${l}</p>`;
+      }).join('\n');
+    }
+
+    // State Variables
+    let competitorsList = [];
+    let activeReport = '';
+
+    // Load Data on Startup
+    async function loadDashboardData() {
+      try {
+        // 1. Load active profile & keywords
+        const credRes = await fetch('/api/credentials');
+        const creds = await credRes.json();
+        
+        document.getElementById('niche-display').textContent = creds.niche_name || 'Sin identificar';
+        document.getElementById('country-display').textContent = creds.niche_country || 'Panamá';
+        
+        const keywordsContainer = document.getElementById('keywords-tags');
+        if (creds.niche_keywords) {
+          const list = creds.niche_keywords.split(',').map(k => k.trim());
+          keywordsContainer.innerHTML = list.map(kw => `
+            <span class="text-xs text-primary bg-primary/10 border border-primary/20 px-3 py-1.5 rounded-lg flex items-center gap-1.5 font-semibold">
+              <span class="material-symbols-outlined text-[14px]">sell</span>
+              ${kw}
+            </span>
+          `).join('');
+        } else {
+          keywordsContainer.innerHTML = `<span class="text-xs text-on-surface-variant bg-surface-container-high/40 px-3 py-1.5 rounded-lg border border-outline-variant/30">Ninguna palabra clave cargada. Utiliza autodetección.</span>`;
+        }
+
+        // 2. Load competitors list
+        const compRes = await fetch('/api/competitors');
+        const comps = await compRes.json();
+        competitorsList = comps;
+
+        const listContainer = document.getElementById('competitors-list');
+        if (comps.length === 0) {
+          listContainer.innerHTML = `
+            <tr>
+              <td colspan="6" class="py-8 text-center text-on-surface-variant text-xs">No hay competidores registrados. Ejecuta la autodetección con IA.</td>
+            </tr>
+          `;
+        } else {
+          listContainer.innerHTML = comps.map(c => {
+            const hasAudit = c.seo_score !== null;
+            const ssl = c.details?.sslActive;
+            const sslMarkup = ssl 
+              ? `<span class="text-emerald-400 font-bold flex items-center justify-center gap-1"><span class="material-symbols-outlined text-[16px]">lock</span> Activo</span>`
+              : `<span class="text-rose-400 font-bold flex items-center justify-center gap-1"><span class="material-symbols-outlined text-[16px]">lock_open</span> Inseguro</span>`;
+            
+            return `
+              <tr>
+                <td class="py-4 px-4 font-bold text-white">${c.name}</td>
+                <td class="py-4 px-4 font-mono text-xs"><a href="${c.url}" target="_blank" class="text-primary hover:underline">${c.url}</a></td>
+                <td class="py-4 px-4 text-center font-mono font-bold ${c.seo_score >= 80 ? 'text-emerald-400' : c.seo_score >= 50 ? 'text-amber-400' : 'text-rose-400'}">${hasAudit ? c.seo_score + '/100' : 'N/A'}</td>
+                <td class="py-4 px-4 text-center font-mono font-bold ${c.performance_score >= 80 ? 'text-emerald-400' : c.performance_score >= 50 ? 'text-amber-400' : 'text-rose-400'}">${hasAudit ? c.performance_score + '/100' : 'N/A'}</td>
+                <td class="py-4 px-4 text-center">${hasAudit ? sslMarkup : 'N/A'}</td>
+                <td class="py-4 px-4 text-right">
+                  <button onclick="deleteCompetitor(${c.id})" class="text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 px-2.5 py-1.5 rounded transition-all text-xs">
+                    Eliminar
+                  </button>
+                </td>
+              </tr>
+            `;
+          }).join('');
+        }
+
+        // 3. Load comparison report
+        loadComparisonReport();
+
+      } catch (err) {
+        console.error('Error al cargar datos:', err);
+      }
+    }
+
+    async function loadComparisonReport() {
+      try {
+        const res = await fetch('/api/competitors/comparison');
+        const data = await res.json();
+        activeReport = data.report;
+        document.getElementById('report-container').innerHTML = renderMarkdown(data.report);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    // Auto-detect Niche & Competitors
+    document.getElementById('detect-btn').addEventListener('click', async () => {
+      const consoleBlock = document.getElementById('status-console');
+      const consoleText = document.getElementById('console-text');
+      
+      consoleBlock.classList.remove('hidden');
+      consoleText.innerHTML = `<span class="text-primary">> Crawling y rastreo de sitio web del usuario...</span>`;
+      
+      try {
+        const res = await fetch('/api/competitors/detect', { method: 'POST' });
+        if (!res.ok) throw new Error('Error detectando competidores');
+        const data = await res.json();
+        
+        consoleText.innerHTML += `<br><span class="text-emerald-400">> Nicho identificado: ${data.niche}</span>`;
+        consoleText.innerHTML += `<br><span class="text-emerald-400">> Palabras clave locales añadidas: ${data.keywords.join(', ')}</span>`;
+        consoleText.innerHTML += `<br><span class="text-emerald-400">> 3 Rivales detectados y registrados en Panamá: ${data.competitors.map(c => c.name).join(', ')}</span>`;
+        consoleText.innerHTML += `<br><span class="text-primary">> ¡Listo! Actualizando dashboard...</span>`;
+        
+        setTimeout(() => {
+          consoleBlock.classList.add('hidden');
+          loadDashboardData();
+        }, 3000);
+
+      } catch (err) {
+        consoleText.innerHTML += `<br><span class="text-rose-400">> ERROR: ${err.message}</span>`;
+      }
+    });
+
+    // Audit All Competitors
+    document.getElementById('audit-all-btn').addEventListener('click', async () => {
+      const consoleBlock = document.getElementById('status-console');
+      const consoleText = document.getElementById('console-text');
+      
+      consoleBlock.classList.remove('hidden');
+      consoleText.innerHTML = `<span class="text-primary">> Iniciando auditoría técnica en segundo plano (Lightweight Puppeteer) en competidores...</span>`;
+      
+      try {
+        const res = await fetch('/api/competitors/audit', { method: 'POST' });
+        if (!res.ok) throw new Error('Error auditando competidores');
+        const data = await res.json();
+        
+        consoleText.innerHTML += `<br><span class="text-emerald-400">> ${data.message}</span>`;
+        consoleText.innerHTML += `<br><span class="text-primary">> Regenerando informe de estrategia de IA...</span>`;
+        
+        // Cargar report
+        const repRes = await fetch('/api/competitors/comparison');
+        const repData = await repRes.json();
+        activeReport = repData.report;
+        document.getElementById('report-container').innerHTML = renderMarkdown(repData.report);
+
+        consoleText.innerHTML += `<br><span class="text-emerald-400">> ¡Plan estratégico generado exitosamente!</span>`;
+        
+        setTimeout(() => {
+          consoleBlock.classList.add('hidden');
+          loadDashboardData();
+        }, 3000);
+
+      } catch (err) {
+        consoleText.innerHTML += `<br><span class="text-rose-400">> ERROR: ${err.message}</span>`;
+      }
+    });
+
+    // Add Manual Competitor
+    document.getElementById('add-competitor-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('comp-name').value;
+      const url = document.getElementById('comp-url').value;
+      
+      try {
+        const res = await fetch('/api/competitors/add', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, url })
+        });
+        if (res.ok) {
+          document.getElementById('comp-name').value = '';
+          document.getElementById('comp-url').value = '';
+          loadDashboardData();
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    });
+
+    // Delete Competitor
+    async function deleteCompetitor(id) {
+      if (!confirm('¿Deseas eliminar este competidor?')) return;
+      try {
+        const res = await fetch('/api/competitors/delete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id })
+        });
+        if (res.ok) loadDashboardData();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    // Copy report
+    document.getElementById('copy-report-btn').addEventListener('click', () => {
+      if (!activeReport) return;
+      navigator.clipboard.writeText(activeReport);
+      alert('Reporte estratégico copiado al portapapeles.');
+    });
+
+    // Download report
+    document.getElementById('download-report-btn').addEventListener('click', () => {
+      if (!activeReport) return;
+      const blob = new Blob([activeReport], { type: 'text/markdown' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'plan_estrategico_competencia.md';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // Initialize
+    loadDashboardData();
+  </script>
+</body>
+</html>

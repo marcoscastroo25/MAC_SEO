@@ -280,6 +280,10 @@
 <span class="material-symbols-outlined">search_check</span>
 <span class="font-label-md text-label-md">Auditoría Web</span>
 </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="competitors.html">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="font-label-md text-label-md">Competidores</span>
+</a>
 <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-variant/20 transition-colors duration-200" href="social_media.html">
 <span class="material-symbols-outlined font-normal">share</span>
 <span class="font-label-md text-label-md">Redes Sociales</span>
@@ -509,15 +513,23 @@ La imagen principal del hero (<code class="text-secondary bg-secondary/10 px-1 p
       <textarea id="report-text-area" class="w-full flex-1 p-4 rounded-lg bg-[#070b14] border border-outline-variant/20 font-mono text-[12px] text-on-surface-variant focus:outline-none focus:border-primary/50 min-h-[350px] resize-none" readonly></textarea>
       
       <!-- Actions -->
-      <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pt-2">
-        <span class="text-xs text-on-surface-variant">Clic en copiar para guardar al portapapeles.</span>
-        <div class="flex gap-3 w-full sm:w-auto">
-          <button id="download-report-btn" class="flex-1 sm:flex-initial px-4 py-2 bg-surface-container-high text-on-surface border border-outline-variant/20 rounded-lg hover:bg-surface-variant/30 transition-all font-label-md text-label-md flex items-center justify-center gap-1.5 font-semibold">
-            <span class="material-symbols-outlined text-[18px]">download</span> Descargar (.md)
+      <div class="flex flex-col gap-4 border-t border-outline-variant/10 pt-4">
+        <div class="flex flex-col sm:flex-row items-center gap-3 w-full">
+          <input type="text" id="recipient-emails" placeholder="webmaster@empresa.com, dev1@gmail.com (comas para varios)" class="bg-[#070b14] border border-outline-variant/20 rounded-lg px-3 py-2 text-xs text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:border-primary flex-1 w-full">
+          <button id="email-report-btn" class="w-full sm:w-auto px-5 py-2 bg-secondary text-on-secondary rounded-lg hover:opacity-90 transition-all font-label-md text-label-md font-semibold flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(99,102,241,0.2)] whitespace-nowrap">
+            <span class="material-symbols-outlined text-[18px]">mail</span> Enviar a Webmasters
           </button>
-          <button id="copy-report-btn" class="flex-1 sm:flex-initial px-5 py-2 bg-primary text-on-primary rounded-lg hover:opacity-90 transition-all font-label-md text-label-md font-semibold flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(87,241,219,0.3)]">
-            <span class="material-symbols-outlined text-[18px]">content_copy</span> Copiar Reporte
-          </button>
+        </div>
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+          <span class="text-xs text-on-surface-variant">Puedes enviar este informe directamente por correo a múltiples desarrolladores.</span>
+          <div class="flex gap-3 w-full sm:w-auto">
+            <button id="download-report-btn" class="flex-1 sm:flex-initial px-4 py-2 bg-surface-container-high text-on-surface border border-outline-variant/20 rounded-lg hover:bg-surface-variant/30 transition-all font-label-md text-label-md flex items-center justify-center gap-1.5 font-semibold">
+              <span class="material-symbols-outlined text-[18px]">download</span> Descargar (.md)
+            </button>
+            <button id="copy-report-btn" class="flex-1 sm:flex-initial px-5 py-2 bg-primary text-on-primary rounded-lg hover:opacity-90 transition-all font-label-md text-label-md font-semibold flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(87,241,219,0.3)]">
+              <span class="material-symbols-outlined text-[18px]">content_copy</span> Copiar Reporte
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -559,6 +571,12 @@ La imagen principal del hero (<code class="text-secondary bg-secondary/10 px-1 p
       document.getElementById('brief-title-input').value = data.title;
       document.getElementById('brief-desc-input').textContent = data.description;
       document.getElementById('brief-just-input').textContent = data.justification;
+      
+      if (statusIcon) {
+        statusIcon.className = 'material-symbols-outlined text-[14px] text-emerald-400';
+        statusIcon.textContent = 'check_circle';
+      }
+      if (statusText) statusText.textContent = 'Guardado en Base de Datos';
       
       // Update technical spec preview based on ID
       const techSpec = document.getElementById('brief-tech-spec');
@@ -854,6 +872,50 @@ Si tiene alguna duda, puede responder a este ticket o auditar de nuevo la web de
       link.click();
       document.body.removeChild(link);
     });
+  }
+
+  const emailReportBtn = document.getElementById('email-report-btn');
+  const recipientInput = document.getElementById('recipient-emails');
+  
+  if (emailReportBtn) {
+    emailReportBtn.addEventListener('click', async () => {
+      const recipients = recipientInput.value.trim();
+      const content = reportTextArea.value;
+      const subject = activeTab === 'ai' 
+        ? '[IA Webmaster Briefs] Contexto de Optimización Consolidado'
+        : '[Webmaster Briefs] Informe Técnico de Optimización Web';
+
+      emailReportBtn.disabled = true;
+      const originalText = emailReportBtn.innerHTML;
+      emailReportBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">sync</span> Enviando...';
+
+      try {
+        const res = await fetch('/api/briefs/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ recipients, subject, content })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          alert(data.message);
+        } else {
+          alert('Error: ' + data.error);
+        }
+      } catch (err) {
+        alert('Error de conexión: ' + err.message);
+      } finally {
+        emailReportBtn.disabled = false;
+        emailReportBtn.innerHTML = originalText;
+      }
+    });
+  }
+
+  // Pre-fill recipient email from SMTP credentials
+  fetch('/api/credentials').then(r => r.json()).then(data => {
+    if (data.smtp_recipient && recipientInput) {
+      recipientInput.value = data.smtp_recipient;
+    }
+  }).catch(console.error);
   }
 
   // Mobile Sidebar Drawer Logic
